@@ -1,5 +1,7 @@
 package fr.lo02.model.stack;
 
-public class PlayerStack {
+import fr.lo02.model.CardList;
+
+public class PlayerStack extends CardList {
 
 }
