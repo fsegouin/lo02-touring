@@ -1,5 +1,7 @@
 package fr.lo02.model.card.HazardCards;
 
-public class SpeedLimit {
+import fr.lo02.model.card.Card;
+
+public class SpeedLimit extends Card {
 
 }

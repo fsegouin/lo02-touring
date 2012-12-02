@@ -1,5 +1,7 @@
 package fr.lo02.model.card.HazardCards;
 
-public class Stop {
+import fr.lo02.model.card.Card;
+
+public class Stop extends Card {
 
 }

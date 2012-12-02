@@ -9,6 +9,13 @@ import fr.lo02.model.card.Card;
 public class CardList {
 
 	protected Stack<Card> stack;
+	
+	
+
+	public CardList() {
+		super();
+		this.stack = new Stack<Card>();
+	}
 
 	public Card topPick() {
 		return stack.pop();

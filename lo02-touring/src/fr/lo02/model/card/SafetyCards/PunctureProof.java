@@ -1,5 +1,7 @@
 package fr.lo02.model.card.SafetyCards;
 
-public class PunctureProof {
+import fr.lo02.model.card.Card;
+
+public class PunctureProof extends Card {
 
 }

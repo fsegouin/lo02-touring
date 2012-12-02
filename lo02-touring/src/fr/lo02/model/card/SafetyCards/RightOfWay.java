@@ -1,5 +1,7 @@
 package fr.lo02.model.card.SafetyCards;
 
-public class RightOfWay {
+import fr.lo02.model.card.Card;
+
+public class RightOfWay extends Card {
 
 }

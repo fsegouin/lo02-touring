@@ -1,5 +1,7 @@
 package fr.lo02.model.card.remedyCards;
 
-public class EndOfLimit {
+import fr.lo02.model.card.Card;
+
+public class EndOfLimit extends Card {
 
 }
