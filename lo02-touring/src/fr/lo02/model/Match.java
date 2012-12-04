@@ -9,9 +9,7 @@ import fr.lo02.model.stack.GameStack;
 
 public class Match {
 	
-	// KIKOO KEVIN
-
-	//KIKOO FLO
+	// Kikoo après les 2 tests
 	
 	GameStack gameStack = new GameStack();
 
