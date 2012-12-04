@@ -3,6 +3,8 @@ package fr.lo02.controller;
 
 import java.util.Scanner;
 
+import fr.lo02.model.Match;
+
 
 public class Game {
 	
@@ -41,7 +43,7 @@ public class Game {
 	}
 
 	public void startMatch() {
-		// Match match = new Match();
+		Match match = new Match(this.nbComputerPlayer, this.nbHumanPlayer, this.namePlayer);
 					
 	}
 	

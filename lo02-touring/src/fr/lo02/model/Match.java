@@ -1,5 +1,7 @@
 package fr.lo02.model;
 
+import java.util.ArrayList;
+
 import fr.lo02.controller.Game;
 import fr.lo02.model.card.Distance;
 import fr.lo02.model.card.HazardCards.*;
@@ -9,8 +11,28 @@ import fr.lo02.model.stack.GameStack;
 
 public class Match {
 	
-	// Kikoo apres les 2 tests
-	//Add test lllllllllllllll
+private ArrayList<Player> listPlayer = new ArrayList<Player>();
+	
+	public Match(int nbComputerPlayer, int nbHumanPlayer, String[] namePlayer) {
+		this.PlayerInit(nbComputerPlayer, nbHumanPlayer, namePlayer);
+		this.GameStackInit();
+	}	
+	
+	/*
+	 * Create the list of player(human and computer)
+	 */
+	public void PlayerInit(int nbComputerPlayer, int nbHumanPlayer, String[] namePlayer) {
+
+		for (int i = 0; i < nbHumanPlayer; i++) {
+			HumanPlayer humanplayer = new HumanPlayer(namePlayer[i], i);
+			this.listPlayer.add(humanplayer);
+		}
+		for (int i = nbHumanPlayer-1; i < nbComputerPlayer; i++) {
+			ComputerPlayer computerplayer = new ComputerPlayer(namePlayer[i], i);
+			this.listPlayer.add(computerplayer);
+		}
+		
+	}
 	
 	GameStack gameStack = new GameStack();
 
@@ -114,11 +136,6 @@ public class Match {
 		System.out.println("Contenu de la pioche :");
 		System.out.println(gameStack.toString());
 
-	}
-
-	public static void main(String[] args) { // ONLY FOR TEST PURPOSES
-		Match aMatch = new Match();
-		aMatch.GameStackInit();
 	}
 
 }
