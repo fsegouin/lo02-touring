@@ -10,33 +10,48 @@ import fr.lo02.model.card.SafetyCards.*;
 import fr.lo02.model.stack.GameStack;
 
 public class Match {
-	
-private ArrayList<Player> listPlayer = new ArrayList<Player>();
-	
+
+	GameStack gameStack = new GameStack();
+
+	private ArrayList<Player> listPlayer = new ArrayList<Player>();
+
 	public Match(int nbComputerPlayer, int nbHumanPlayer, String[] namePlayer) {
 		this.PlayerInit(nbComputerPlayer, nbHumanPlayer, namePlayer);
 		this.GameStackInit();
-	}	
-	
+		this.PlayerStackInit();
+	}
+
 	/*
 	 * Create the list of player(human and computer)
 	 */
-	public void PlayerInit(int nbComputerPlayer, int nbHumanPlayer, String[] namePlayer) {
+
+	public void PlayerInit(int nbComputerPlayer, int nbHumanPlayer,
+			String[] namePlayer) {
 
 		for (int i = 0; i < nbHumanPlayer; i++) {
 			HumanPlayer humanplayer = new HumanPlayer(namePlayer[i], i);
 			this.listPlayer.add(humanplayer);
 		}
-		for (int i = nbHumanPlayer-1; i < nbComputerPlayer; i++) {
+		for (int i = nbHumanPlayer - 1; i < nbComputerPlayer; i++) {
 			ComputerPlayer computerplayer = new ComputerPlayer(namePlayer[i], i);
 			this.listPlayer.add(computerplayer);
 		}
-		
-	}
-	
-	GameStack gameStack = new GameStack();
 
-	public void GameStackInit() {
+	}
+
+	public void PlayerStackInit() { // Permet de distribuer une main de ˆ chaque joueur
+
+		for (Player p : listPlayer) {
+			for (int i = 0; i < 4; i++) {
+				p.myStack.stack.push(gameStack.topPick());
+			}
+		}
+		
+		System.out.println("Les mains des joueurs ont ŽtŽ distribuŽes.");
+
+	}
+
+	public void GameStackInit() { // Initialise la pioche de jeu principale
 
 		for (int i = 0; i < 2; i++) { // 2 stop cards
 			Stop aStop = new Stop();
@@ -108,17 +123,17 @@ private ArrayList<Player> listPlayer = new ArrayList<Player>();
 			Distance aDistance = new Distance(25);
 			gameStack.toStack(aDistance);
 		}
-		
+
 		for (int i = 0; i < 6; i++) {
 			Distance aDistance = new Distance(50);
 			gameStack.toStack(aDistance);
 		}
-		
+
 		for (int i = 0; i < 6; i++) {
 			Distance aDistance = new Distance(75);
 			gameStack.toStack(aDistance);
 		}
-		
+
 		for (int i = 0; i < 9; i++) {
 			Distance aDistance = new Distance(100);
 			gameStack.toStack(aDistance);
@@ -128,9 +143,9 @@ private ArrayList<Player> listPlayer = new ArrayList<Player>();
 			Distance aDistance = new Distance(200);
 			gameStack.toStack(aDistance);
 		}
-		
+
 		gameStack.shuffleCards(); // Shuffle the stack
-		
+
 		System.out.println("Nous avons " + gameStack.getCardCounter()
 				+ " cartes dans la pioche principale.");
 		System.out.println("Contenu de la pioche :");

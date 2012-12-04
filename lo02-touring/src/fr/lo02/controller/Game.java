@@ -23,28 +23,28 @@ public class Game {
 		Game game = new Game();
 		Scanner sc = new Scanner(System.in);
 		
-		System.out.println("Entrer un nombre de joueur humain :");
+		System.out.println("Entrez un nombre de joueur humain :");
 		game.setNbHumanPlayer(sc.nextInt());
-		System.out.println(game.getNbHumanPlayer());
-		
-		System.out.println("Entrer un nombre de joueur ordinateur :");
+		//System.out.println(game.getNbHumanPlayer());
+		System.out.println("Entrez un nombre de joueur ordinateur :");
 		game.setNbComputerPlayer(sc.nextInt());
-		System.out.println(game.getNbComputerPlayer());
+		//System.out.println(game.getNbComputerPlayer());
 		
 		//On vide la ligne avant d'en lire d'autres car on a utilisé sc.nextInt() avant
 	    sc.nextLine();
 		
 		//Add the name of each HumanPlayer
 		for (int i = 0; i < game.getNbHumanPlayer(); i++) {
-			System.out.println("Nom du joueur :" + (i+1));
+			System.out.println("Entrez le nom du joueur " + (i+1) + " :");
 			game.setNamePlayerNumber(i, sc.nextLine());
 		}
+		
+		// On dŽmarre le jeu, on passe la main ˆ Game
 		game.startMatch();
 	}
 
 	public void startMatch() {
-		Match match = new Match(this.nbComputerPlayer, this.nbHumanPlayer, this.namePlayer);
-					
+		Match match = new Match(this.nbComputerPlayer, this.nbHumanPlayer, this.namePlayer);	
 	}
 	
 
