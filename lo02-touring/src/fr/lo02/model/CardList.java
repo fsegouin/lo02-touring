@@ -6,12 +6,10 @@ import fr.lo02.model.card.Card;
 
 // Generic stack class
 
-public class CardList {
+public class CardList { // On peut eventuellement extends depuis Stack
 
 	protected Stack<Card> stack;
 	
-	
-
 	public CardList() {
 		super();
 		this.stack = new Stack<Card>();
@@ -35,6 +33,11 @@ public class CardList {
 	
 	public int getCardCounter() {
 		return stack.size();
+	}
+
+	@Override
+	public String toString() {
+		return "CardList [stack=" + stack + "]";
 	}
 
 }
