@@ -9,6 +9,8 @@ import fr.lo02.model.stack.GameStack;
 
 public class Match {
 
+	//KIKOO FLO
+	
 	GameStack gameStack = new GameStack();
 
 	public void GameStackInit() {
