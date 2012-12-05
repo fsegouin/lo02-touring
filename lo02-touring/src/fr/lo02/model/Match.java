@@ -42,8 +42,7 @@ public class Match {
 	 * Create the list of player(human and computer)
 	 */
 
-	public void playerInit(int nbComputerPlayer, int nbHumanPlayer,
-			String[] namePlayer) {
+	public void playerInit(int nbComputerPlayer, int nbHumanPlayer,String[] namePlayer) {
 
 		for (int i = 0; i < nbHumanPlayer; i++) {
 			HumanPlayer humanplayer = new HumanPlayer(namePlayer[i], i);
@@ -64,8 +63,7 @@ public class Match {
 			}
 		}
 		
-		// DEBUGGING PURPOSES
-		
+// DEBUGGING PURPOSES	
 //		for (Player p : listPlayer) {
 //			System.out.println(p.myStack.stack.toString());
 //		}
