@@ -19,7 +19,6 @@ public class CardList { // On peut eventuellement extends depuis Stack
 	public void shuffleCards() {
 		Collections.shuffle(stack);
 	}
-	
 	public Card topPick() {
 		return stack.pop();
 	}

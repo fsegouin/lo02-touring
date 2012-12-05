@@ -14,6 +14,8 @@ public class Player {
 		this.color = color;
 	}
 	
-	
+	public void pickCard(CardList source){
+		this.hand.add(source.topPick());
+	}
 
 }

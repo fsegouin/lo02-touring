@@ -41,7 +41,7 @@ public class Match {
 
 		for (Player p : listPlayer) {
 			for (int i = 0; i < 4; i++) {
-				//p.myStack.stack.push(cardlist.topPick());
+				p.hand.add(cardlist.topPick());
 			}
 		}
 		

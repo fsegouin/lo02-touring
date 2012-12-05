@@ -1,9 +1,8 @@
 
-package fr.lo02.controller;
+package fr.lo02.model;
 
 import java.util.Scanner;
 
-import fr.lo02.model.Match;
 
 
 public class Game {
@@ -39,12 +38,12 @@ public class Game {
 			game.setNamePlayerNumber(i, sc.nextLine());
 		}
 		
-		// On démarre le jeu, on passe la main à Game
+		// On démarre le jeu, on passe la main a Match
 		game.startMatch();
 	}
 
 	public void startMatch() {
-		Match match = new Match(this.nbComputerPlayer, this.nbHumanPlayer, this.namePlayer);	
+		Match match = new Match(this.nbComputerPlayer, this.nbHumanPlayer, this.namePlayer);
 	}
 	
 
