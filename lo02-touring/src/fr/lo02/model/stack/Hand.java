@@ -1,7 +1,9 @@
 package fr.lo02.model.stack;
 
-import fr.lo02.model.CardList;
+import java.util.ArrayList;
 
-public class Hand extends CardList {
+import fr.lo02.model.card.Card;
+
+public class Hand extends ArrayList<Card>{
 
 }

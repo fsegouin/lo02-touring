@@ -1,5 +1,6 @@
 package fr.lo02.model;
 
+import java.util.Collections;
 import java.util.Stack;
 
 import fr.lo02.model.card.Card;
@@ -15,9 +16,13 @@ public class CardList { // On peut eventuellement extends depuis Stack
 		this.stack = new Stack<Card>();
 	}
 
+	public void shuffleCards() {
+		Collections.shuffle(stack);
+	}
 	public Card topPick() {
 		return stack.pop();
 	}
+	
 
 	public void toStack(Card aCard) {
 		stack.push(aCard);

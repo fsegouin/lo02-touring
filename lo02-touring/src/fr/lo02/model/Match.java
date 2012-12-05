@@ -7,11 +7,10 @@ import fr.lo02.model.card.Distance;
 import fr.lo02.model.card.HazardCards.*;
 import fr.lo02.model.card.remedyCards.*;
 import fr.lo02.model.card.SafetyCards.*;
-import fr.lo02.model.stack.GameStack;
 
 public class Match {
 
-	GameStack gameStack = new GameStack();
+	CardList cardlist = new CardList();
 
 	private ArrayList<Player> listPlayer = new ArrayList<Player>();
 
@@ -61,7 +60,7 @@ public class Match {
 
 		for (Player p : listPlayer) {
 			for (int i = 0; i < 4; i++) {
-				p.myStack.stack.push(gameStack.topPick());
+				p.hand.add(cardlist.topPick());
 			}
 		}
 		
@@ -81,101 +80,106 @@ public class Match {
 
 		for (int i = 0; i < 2; i++) { // 2 stop cards
 			Stop aStop = new Stop();
-			gameStack.toStack(aStop);
+			cardlist.toStack(aStop);
 		}
 
 		for (int i = 0; i < 5; i++) { // 2 roll cards
 			GoRoll aGoRoll = new GoRoll();
-			gameStack.toStack(aGoRoll);
+			cardlist.toStack(aGoRoll);
 		}
 
 		for (int i = 0; i < 2; i++) {
 			SpeedLimit aSpeedLimit = new SpeedLimit();
-			gameStack.toStack(aSpeedLimit);
+			cardlist.toStack(aSpeedLimit);
 		}
 
 		for (int i = 0; i < 4; i++) {
 			EndOfLimit anEndOfLimit = new EndOfLimit();
-			gameStack.toStack(anEndOfLimit);
+			cardlist.toStack(anEndOfLimit);
 		}
 
 		for (int i = 0; i < 2; i++) {
 			OutOfGas anOutOfGas = new OutOfGas();
-			gameStack.toStack(anOutOfGas);
+			cardlist.toStack(anOutOfGas);
 		}
 
 		for (int i = 0; i < 2; i++) {
 			FlatTire aFlatTire = new FlatTire();
-			gameStack.toStack(aFlatTire);
+			cardlist.toStack(aFlatTire);
 		}
 
 		for (int i = 0; i < 2; i++) {
 			Accident anAccident = new Accident();
-			gameStack.toStack(anAccident);
+			cardlist.toStack(anAccident);
 		}
 
 		for (int i = 0; i < 4; i++) {
 			Gasoline aGasoline = new Gasoline();
-			gameStack.toStack(aGasoline);
+			cardlist.toStack(aGasoline);
 		}
 
 		for (int i = 0; i < 4; i++) {
 			Repairs aRepairs = new Repairs();
-			gameStack.toStack(aRepairs);
+			cardlist.toStack(aRepairs);
 		}
 
 		for (int i = 0; i < 4; i++) {
 			SpareTire aSpareTire = new SpareTire();
-			gameStack.toStack(aSpareTire);
+			cardlist.toStack(aSpareTire);
 		}
 
 		// 4 bottes du jeu
 
 		RightOfWay aRightOfWay = new RightOfWay();
-		gameStack.toStack(aRightOfWay);
+		cardlist.toStack(aRightOfWay);
 
 		DrivingAce aDrivingAce = new DrivingAce();
-		gameStack.toStack(aDrivingAce);
+		cardlist.toStack(aDrivingAce);
 
 		ExtraTank anExtraTank = new ExtraTank();
-		gameStack.toStack(anExtraTank);
+		cardlist.toStack(anExtraTank);
 
 		PunctureProof aPunctureProof = new PunctureProof();
-		gameStack.toStack(aPunctureProof);
+		cardlist.toStack(aPunctureProof);
 
 		// Distance cards
 
 		for (int i = 0; i < 6; i++) {
 			Distance aDistance = new Distance(25);
-			gameStack.toStack(aDistance);
+			cardlist.toStack(aDistance);
 		}
 
 		for (int i = 0; i < 6; i++) {
 			Distance aDistance = new Distance(50);
-			gameStack.toStack(aDistance);
+			cardlist.toStack(aDistance);
 		}
 
 		for (int i = 0; i < 6; i++) {
 			Distance aDistance = new Distance(75);
-			gameStack.toStack(aDistance);
+			cardlist.toStack(aDistance);
 		}
 
 		for (int i = 0; i < 9; i++) {
 			Distance aDistance = new Distance(100);
-			gameStack.toStack(aDistance);
+			cardlist.toStack(aDistance);
 		}
 
 		for (int i = 0; i < 3; i++) {
 			Distance aDistance = new Distance(200);
-			gameStack.toStack(aDistance);
+			cardlist.toStack(aDistance);
 		}
 
-		gameStack.shuffleCards(); // Shuffle the stack
+		cardlist.shuffleCards(); // Shuffle the stack
 
-		System.out.println("Nous avons " + gameStack.getCardCounter()
+		System.out.println("Nous avons " + cardlist.getCardCounter()
 				+ " cartes dans la pioche principale.");
+<<<<<<< HEAD
 //		System.out.println("Contenu de la pioche :");
 //		System.out.println(gameStack.toString());
+=======
+		System.out.println("Contenu de la pioche :");
+		System.out.println(cardlist.toString());
+>>>>>>> branch 'master' of https://github.com/fsegouin/lo02-touring.git
 
 	}
 
