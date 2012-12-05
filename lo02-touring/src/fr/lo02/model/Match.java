@@ -47,7 +47,7 @@ public class Match {
 			}
 		}
 		
-		System.out.println("Les mains des joueurs ont été distribuées.");
+		System.out.println("Les mains des joueurs ont ete distribuees.");
 
 	}
 
