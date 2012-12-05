@@ -1,28 +1,25 @@
 package fr.lo02.model.card;
 
-<<<<<<< HEAD
-import fr.lo02.model.stack.Hand;
-import fr.lo02.model.stack.PlayerStack;
-
-public class Card {
-=======
 import fr.lo02.model.CardList;
+import fr.lo02.model.stack.Hand;
 
 public abstract class Card {
->>>>>>> branch 'master' of https://github.com/fsegouin/lo02-touring.git
 
-	@Override
 	public String toString() {
 		return this.getClass().getSimpleName();
 	}
 	
-<<<<<<< HEAD
-	public boolean playThisCard(Hand from, PlayerStack to) {
-		return true;
-=======
+
+	
 	public void checkValidMove(Card source, CardList destination) {
-		
->>>>>>> branch 'master' of https://github.com/fsegouin/lo02-touring.git
+		//appelle a la methode presente dans chaque card
+		//si elle retourne True >>>
+		//playThisCard();
+		//sinon...
+	}
+	
+	public boolean playThisCard(Hand from, CardList to) {
+		return true;
 	}
 
 }

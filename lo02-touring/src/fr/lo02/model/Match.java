@@ -18,7 +18,8 @@ public class Match {
 		this.playerInit(nbComputerPlayer, nbHumanPlayer, namePlayer);
 		this.gameStackInit();
 		this.playerStackInit();
-		this.playMatch(); // TEST ONLY
+		//TEST ONLY
+		this.playMatch();
 	}
 
 	public void playMatch() {
@@ -29,11 +30,11 @@ public class Match {
 		int nextCardIndex;
 		
 		System.out.println("C'est au tour de " + listPlayer.get(0).getName());
-		System.out.println("Votre main actuelle est : " + listPlayer.get(0).myStack.toString());
+		System.out.println("Votre main actuelle est : " + listPlayer.get(0).hand.toString());
 		System.out.println("Que souhaitez-vous jouer ? Entrez le numero de la carte.");
 		nextCardIndex = sc.nextInt();
 		
-		System.out.println(listPlayer.get(0).myStack.stack.get(nextCardIndex).toString()); // TEST
+		System.out.println(listPlayer.get(0).hand.get(nextCardIndex).toString()); // TEST
 		
 	}
 
@@ -52,11 +53,10 @@ public class Match {
 			ComputerPlayer computerplayer = new ComputerPlayer(namePlayer[i], i);
 			this.listPlayer.add(computerplayer);
 		}
-
 	}
 
-	public void playerStackInit() { // Permet de distribuer une main a chaque
-									// joueur
+	// Permet de distribuer une main a chaque joueur
+	public void playerStackInit() { 
 
 		for (Player p : listPlayer) {
 			for (int i = 0; i < 4; i++) {
@@ -173,13 +173,11 @@ public class Match {
 
 		System.out.println("Nous avons " + cardlist.getCardCounter()
 				+ " cartes dans la pioche principale.");
-<<<<<<< HEAD
 //		System.out.println("Contenu de la pioche :");
 //		System.out.println(gameStack.toString());
-=======
+
 		System.out.println("Contenu de la pioche :");
 		System.out.println(cardlist.toString());
->>>>>>> branch 'master' of https://github.com/fsegouin/lo02-touring.git
 
 	}
 
