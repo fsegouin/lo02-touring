@@ -30,7 +30,7 @@ public class Game {
 		game.setNbComputerPlayer(sc.nextInt());
 		//System.out.println(game.getNbComputerPlayer());
 		
-		//On vide la ligne avant d'en lire d'autres car on a utilisé sc.nextInt() avant
+		//On vide la ligne avant d'en lire d'autres car on a utilise sc.nextInt() avant
 	    sc.nextLine();
 		
 		//Add the name of each HumanPlayer
@@ -39,7 +39,7 @@ public class Game {
 			game.setNamePlayerNumber(i, sc.nextLine());
 		}
 		
-		// On dŽmarre le jeu, on passe la main ˆ Game
+		// On demarre le jeu, on passe la main a Game
 		game.startMatch();
 	}
 

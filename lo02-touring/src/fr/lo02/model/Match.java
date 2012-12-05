@@ -1,8 +1,8 @@
 package fr.lo02.model;
 
 import java.util.ArrayList;
+import java.util.Scanner;
 
-import fr.lo02.controller.Game;
 import fr.lo02.model.card.Distance;
 import fr.lo02.model.card.HazardCards.*;
 import fr.lo02.model.card.remedyCards.*;
@@ -16,16 +16,33 @@ public class Match {
 	private ArrayList<Player> listPlayer = new ArrayList<Player>();
 
 	public Match(int nbComputerPlayer, int nbHumanPlayer, String[] namePlayer) {
-		this.PlayerInit(nbComputerPlayer, nbHumanPlayer, namePlayer);
-		this.GameStackInit();
-		this.PlayerStackInit();
+		this.playerInit(nbComputerPlayer, nbHumanPlayer, namePlayer);
+		this.gameStackInit();
+		this.playerStackInit();
+		this.playMatch(); // TEST ONLY
+	}
+
+	public void playMatch() {
+
+		// DEBUG PURPOSES -- TEST ONLY//
+		
+		Scanner sc = new Scanner(System.in);
+		int nextCardIndex;
+		
+		System.out.println("C'est au tour de " + listPlayer.get(0).getName());
+		System.out.println("Votre main actuelle est : " + listPlayer.get(0).myStack.toString());
+		System.out.println("Que souhaitez-vous jouer ? Entrez le numero de la carte.");
+		nextCardIndex = sc.nextInt();
+		
+		System.out.println(listPlayer.get(0).myStack.stack.get(nextCardIndex).toString()); // TEST
+		
 	}
 
 	/*
 	 * Create the list of player(human and computer)
 	 */
 
-	public void PlayerInit(int nbComputerPlayer, int nbHumanPlayer,
+	public void playerInit(int nbComputerPlayer, int nbHumanPlayer,
 			String[] namePlayer) {
 
 		for (int i = 0; i < nbHumanPlayer; i++) {
@@ -39,7 +56,8 @@ public class Match {
 
 	}
 
-	public void PlayerStackInit() { // Permet de distribuer une main de ˆ chaque joueur
+	public void playerStackInit() { // Permet de distribuer une main a chaque
+									// joueur
 
 		for (Player p : listPlayer) {
 			for (int i = 0; i < 4; i++) {
@@ -47,11 +65,19 @@ public class Match {
 			}
 		}
 		
-		System.out.println("Les mains des joueurs ont ŽtŽ distribuŽes.");
+		// DEBUGGING PURPOSES
+		
+//		for (Player p : listPlayer) {
+//			System.out.println(p.myStack.stack.toString());
+//		}
+//
+//		System.out.println("Les mains des joueurs ont ŽtŽ distribuees.");
+		
+		// DEBUGGING PURPOSES
 
 	}
 
-	public void GameStackInit() { // Initialise la pioche de jeu principale
+	public void gameStackInit() { // Initialise la pioche de jeu principale
 
 		for (int i = 0; i < 2; i++) { // 2 stop cards
 			Stop aStop = new Stop();
@@ -148,8 +174,8 @@ public class Match {
 
 		System.out.println("Nous avons " + gameStack.getCardCounter()
 				+ " cartes dans la pioche principale.");
-		System.out.println("Contenu de la pioche :");
-		System.out.println(gameStack.toString());
+//		System.out.println("Contenu de la pioche :");
+//		System.out.println(gameStack.toString());
 
 	}
 
