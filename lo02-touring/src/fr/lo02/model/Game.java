@@ -38,7 +38,7 @@ public class Game {
 			game.setNamePlayerNumber(i, sc.nextLine());
 		}
 		
-		// On démarre le jeu, on passe la main a Match
+		// On demarre le jeu, on passe la main a Match
 		game.startMatch();
 	}
 
