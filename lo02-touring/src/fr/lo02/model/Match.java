@@ -8,10 +8,11 @@ import fr.lo02.model.card.Distance;
 import fr.lo02.model.card.HazardCards.*;
 import fr.lo02.model.card.remedyCards.*;
 import fr.lo02.model.card.SafetyCards.*;
+import fr.lo02.model.stack.Hand;
 
 public class Match {
 
-	CardList cardlist = new CardList();
+	CardList gameStack = new CardList();
 
 	private int activePlayer = 0;
 
@@ -41,32 +42,33 @@ public class Match {
 
 			System.out.println("Votre main actuelle est : "
 					+ player.showCards());
-			
-			Card cardPicked = cardlist.topPick();
-			player.hand.add(cardPicked);
-			
-			System.out.println("Vous piochez : " + cardPicked.toString());
-			
+
+			Card c = player.pickCard(gameStack);
+
+			System.out.println("Vous piochez : " + c.toString());
+
 			System.out.println("Votre nouvelle main est : "
 					+ player.showCards());
 
 			do {
 				System.out
 						.println("Que souhaitez-vous jouer ? Entrez le numero de la carte.");
+
 				try {
 					cardIndex = Integer.parseInt(scan.nextLine());
 				} catch (NumberFormatException e) {
 					continue;
 				}
 
-				if (cardIndex <= player.hand.size())
+				if (cardIndex <= (player.hand.size()))
 					askAgain = false;
 
 			} while (askAgain);
 
-			player.hand.get(cardIndex).playThisCard(player, player.hand, null);
-			
-			System.out.println("Kilometres parcourus par " + player.getName() + " : " + player.distancePile.getTotalMilage());
+			player.selectedCard(cardIndex).playThisCard(player, player.hand, null);
+
+			System.out.println("Kilometres parcourus par " + player.getName()
+					+ " : " + player.distancePile.getTotalMilage());
 
 		} while (player.kmCheck());
 
@@ -79,7 +81,7 @@ public class Match {
 			activePlayer = 1;
 		}
 
-		Player nextPlayer = listPlayer.get(activePlayer-1);
+		Player nextPlayer = listPlayer.get(activePlayer - 1);
 
 		System.out.println("\n" + nextPlayer.getName() + " c'est a vous !");
 
@@ -111,7 +113,7 @@ public class Match {
 
 		for (Player p : listPlayer) {
 			for (int i = 0; i < 4; i++) {
-				p.hand.add(cardlist.topPick());
+				p.hand.add(gameStack.topPick());
 			}
 		}
 
@@ -128,88 +130,88 @@ public class Match {
 
 		for (int i = 0; i < 2; i++) { // 2 stop cards
 			Stop aStop = new Stop();
-			cardlist.toStack(aStop);
+			gameStack.toStack(aStop);
 		}
 
 		for (int i = 0; i < 5; i++) { // 2 roll cards
 			GoRoll aGoRoll = new GoRoll();
-			cardlist.toStack(aGoRoll);
+			gameStack.toStack(aGoRoll);
 		}
 
 		/*
 		 * for (int i = 0; i < 2; i++) { SpeedLimit aSpeedLimit = new
-		 * SpeedLimit(); cardlist.toStack(aSpeedLimit); }
+		 * SpeedLimit(); gameStack.toStack(aSpeedLimit); }
 		 * 
 		 * for (int i = 0; i < 4; i++) { EndOfLimit anEndOfLimit = new
-		 * EndOfLimit(); cardlist.toStack(anEndOfLimit); }
+		 * EndOfLimit(); gameStack.toStack(anEndOfLimit); }
 		 * 
 		 * for (int i = 0; i < 2; i++) { OutOfGas anOutOfGas = new OutOfGas();
-		 * cardlist.toStack(anOutOfGas); }
+		 * gameStack.toStack(anOutOfGas); }
 		 * 
 		 * for (int i = 0; i < 2; i++) { FlatTire aFlatTire = new FlatTire();
-		 * cardlist.toStack(aFlatTire); }
+		 * gameStack.toStack(aFlatTire); }
 		 * 
 		 * for (int i = 0; i < 2; i++) { Accident anAccident = new Accident();
-		 * cardlist.toStack(anAccident); }
+		 * gameStack.toStack(anAccident); }
 		 * 
 		 * for (int i = 0; i < 4; i++) { Gasoline aGasoline = new Gasoline();
-		 * cardlist.toStack(aGasoline); }
+		 * gameStack.toStack(aGasoline); }
 		 * 
 		 * for (int i = 0; i < 4; i++) { Repairs aRepairs = new Repairs();
-		 * cardlist.toStack(aRepairs); }
+		 * gameStack.toStack(aRepairs); }
 		 * 
 		 * for (int i = 0; i < 4; i++) { SpareTire aSpareTire = new SpareTire();
-		 * cardlist.toStack(aSpareTire); }
+		 * gameStack.toStack(aSpareTire); }
 		 * 
 		 * // 4 bottes du jeu
 		 * 
 		 * RightOfWay aRightOfWay = new RightOfWay();
-		 * cardlist.toStack(aRightOfWay);
+		 * gameStack.toStack(aRightOfWay);
 		 * 
 		 * DrivingAce aDrivingAce = new DrivingAce();
-		 * cardlist.toStack(aDrivingAce);
+		 * gameStack.toStack(aDrivingAce);
 		 * 
 		 * ExtraTank anExtraTank = new ExtraTank();
-		 * cardlist.toStack(anExtraTank);
+		 * gameStack.toStack(anExtraTank);
 		 * 
 		 * PunctureProof aPunctureProof = new PunctureProof();
-		 * cardlist.toStack(aPunctureProof);
+		 * gameStack.toStack(aPunctureProof);
 		 */
 
 		// Distance cards
 
 		for (int i = 0; i < 6; i++) {
 			Distance aDistance = new Distance(25);
-			cardlist.toStack(aDistance);
+			gameStack.toStack(aDistance);
 		}
 
 		for (int i = 0; i < 6; i++) {
 			Distance aDistance = new Distance(50);
-			cardlist.toStack(aDistance);
+			gameStack.toStack(aDistance);
 		}
 
 		for (int i = 0; i < 6; i++) {
 			Distance aDistance = new Distance(75);
-			cardlist.toStack(aDistance);
+			gameStack.toStack(aDistance);
 		}
 
 		for (int i = 0; i < 9; i++) {
 			Distance aDistance = new Distance(100);
-			cardlist.toStack(aDistance);
+			gameStack.toStack(aDistance);
 		}
 
 		for (int i = 0; i < 3; i++) {
 			Distance aDistance = new Distance(200);
-			cardlist.toStack(aDistance);
+			gameStack.toStack(aDistance);
 		}
 
-		cardlist.shuffleCards(); // Shuffle the stack
+		gameStack.shuffleCards(); // Shuffle the stack
 
-		System.out.println("Nous avons " + cardlist.getCardCounter()
+		System.out.println("Nous avons " + gameStack.getCardCounter()
 				+ " cartes dans la pioche principale.");
 
 		System.out.println("Contenu de la pioche :");
-		System.out.println(cardlist.toString());
+		System.out.println(gameStack.toString());
 
 	}
 
