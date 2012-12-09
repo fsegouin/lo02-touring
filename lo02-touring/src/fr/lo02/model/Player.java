@@ -1,5 +1,7 @@
 package fr.lo02.model;
 
+import java.util.Stack;
+
 import fr.lo02.model.card.Card;
 import fr.lo02.model.stack.DistancePile;
 import fr.lo02.model.stack.Hand;
@@ -12,7 +14,9 @@ public class Player {
 	private int color;
 	
 	protected Hand hand = new Hand(); // Main du joueur
-	public DistancePile distancePile = new DistancePile(); // Pile des cartes distance
+	private DistancePile distancePile = new DistancePile(); // Pile des cartes distance
+	private CardList discardPile = new CardList(); // Pile des cartes distance
+	private CardList battlePile = new CardList(); // Pile des cartes distance
 	protected Card selectedCard;
 
 	public Player(String name, int color) {
@@ -30,13 +34,49 @@ public class Player {
 		return c;
 	}
 	
+	public void addToDistance(Card aCard) {
+		this.distancePile.stack.add(aCard);
+	}
+
+	public void addToDiscard(Card aCard) {
+		this.discardPile.stack.add(aCard);
+	}
+
+	public void addToBattle(Card aCard) {
+		this.battlePile.stack.add(aCard);
+	}
+	
 	public Card selectedCard(int cardIndex) {
 		selectedCard = this.hand.get(cardIndex);
 		return selectedCard;
 	}
 	
-	public String showCards() {
+	public String showHand() {
 		return hand.toString();
+	}
+
+	public String showDistance() {
+		return distancePile.toString();
+	}
+
+	public String showBattle() {
+		return battlePile.toString();
+	}
+	
+	public void removeFromHand(Card aCard) {
+		this.hand.removeFromHand(aCard);
+	}
+	
+	public int handSize() {
+		return hand.size();
+	}
+
+	public void addMilage(int km) {
+		this.distancePile.addToTotalMilage(km);
+	}
+	
+	public int getTotalMilage() {
+		return distancePile.getTotalMilage();
 	}
 	
 	public boolean kmCheck() {

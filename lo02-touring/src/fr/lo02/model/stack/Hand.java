@@ -5,5 +5,9 @@ import java.util.ArrayList;
 import fr.lo02.model.card.Card;
 
 public class Hand extends ArrayList<Card> {
+	
+	public void removeFromHand(Card aCard) {
+		this.remove(aCard);
+	}
 
 }

@@ -1,8 +1,6 @@
 package fr.lo02.model.card;
 
-import fr.lo02.model.CardList;
 import fr.lo02.model.Player;
-import fr.lo02.model.stack.Hand;
 
 public class Distance extends Card {
 
@@ -19,10 +17,13 @@ public class Distance extends Card {
 	}
 
 	@Override
-	public void playThisCard(Player activePlayer, Hand sourceHand,
-			CardList destinationStack) {
-		super.playThisCard(activePlayer, sourceHand, destinationStack);
-		activePlayer.distancePile.addToTotalMilage(this.milage);
+	public void playThisCard(Player activePlayer, Player targetedPlayer) {
+		// TODO Auto-generated method stub
+		super.playThisCard(activePlayer, targetedPlayer);
+		activePlayer.addToDistance(this);
+		activePlayer.addMilage(this.milage);
 	}
+	
+	
 
 }

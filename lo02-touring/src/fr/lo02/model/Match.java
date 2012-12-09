@@ -41,14 +41,14 @@ public class Match {
 			player = nextPlayer();
 
 			System.out.println("Votre main actuelle est : "
-					+ player.showCards());
+					+ player.showHand());
 
 			Card c = player.pickCard(gameStack);
 
 			System.out.println("Vous piochez : " + c.toString());
 
 			System.out.println("Votre nouvelle main est : "
-					+ player.showCards());
+					+ player.showHand());
 
 			do {
 				System.out
@@ -65,10 +65,10 @@ public class Match {
 
 			} while (askAgain);
 
-			player.selectedCard(cardIndex).playThisCard(player, player.hand, null);
+			player.selectedCard(cardIndex).playThisCard(player, null);
 
 			System.out.println("Kilometres parcourus par " + player.getName()
-					+ " : " + player.distancePile.getTotalMilage());
+					+ " : " + player.getTotalMilage());
 
 		} while (player.kmCheck());
 
