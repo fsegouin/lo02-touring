@@ -12,7 +12,6 @@ public class Player {
 	
 	private String name;
 	private int color;
-	
 	protected Hand hand = new Hand(); // Main du joueur
 	private DistancePile distancePile = new DistancePile(); // Pile des cartes distance
 	// private CardList discardPile = new CardList(); // Pile des cartes distance
@@ -106,5 +105,8 @@ public class Player {
 		this.name = name;
 	}
 	
+	public Hand getHand() {
+		return hand;
+	}
 	
 }

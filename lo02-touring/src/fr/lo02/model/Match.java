@@ -12,15 +12,13 @@ import fr.lo02.model.stack.Hand;
 
 public class Match {
 
-	CardList gameStack = new CardList();
-	
+	private CardList gameStack = new CardList();
+	private CardList discardStack = new CardList();
 	private int activePlayer = 0;
-
 	private ArrayList<Player> listPlayer = new ArrayList<Player>();
 
 	/**
-	 * Le constructeur de match Initialise les joueurs, les stack de jeu
-	 * 
+	 * Le constructeur de match Initialise les joueurs, les stacks de jeu
 	 * @param nbComputerPlayer
 	 * @param nbHumanPlayer
 	 * @param namePlayer
@@ -29,48 +27,6 @@ public class Match {
 		this.playerInit(nbComputerPlayer, nbHumanPlayer, namePlayer);
 		this.gameStackInit();
 		this.playerHandInit();
-		//this.playMatch();
-	}
-
-	public void playMatch() {
-
-		Scanner scan = new Scanner(System.in);
-		int cardIndex = 0;
-		Player player;
-
-		do {
-			boolean askAgain = true;
-			player = nextPlayer();
-			System.out
-					.println("Votre main actuelle est : " + player.showHand());
-
-			Card c = player.pickCard(gameStack);
-			System.out.println("Vous piochez : " + c.toString());
-			System.out
-					.println("Votre nouvelle main est : " + player.showHand());
-
-			do {
-				System.out
-						.println("Que souhaitez-vous jouer ? Entrez le numero de la carte.");
-
-				try {
-					cardIndex = Integer.parseInt(scan.nextLine());
-				} catch (NumberFormatException e) {
-					continue;
-				}
-
-				if (cardIndex <= (player.hand.size()))
-					askAgain = false;
-
-			} while (askAgain);
-
-			player.selectedCard(cardIndex).playThisCard(player, null);
-
-			System.out.println("Kilometres parcourus par " + player.getName()
-					+ " : " + player.getTotalMilage());
-
-		} while (player.kmCheck());
-
 	}
 
 	public Player nextPlayer() {
@@ -84,7 +40,6 @@ public class Match {
 
 	/**
 	 * Create the list of player(human and computer)
-	 * 
 	 * @param nbComputerPlayer
 	 * @param nbHumanPlayer
 	 * @param namePlayer
@@ -194,4 +149,13 @@ public class Match {
 				+ " cartes dans la pioche principale.");
 	}
 
+	public CardList getGameStack() {
+		return gameStack;
+	}
+
+	public CardList getDiscardStack() {
+		return discardStack;
+	}
+	
+	
 }
