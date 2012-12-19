@@ -1,6 +1,7 @@
 package fr.lo02.model.card;
 
 import fr.lo02.model.Player;
+import fr.lo02.model.card.remedyCards.GoRoll;
 
 public class Distance extends Card {
 
@@ -19,9 +20,12 @@ public class Distance extends Card {
 	@Override
 	public void playThisCard(Player activePlayer, Player targetedPlayer) {
 		// TODO Auto-generated method stub
-		super.playThisCard(activePlayer, targetedPlayer);
-		activePlayer.addToDistance(this);
-		activePlayer.addMilage(this.milage);
+		if(activePlayer.getLastCardFromBattle() instanceof GoRoll) {
+			super.playThisCard(activePlayer, targetedPlayer);
+			activePlayer.addToDistance(this);
+			activePlayer.addMilage(this.milage);
+		}
+		
 	}
 	
 	
