@@ -1,6 +1,7 @@
 package fr.lo02.model;
 
 import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.Scanner;
 
 import fr.lo02.model.card.Card;
@@ -29,6 +30,24 @@ public class Match {
 		this.playerHandInit();
 	}
 
+	/**
+	 * Retourne une liste des joueurs qui peuvent etre ciblé
+	 * @param activePlayer
+	 * @return
+	 */
+	public ArrayList<Player> checkCardPlayable(Player activePlayer) {
+		ArrayList<Player> lp = new ArrayList<Player>();
+		for (Iterator iterator = listPlayer.iterator(); iterator.hasNext();) {
+			Player testTargetPlayer = (Player) iterator.next();
+			
+		}
+		return lp;
+		
+		
+		
+	}
+	
+	
 	public Player nextPlayer() {
 		activePlayer++;
 		if (activePlayer > listPlayer.size()) {

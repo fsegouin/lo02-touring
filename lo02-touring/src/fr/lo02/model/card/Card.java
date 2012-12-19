@@ -8,16 +8,13 @@ public abstract class Card {
 		return this.getClass().getSimpleName();
 	}
 
-	/*
-	 * public void checkValidMove(Card source, CardList destination) { //appelle
-	 * a la methode presente dans chaque card //si elle retourne True >>>
-	 * //playThisCard(); //sinon... }
-	 */
+
+	 public boolean checkValidMove(Player activePlayer, Player targetPlayer) {
+		return false;
+	 }
 	
 	public void playThisCard(Player activePlayer, Player targetedPlayer) {
-
 		activePlayer.removeFromHand(this);
-
 	}
 	
 }

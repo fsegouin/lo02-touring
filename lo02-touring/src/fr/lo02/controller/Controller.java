@@ -1,5 +1,6 @@
 package fr.lo02.controller;
 
+import java.util.Iterator;
 import java.util.Scanner;
 
 import fr.lo02.model.Game;
@@ -30,7 +31,8 @@ public class Controller {
 				askAgain = false;
 		}
 		
-		acifPlayer.selectedCard(cardIndex).playThisCard(acifPlayer, null);
+		
+		//acifPlayer.selectedCard(cardIndex).playThisCard(acifPlayer, null);
 		System.out.println("Kilometres parcourus par " + acifPlayer.getName()+ " : " + acifPlayer.getTotalMilage());
 		return true;
 	}

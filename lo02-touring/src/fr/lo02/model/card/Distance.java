@@ -12,12 +12,20 @@ public class Distance extends Card {
 		this.milage = milage;
 	}
 
-	@Override
 	public String toString() {
 		return "Distance [milage=" + milage + "]";
 	}
 
-	@Override
+	 public boolean checkValidMove(Player activePlayer, Player targetPlayer) {
+		 boolean cardPlayable = false;
+		 if (activePlayer.getLastCardFromBattle() instanceof GoRoll) {
+			 cardPlayable = true;
+		 }
+		return cardPlayable;
+	 }
+	 
+	 
+	// DANS CETTE METHODE TU DOIS APPELLER LA METHODE AU DESSUS POUR CHECK SI C'EST JOUABLE ET DONC NE PAS FAIRE LE TEST DANS CELLE CI
 	public void playThisCard(Player activePlayer, Player targetedPlayer) {
 		// TODO Auto-generated method stub
 		if(activePlayer.getLastCardFromBattle() instanceof GoRoll) {
