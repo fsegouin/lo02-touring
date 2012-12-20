@@ -9,7 +9,7 @@ public abstract class Card {
 	}
 
 
-	 public abstract boolean checkValidMove(Player activePlayer, Player targetPlayer);
+	 public abstract Player checkValidMove(Player activePlayer, Player targetPlayer);
 	
 	public void playThisCard(Player activePlayer, Player targetedPlayer) {
 		activePlayer.removeFromHand(this);

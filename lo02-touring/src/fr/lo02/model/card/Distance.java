@@ -16,12 +16,12 @@ public class Distance extends Card {
 		return "Distance [milage=" + milage + "]";
 	}
 
-	 public boolean checkValidMove(Player activePlayer, Player targetPlayer) {
-		 boolean cardPlayable = false;
+	 public Player checkValidMove(Player activePlayer, Player targetPlayer) {
+		 Player p = null;
 		 if (activePlayer.getLastCardFromBattle() instanceof GoRoll) {
-			 cardPlayable = true;
+			 p = activePlayer;
 		 }
-		return cardPlayable;
+		return p;
 	 }
 	 
 	 

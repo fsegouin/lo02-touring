@@ -1,6 +1,7 @@
 package fr.lo02.model;
 
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.Iterator;
 import java.util.Scanner;
 
@@ -9,6 +10,7 @@ import fr.lo02.model.card.Distance;
 import fr.lo02.model.card.HazardCards.*;
 import fr.lo02.model.card.remedyCards.*;
 import fr.lo02.model.card.SafetyCards.*;
+import fr.lo02.model.exception.SelectedCardNotDefinedException;
 import fr.lo02.model.stack.Hand;
 
 public class Match {
@@ -20,6 +22,7 @@ public class Match {
 
 	/**
 	 * Le constructeur de match Initialise les joueurs, les stacks de jeu
+	 * 
 	 * @param nbComputerPlayer
 	 * @param nbHumanPlayer
 	 * @param namePlayer
@@ -32,22 +35,30 @@ public class Match {
 
 	/**
 	 * Retourne une liste des joueurs qui peuvent etre ciblé
+	 * 
 	 * @param activePlayer
-	 * @return
+	 * @return Playerlist where player are playable by this card
 	 */
-	public ArrayList<Player> checkCardPlayable(Player activePlayer) {
-		ArrayList<Player> lp = new ArrayList<Player>();
+	public HashSet<Player> checkCardPlayable(Player activePlayer) throws SelectedCardNotDefinedException {
+		HashSet<Player> lp = new HashSet<Player>();
+		Player p = null;
 		for (Iterator iterator = listPlayer.iterator(); iterator.hasNext();) {
 			Player testTargetPlayer = (Player) iterator.next();
-			
+			if (activePlayer.getSelectedCard() != null) {
+				// Test de la carte selectionne par le joueur actif est jouable
+				// sur la liste de tout les joueurs
+				p = activePlayer.getSelectedCard().checkValidMove(activePlayer, testTargetPlayer);
+				if (p != null) {
+					lp.add(p);
+					p = null;
+				}
+			} else
+				throw new SelectedCardNotDefinedException();
 		}
 		return lp;
-		
-		
-		
+
 	}
-	
-	
+
 	public Player nextPlayer() {
 		activePlayer++;
 		if (activePlayer > listPlayer.size()) {
@@ -59,12 +70,12 @@ public class Match {
 
 	/**
 	 * Create the list of player(human and computer)
+	 * 
 	 * @param nbComputerPlayer
 	 * @param nbHumanPlayer
 	 * @param namePlayer
 	 */
-	public void playerInit(int nbComputerPlayer, int nbHumanPlayer,
-			String[] namePlayer) {
+	public void playerInit(int nbComputerPlayer, int nbHumanPlayer, String[] namePlayer) {
 
 		for (int i = 0; i < nbHumanPlayer; i++) {
 			HumanPlayer humanplayer = new HumanPlayer(namePlayer[i], i);
@@ -96,7 +107,7 @@ public class Match {
 			GoRoll aGoRoll = new GoRoll();
 			gameStack.toStack(aGoRoll);
 		}
-		
+
 		/*
 		 * for (int i = 0; i < 2; i++) { SpeedLimit aSpeedLimit = new
 		 * SpeedLimit(); gameStack.toStack(aSpeedLimit); }
@@ -164,8 +175,7 @@ public class Match {
 
 		gameStack.shuffleCards(); // Shuffle the stack
 
-		System.out.println("Nous avons " + gameStack.getCardCounter()
-				+ " cartes dans la pioche principale.");
+		System.out.println("Nous avons " + gameStack.getCardCounter() + " cartes dans la pioche principale.");
 	}
 
 	public CardList getGameStack() {
@@ -175,6 +185,5 @@ public class Match {
 	public CardList getDiscardStack() {
 		return discardStack;
 	}
-	
-	
+
 }
