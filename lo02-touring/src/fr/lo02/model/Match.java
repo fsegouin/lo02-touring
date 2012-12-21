@@ -34,7 +34,7 @@ public class Match {
 	}
 
 	/**
-	 * Retourne une liste des joueurs qui peuvent etre ciblé
+	 * Retourne une liste des joueurs qui peuvent etre cibles
 	 * 
 	 * @param activePlayer
 	 * @return Playerlist where player are playable by this card
@@ -53,7 +53,7 @@ public class Match {
 					p = null;
 				}
 			} else
-				throw new SelectedCardNotDefinedException();
+				throw new SelectedCardNotDefinedException("Aucun joueur ne peut etre cible avec cette carte.");
 		}
 		return lp;
 

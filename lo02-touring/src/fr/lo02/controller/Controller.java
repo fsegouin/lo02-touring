@@ -73,7 +73,7 @@ public class Controller {
 
 		Game game = new Game();
 		Scanner sc = new Scanner(System.in);
-		Player acifPlayer = null;
+		Player activePlayer = null;
 
 		System.out.println("Entrez un nombre de joueur humain :");
 		game.setNbHumanPlayer(sc.nextInt());
@@ -96,9 +96,9 @@ public class Controller {
 		Match match = game.startMatch();
 
 		do {
-			acifPlayer = match.nextPlayer();
-			System.out.println("\n" + acifPlayer.getName() + " c'est a vous");
-		} while (activePlayerPlay(acifPlayer, match));
+			activePlayer = match.nextPlayer();
+			System.out.println("\n" + activePlayer.getName() + " c'est a vous");
+		} while (activePlayerPlay(activePlayer, match));
 
 	}
 

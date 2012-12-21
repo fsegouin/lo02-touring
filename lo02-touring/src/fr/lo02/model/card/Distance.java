@@ -20,6 +20,7 @@ public class Distance extends Card {
 		 Player p = null;
 		 if (activePlayer.getLastCardFromBattle() instanceof GoRoll) {
 			 p = activePlayer;
+			 System.out.println("Vous n'avez pas de feu vert.");
 		 }
 		return p;
 	 }
