@@ -1,14 +1,11 @@
 package fr.lo02.controller;
 
-import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.Iterator;
 import java.util.Scanner;
-
 import fr.lo02.model.Game;
 import fr.lo02.model.Match;
 import fr.lo02.model.Player;
-import fr.lo02.model.card.Card;
 import fr.lo02.model.exception.SelectedCardNotDefinedException;
 
 public class Controller {
@@ -31,35 +28,35 @@ public class Controller {
 			} catch (NumberFormatException e) {
 				continue;
 			}
-
 			if (cardIndex <= (activePlayer.getHand().size())) {
 				activePlayer.setSelectedCard(cardIndex);
 				try {
 					lp = match.checkCardPlayable(activePlayer);
+
+					boolean askAgainNumPlayer = true;
+					while (askAgainNumPlayer) {
+						System.out.println("Vous pouvez jouer sur :");
+						int i = 0;
+						for (Iterator iterator = lp.iterator(); iterator.hasNext();) {
+							Player player = (Player) iterator.next();
+							i++;
+							System.out.println(i + " - " + player.getName());
+						}
+						System.out.println("Sur qui voulez-vous jouer cette carte ?");
+						try {
+							numPlayer = Integer.parseInt(scan.nextLine());
+						} catch (NumberFormatException e) {
+							continue;
+						}
+						if (numPlayer <= lp.size()) {
+							askAgainNumPlayer = false;
+						}
+					}
+					askAgainNumCard = false;
 				} catch (SelectedCardNotDefinedException e) {
-					e.printStackTrace();
+					e.getMessage();
 				}
 
-				boolean askAgainNumPlayer = true;
-				while (askAgainNumPlayer) {
-					System.out.println("Vous pouvez jouer sur :");
-					int i = 0;
-					for (Iterator iterator = lp.iterator(); iterator.hasNext();) {
-						Player player = (Player) iterator.next();
-						i++;
-						System.out.println(i + " - " + player.getName());
-					}
-					System.out.println("Sur qui voulez-vous jouer cette carte ?");
-					try {
-						numPlayer = Integer.parseInt(scan.nextLine());
-					} catch (NumberFormatException e) {
-						continue;
-					}
-					if (numPlayer <= lp.size()) {
-						askAgainNumPlayer = false;
-					}
-				}
-				askAgainNumCard = false;
 			}
 		}
 

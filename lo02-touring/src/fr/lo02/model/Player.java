@@ -25,9 +25,10 @@ public class Player {
 		this.color = color; // NOT USED FOR NOW
 	}
 
-	/*
-	 * Add pick a card from "source" and add this card in your hand Then your
-	 * return the card picked
+	/**
+	 * Pioche une carte depuis le stack en parametre puis l'ajoute dans la main du joueur
+	 * @param source Pioche depuis ce stack
+	 * @return La carte qui a été pioché
 	 */
 	public Card pickCard(CardList source) {
 		Card c = source.topPick();
@@ -35,12 +36,8 @@ public class Player {
 		return c;
 	}
 
-	public void canBeTargetedBy(Card aCard, Player activePlayer) {
-
-	}
-
 	public void addToDistance(Card aCard) {
-		this.distancePile.stack.add(aCard);
+		this.distancePile.toStack(aCard);
 	}
 
 	/*
@@ -49,19 +46,47 @@ public class Player {
 	 */
 
 	public void addToBattle(Card aCard) {
-		this.battlePile.stack.add(aCard);
+		this.battlePile.toStack(aCard);
 	}
 
-	public Card setSelectedCard(int cardIndex) {
-		this.selectedCard = this.hand.get(cardIndex);
-		;
-		return selectedCard;
+	public Card getLastCardFromBattle() {
+		Card c = null;
+		if (!battlePile.isEmpty())
+			c = battlePile.lastElement();
+		return c;
 	}
 
-	public Card getSelectedCard() {
-		return selectedCard;
+	public void removeFromHand(Card aCard) {
+		this.hand.remove(aCard);
 	}
 
+	public void addMilage(int km) {
+		this.distancePile.addToTotalMilage(km);
+	}
+
+	public boolean kmCheck() {
+		if (distancePile.getTotalMilage() >= WINNER_DISTANCE)
+			return false;
+		else
+			return true;
+	}
+	
+	/*
+	 * --------------- SIZE -----------------------
+	 */
+	
+	public int handSize() {
+		return hand.size();
+	}
+	
+	public int battleSize() {
+		return battlePile.size();
+	}
+	
+	/*
+	 * --------------- TO STRING -----------------------
+	 */
+	
 	public String showHand() {
 		return hand.toString();
 	}
@@ -73,40 +98,20 @@ public class Player {
 	public String showBattle() {
 		return battlePile.toString();
 	}
-
-	public Card getLastCardFromBattle() {
-		Card c = null;
-		if (!battlePile.stack.isEmpty())
-			c = battlePile.stack.lastElement();
-		return c;
-	}
-
-	public void removeFromHand(Card aCard) {
-		this.hand.removeFromHand(aCard);
-	}
-
-	public int handSize() {
-		return hand.size();
-	}
-
-	public void addMilage(int km) {
-		this.distancePile.addToTotalMilage(km);
-	}
-
-	public int getTotalMilage() {
-		return distancePile.getTotalMilage();
-	}
-
-	public boolean kmCheck() {
-		if (distancePile.getTotalMilage() >= WINNER_DISTANCE)
-			return false;
-		else
-			return true;
-	}
-
+	
 	/*
 	 * --------------- GETTERS AND SETTERS -----------------------
 	 */
+	
+	public Card setSelectedCard(int cardIndex) {
+		this.selectedCard = this.hand.get(cardIndex);
+		;
+		return selectedCard;
+	}
+
+	public Card getSelectedCard() {
+		return selectedCard;
+	}
 
 	public String getName() {
 		return name;
@@ -120,4 +125,7 @@ public class Player {
 		return hand;
 	}
 
+	public int getTotalMilage() {
+		return distancePile.getTotalMilage();
+	}
 }

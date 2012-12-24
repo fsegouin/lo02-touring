@@ -4,12 +4,12 @@ import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.Iterator;
 import java.util.Scanner;
-
 import fr.lo02.model.card.Card;
 import fr.lo02.model.card.Distance;
 import fr.lo02.model.card.HazardCards.*;
 import fr.lo02.model.card.remedyCards.*;
 import fr.lo02.model.card.SafetyCards.*;
+import fr.lo02.model.exception.NotValidCardOnBattleException;
 import fr.lo02.model.exception.SelectedCardNotDefinedException;
 import fr.lo02.model.stack.Hand;
 
@@ -42,18 +42,23 @@ public class Match {
 	public HashSet<Player> checkCardPlayable(Player activePlayer) throws SelectedCardNotDefinedException {
 		HashSet<Player> lp = new HashSet<Player>();
 		Player p = null;
-		for (Iterator iterator = listPlayer.iterator(); iterator.hasNext();) {
+		for (Iterator<Player> iterator = listPlayer.iterator(); iterator.hasNext();) {
 			Player testTargetPlayer = (Player) iterator.next();
 			if (activePlayer.getSelectedCard() != null) {
 				// Test de la carte selectionne par le joueur actif est jouable
 				// sur la liste de tout les joueurs
-				p = activePlayer.getSelectedCard().checkValidMove(activePlayer, testTargetPlayer);
+				try {
+					p = activePlayer.getSelectedCard().checkValidMove(activePlayer, testTargetPlayer);
+				} catch (NotValidCardOnBattleException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
 				if (p != null) {
 					lp.add(p);
 					p = null;
 				}
 			} else
-				throw new SelectedCardNotDefinedException("Aucun joueur ne peut etre cible avec cette carte.");
+				throw new SelectedCardNotDefinedException("Vous n'avez pas selectionné de carte a jouer.");
 		}
 		return lp;
 
@@ -175,7 +180,7 @@ public class Match {
 
 		gameStack.shuffleCards(); // Shuffle the stack
 
-		System.out.println("Nous avons " + gameStack.getCardCounter() + " cartes dans la pioche principale.");
+		System.out.println("Nous avons " + gameStack.size() + " cartes dans la pioche principale.");
 	}
 
 	public CardList getGameStack() {
