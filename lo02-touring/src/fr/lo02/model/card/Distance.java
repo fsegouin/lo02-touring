@@ -19,30 +19,32 @@ public class Distance extends Card {
 	}
 
 	/**
-	 * Les conditions sont: - La premiere carte de battle est une "RemedyCard"
-	 * 						- SpeedLimit a 50
-	 * 						- 
+	 * Les conditions sont: - La premiere carte de battle est une "RemedyCard" -
+	 * SpeedLimit a 50 -
+	 * 
 	 * @return Le joueur qui peu etre ciblé
 	 */
 	public Player checkValidMove(Player activePlayer, Player targetPlayer) throws NotValidCardOnBattleException {
 		Player p = null;
-		
 		// La premiere carte N'EST PAS un "Feux vert" (aucune autre carte jouer)
 		if (activePlayer.battleSize() == 0) {
 			throw new NotValidCardOnBattleException("Vous devez poser un \"Feux vert\" pour commencer a poser des kilometres");
 		}
 		// Si c'est une "remedyCards" (feux vert compris dedans)
-		if (activePlayer.getLastCardFromBattle().isRemedyCard()) {
+		else if (activePlayer.getLastCardFromBattle().isRemedyCard()) {
 			p = activePlayer;
 		}
 		// Si il y a une "SpeedLimit" et que la carte est une distance 50
-		else if(activePlayer.getLastCardFromBattle() instanceof SpeedLimit) {
-			if(this.getMilage() <=50)
-			p = activePlayer;
-			else throw new NotValidCardOnBattleException("Vous ne pouvez pas poser plus de 50 kilometres");
+		else if (activePlayer.getLastCardFromBattle() instanceof SpeedLimit) {
+			if (this.getMilage() <= 50)
+				p = activePlayer;
+			else
+				throw new NotValidCardOnBattleException("Vous ne pouvez pas poser plus de 50 kilometres (speedLimit)");
 		}
-		//Sinon la voiture doit etre repare
-		else throw new NotValidCardOnBattleException("Reparer votre voiture avant de poser des kilometres");
+		// Sinon la voiture doit etre repare
+		else {
+			throw new NotValidCardOnBattleException("Reparer votre voiture avant de poser des kilometres");
+		}
 		return p;
 	}
 

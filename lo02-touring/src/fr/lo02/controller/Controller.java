@@ -16,10 +16,12 @@ public class Controller {
 		HashSet<Player> lp = null;
 		boolean askAgainNumCard = true;
 		Scanner scan = new Scanner(System.in);
-
+		
+		System.out.println("-------------------------------------------------------");
 		System.out.println("Votre main actuelle est : " + activePlayer.showHand());
 		System.out.println("Vous piochez : " + activePlayer.pickCard(match.getGameStack()));
 		System.out.println("Votre main actuelle est : " + activePlayer.showHand());
+		System.out.println("-------------------------------------------------------");
 
 		while (askAgainNumCard) {
 			System.out.println("Que souhaitez-vous jouer ? Entrez le numero de la carte.");
@@ -28,45 +30,38 @@ public class Controller {
 			} catch (NumberFormatException e) {
 				continue;
 			}
+
 			if (cardIndex <= (activePlayer.getHand().size())) {
 				activePlayer.setSelectedCard(cardIndex);
 				try {
 					lp = match.checkCardPlayable(activePlayer);
-
-					boolean askAgainNumPlayer = true;
-					while (askAgainNumPlayer) {
-						System.out.println("Vous pouvez jouer sur :");
-						int i = 0;
-						for (Iterator iterator = lp.iterator(); iterator.hasNext();) {
-							Player player = (Player) iterator.next();
-							i++;
-							System.out.println(i + " - " + player.getName());
+					if (lp.size() != 0) { //si il existe des joueur ciblable			
+						boolean askAgainNumPlayer = true;
+						while (askAgainNumPlayer) {
+							System.out.println("Vous pouvez jouer sur :");
+							int i = 0;
+							for (Iterator iterator = lp.iterator(); iterator.hasNext();) {
+								Player player = (Player) iterator.next();
+								i++;
+								System.out.println(i + " - " + player.getName());
+							}
+							System.out.println("Sur qui voulez-vous jouer cette carte ?");
+							try {
+								numPlayer = Integer.parseInt(scan.nextLine());
+							} catch (NumberFormatException e) {
+								continue;
+							}
 						}
-						System.out.println("Sur qui voulez-vous jouer cette carte ?");
-						try {
-							numPlayer = Integer.parseInt(scan.nextLine());
-						} catch (NumberFormatException e) {
-							continue;
-						}
-						if (numPlayer <= lp.size()) {
-							askAgainNumPlayer = false;
-						}
-					}
-					askAgainNumCard = false;
+						askAgainNumCard = false;
+					} else
+						System.out.println("Selectionner une autre carte.");
 				} catch (SelectedCardNotDefinedException e) {
 					e.getMessage();
 				}
-				//
-				// if(lp.contains(activePlayer))
-				// activePlayer.getSelectedCard().playThisCard(activePlayer,
-				// targetedPlayer)
 			}
 		}
-
-		// acifPlayer.selectedCard(cardIndex).playThisCard(acifPlayer, null);
-		// System.out.println("Kilometres parcourus par " +
-		// activePlayer.getName() + " : " + activePlayer.getTotalMilage());
-		if(activePlayer.getTotalMilage() >= 1000)
+		
+		if (activePlayer.getTotalMilage() >= 1000)
 			return false;
 		else
 			return true;
