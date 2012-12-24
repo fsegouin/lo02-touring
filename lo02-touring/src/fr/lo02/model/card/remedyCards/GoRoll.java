@@ -14,5 +14,12 @@ public class GoRoll extends Card {
 		return p;
 	}
 
+	@Override
+	public void playThisCard(Player activePlayer, Player targetedPlayer) {
+		// TODO Auto-generated method stub
+		super.playThisCard(activePlayer, targetedPlayer);
+		activePlayer.addToBattle(this);
+	}
+
 }
  

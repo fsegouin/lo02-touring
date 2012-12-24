@@ -39,7 +39,8 @@ public class Match {
 	 * @param activePlayer
 	 * @return Playerlist where player are playable by this card
 	 */
-	public HashSet<Player> checkCardPlayable(Player activePlayer) throws SelectedCardNotDefinedException {
+	public HashSet<Player> checkCardPlayable(Player activePlayer)
+			throws SelectedCardNotDefinedException {
 		HashSet<Player> lp = new HashSet<Player>();
 		Player p = null;
 		for (Iterator iterator = listPlayer.iterator(); iterator.hasNext();) {
@@ -47,16 +48,29 @@ public class Match {
 			if (activePlayer.getSelectedCard() != null) {
 				// Test de la carte selectionne par le joueur actif est jouable
 				// sur la liste de tout les joueurs
-				p = activePlayer.getSelectedCard().checkValidMove(activePlayer, testTargetPlayer);
+				p = activePlayer.getSelectedCard().checkValidMove(activePlayer,
+						testTargetPlayer);
 				if (p != null) {
 					lp.add(p);
 					p = null;
-				}
-			} else
-				throw new SelectedCardNotDefinedException("Aucun joueur ne peut etre cible avec cette carte.");
+					// }
+				} else
+					throw new SelectedCardNotDefinedException(
+							"Aucun joueur ne peut etre cible avec cette carte.");
+			}
 		}
 		return lp;
 
+	}
+	
+	/**
+	 * Retourne un joueur d'apres son numero dans la liste
+	 * @param i Numero du joueur recherche
+	 * @return Renvoie le joueur correspondant
+	 */
+	
+	public Player getPlayer(int i) {
+		return listPlayer.get(i);
 	}
 
 	public Player nextPlayer() {
@@ -75,7 +89,8 @@ public class Match {
 	 * @param nbHumanPlayer
 	 * @param namePlayer
 	 */
-	public void playerInit(int nbComputerPlayer, int nbHumanPlayer, String[] namePlayer) {
+	public void playerInit(int nbComputerPlayer, int nbHumanPlayer,
+			String[] namePlayer) {
 
 		for (int i = 0; i < nbHumanPlayer; i++) {
 			HumanPlayer humanplayer = new HumanPlayer(namePlayer[i], i);
@@ -175,7 +190,8 @@ public class Match {
 
 		gameStack.shuffleCards(); // Shuffle the stack
 
-		System.out.println("Nous avons " + gameStack.getCardCounter() + " cartes dans la pioche principale.");
+		System.out.println("Nous avons " + gameStack.getCardCounter()
+				+ " cartes dans la pioche principale.");
 	}
 
 	public CardList getGameStack() {

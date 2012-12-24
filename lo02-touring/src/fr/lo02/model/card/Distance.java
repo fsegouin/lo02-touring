@@ -16,27 +16,22 @@ public class Distance extends Card {
 		return "Distance [milage=" + milage + "]";
 	}
 
-	 public Player checkValidMove(Player activePlayer, Player targetPlayer) {
-		 Player p = null;
-		 if (activePlayer.getLastCardFromBattle() instanceof GoRoll) {
-			 p = activePlayer;
-			 System.out.println("Vous n'avez pas de feu vert.");
-		 }
+	public Player checkValidMove(Player activePlayer, Player targetPlayer) {
+		Player p = null;
+		if (activePlayer.getLastCardFromBattle() instanceof GoRoll) {
+			p = activePlayer;
+		} else
+			System.out.println("Vous n'avez pas de feu vert.");
 		return p;
-	 }
-	 
-	 
-	// DANS CETTE METHODE TU DOIS APPELLER LA METHODE AU DESSUS POUR CHECK SI C'EST JOUABLE ET DONC NE PAS FAIRE LE TEST DANS CELLE CI
+	}
+
+	// DANS CETTE METHODE TU DOIS APPELLER LA METHODE AU DESSUS POUR CHECK SI
+	// C'EST JOUABLE ET DONC NE PAS FAIRE LE TEST DANS CELLE CI
 	public void playThisCard(Player activePlayer, Player targetedPlayer) {
 		// TODO Auto-generated method stub
-		if(activePlayer.getLastCardFromBattle() instanceof GoRoll) {
-			super.playThisCard(activePlayer, targetedPlayer);
-			activePlayer.addToDistance(this);
-			activePlayer.addMilage(this.milage);
-		}
-		
+		super.playThisCard(activePlayer, targetedPlayer);
+		activePlayer.addToDistance(this);
+		activePlayer.addMilage(this.milage);
 	}
-	
-	
 
 }

@@ -1,6 +1,5 @@
 package fr.lo02.controller;
 
-import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.Iterator;
 import java.util.Scanner;
@@ -8,7 +7,6 @@ import java.util.Scanner;
 import fr.lo02.model.Game;
 import fr.lo02.model.Match;
 import fr.lo02.model.Player;
-import fr.lo02.model.card.Card;
 import fr.lo02.model.exception.SelectedCardNotDefinedException;
 
 public class Controller {
@@ -39,34 +37,50 @@ public class Controller {
 				} catch (SelectedCardNotDefinedException e) {
 					e.printStackTrace();
 				}
+				//
+				// if(lp.contains(activePlayer))
+				// activePlayer.getSelectedCard().playThisCard(activePlayer,
+				// targetedPlayer)
 
 				boolean askAgainNumPlayer = true;
-				while (askAgainNumPlayer) {
+				while (askAgainNumPlayer && lp != null) {
 					System.out.println("Vous pouvez jouer sur :");
 					int i = 0;
 					for (Iterator iterator = lp.iterator(); iterator.hasNext();) {
 						Player player = (Player) iterator.next();
 						i++;
-						System.out.println(i + " - " + player.getName());
+						System.out.println(i + " : " + player.getName());
 					}
-					System.out.println("Sur qui voulez-vous jouer cette carte ?");
-					try {
-						numPlayer = Integer.parseInt(scan.nextLine());
-					} catch (NumberFormatException e) {
-						continue;
-					}
-					if (numPlayer <= lp.size()) {
+					if (lp.size() == 1) {
+						System.out.println("Vous ne pouvez jouer cette carte que sur vous-meme.");
+						activePlayer.getSelectedCard().playThisCard(activePlayer, activePlayer);
 						askAgainNumPlayer = false;
+					}
+					else {
+						System.out.println("Sur qui voulez-vous jouer cette carte ?");
+						try {
+							numPlayer = Integer.parseInt(scan.nextLine());
+							activePlayer.getSelectedCard().playThisCard(activePlayer, match.getPlayer(numPlayer));
+						} catch (NumberFormatException e) {
+							continue;
+						}
+						if (numPlayer <= lp.size()) {
+							askAgainNumPlayer = false;
+						}
 					}
 				}
 				askAgainNumCard = false;
+				System.out.println("Le joueur " + activePlayer.getName() + " a un total de " + activePlayer.getTotalMilage() + " km");
 			}
 		}
 
 		// acifPlayer.selectedCard(cardIndex).playThisCard(acifPlayer, null);
 		// System.out.println("Kilometres parcourus par " +
 		// activePlayer.getName() + " : " + activePlayer.getTotalMilage());
-		return true;
+		if(activePlayer.getTotalMilage() >= 1000)
+			return false;
+		else
+			return true;
 	}
 
 	public static void main(String[] args) {
