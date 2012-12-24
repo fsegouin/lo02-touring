@@ -13,7 +13,7 @@ public abstract class Card {
 		return this.getClass().getSimpleName();
 	}
 
-	 public abstract Player checkValidMove(Player activePlayer, Player targetPlayer) throws NotValidCardOnBattleException;
+	public abstract Player checkValidMove(Player activePlayer, Player targetPlayer) throws NotValidCardOnBattleException;
 	
 	public void playThisCard(Player activePlayer, Player targetedPlayer) {
 		activePlayer.removeFromHand(this);
@@ -45,5 +45,4 @@ public abstract class Card {
 	public void setSafetyCard(boolean safetyCard) {
 		SafetyCard = safetyCard;
 	}
-	
 }

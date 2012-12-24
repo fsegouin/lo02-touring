@@ -56,14 +56,20 @@ public class Controller {
 				} catch (SelectedCardNotDefinedException e) {
 					e.getMessage();
 				}
-
+				//
+				// if(lp.contains(activePlayer))
+				// activePlayer.getSelectedCard().playThisCard(activePlayer,
+				// targetedPlayer)
 			}
 		}
 
 		// acifPlayer.selectedCard(cardIndex).playThisCard(acifPlayer, null);
 		// System.out.println("Kilometres parcourus par " +
 		// activePlayer.getName() + " : " + activePlayer.getTotalMilage());
-		return true;
+		if(activePlayer.getTotalMilage() >= 1000)
+			return false;
+		else
+			return true;
 	}
 
 	public static void main(String[] args) {

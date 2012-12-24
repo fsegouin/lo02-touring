@@ -53,13 +53,11 @@ public class Distance extends Card {
 	// DANS CETTE METHODE TU DOIS APPELLER LA METHODE AU DESSUS POUR CHECK SI
 	// C'EST JOUABLE ET DONC NE PAS FAIRE LE TEST DANS CELLE CI
 	public void playThisCard(Player activePlayer, Player targetedPlayer) {
-		// TODO Auto-generated method stub
 		if (activePlayer.getLastCardFromBattle() instanceof GoRoll) {
 			super.playThisCard(activePlayer, targetedPlayer);
 			activePlayer.addToDistance(this);
 			activePlayer.addMilage(this.milage);
 		}
-
 	}
 
 }
