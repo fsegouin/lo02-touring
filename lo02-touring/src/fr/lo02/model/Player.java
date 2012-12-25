@@ -57,7 +57,7 @@ public class Player {
 	}
 
 	public void removeFromHand(Card aCard) {
-		this.hand.remove(aCard);
+		this.hand.removeFromHand(aCard);
 	}
 
 	public void addMilage(int km) {

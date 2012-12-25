@@ -20,7 +20,7 @@ public class Controller {
 		System.out.println("-------------------------------------------------------");
 		System.out.println("Votre main actuelle est : " + activePlayer.showHand());
 		System.out.println("Vous piochez : " + activePlayer.pickCard(match.getGameStack()));
-		System.out.println("Votre main actuelle est : " + activePlayer.showHand());
+		System.out.println("Votre nouvelle main est : " + activePlayer.showHand());
 		System.out.println("-------------------------------------------------------");
 
 		while (askAgainNumCard) {
@@ -51,14 +51,31 @@ public class Controller {
 							} catch (NumberFormatException e) {
 								continue;
 							}
+							activePlayer.getSelectedCard().playThisCard(activePlayer, match.getPlayer(numPlayer));
+							askAgainNumPlayer = false;
+							askAgainNumCard = false;
 						}
-						askAgainNumCard = false;
-					} else
-						System.out.println("Selectionner une autre carte.");
+					} else {
+						System.out.println("Souhaitez-vous selectionner une autre carte (a) ou vous defausser d'une carte (d) ?");
+						String aChar = scan.nextLine();
+						if(aChar.contains("d")) {
+							System.out.println("Selectionnez la carte a defausser.");
+							try {
+								cardIndex = Integer.parseInt(scan.nextLine());
+							} catch (NumberFormatException e) {
+								continue;
+							}
+							activePlayer.setSelectedCard(cardIndex);
+							match.addToDiscardStack(activePlayer.getSelectedCard());
+							activePlayer.getSelectedCard().throwThisCard(activePlayer);
+							askAgainNumCard = false;
+						}
+					}
 				} catch (SelectedCardNotDefinedException e) {
 					e.getMessage();
 				}
 			}
+			System.out.println("Le joueur " + activePlayer.getName() + " a un total de " + activePlayer.getTotalMilage() + " km.");
 		}
 		
 		if (activePlayer.getTotalMilage() >= 1000)

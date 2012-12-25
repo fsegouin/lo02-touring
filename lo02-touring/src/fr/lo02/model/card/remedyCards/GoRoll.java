@@ -5,7 +5,7 @@ import fr.lo02.model.card.Card;
 import fr.lo02.model.card.HazardCards.Stop;
 
 public class GoRoll extends Card {
-
+	
 	public Player checkValidMove(Player activePlayer, Player targetPlayer) {
 		 Player p = null;
 		 if (activePlayer.getLastCardFromBattle() instanceof Stop || activePlayer.getLastCardFromBattle() == null) {

@@ -52,6 +52,7 @@ public class Match {
 					p = activePlayer.getSelectedCard().checkValidMove(activePlayer, testTargetPlayer);
 				} catch (NotValidCardOnBattleException e) {
 					System.out.println(e.getMessage());
+					break;
 				}
 				if (p != null) {
 					lp.add(p);
@@ -59,7 +60,7 @@ public class Match {
 				}
 			}
 		} else
-			throw new SelectedCardNotDefinedException("Vous n'avez pas selectionné de carte a jouer.");
+			throw new SelectedCardNotDefinedException("Vous n'avez pas selectionne de carte a jouer.");
 		return lp;
 	}
 
@@ -121,13 +122,16 @@ public class Match {
 		}
 		for (int i = 0; i < 5; i++) { // 2 roll cards
 			GoRoll aGoRoll = new GoRoll();
+			aGoRoll.setRemedyCard(true); // Permet de definir un feu vert comme une carte de type remedyCard
 			gameStack.toStack(aGoRoll);
 		}
 
-		/*
-		 * for (int i = 0; i < 2; i++) { SpeedLimit aSpeedLimit = new
-		 * SpeedLimit(); gameStack.toStack(aSpeedLimit); }
-		 * 
+		for (int i = 0; i < 2; i++) {
+			SpeedLimit aSpeedLimit = new SpeedLimit();
+			gameStack.toStack(aSpeedLimit);
+		}
+		
+		 /* 
 		 * for (int i = 0; i < 4; i++) { EndOfLimit anEndOfLimit = new
 		 * EndOfLimit(); gameStack.toStack(anEndOfLimit); }
 		 * 
@@ -190,7 +194,7 @@ public class Match {
 		}
 
 		gameStack.shuffleCards(); // Shuffle the stack
-		System.out.println("Nous avons " + gameStack.size() + " cartes dans la pioche principale.");
+		//System.out.println("Nous avons " + gameStack.size() + " cartes dans la pioche principale.");
 	}
 
 	public CardList getGameStack() {
@@ -199,6 +203,10 @@ public class Match {
 
 	public CardList getDiscardStack() {
 		return discardStack;
+	}
+	
+	public void addToDiscardStack(Card aCard) {
+		discardStack.stack.add(aCard);
 	}
 
 }

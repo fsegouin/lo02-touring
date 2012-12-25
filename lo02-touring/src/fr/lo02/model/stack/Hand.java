@@ -6,7 +6,7 @@ import fr.lo02.model.card.Card;
 
 public class Hand extends ArrayList<Card> {
 	
-	public void remove(Card aCard) {
+	public void removeFromHand(Card aCard) {
 		this.remove(aCard);
 	}
 

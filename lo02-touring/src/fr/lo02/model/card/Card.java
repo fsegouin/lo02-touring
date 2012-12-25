@@ -15,6 +15,10 @@ public abstract class Card {
 
 	public abstract Player checkValidMove(Player activePlayer, Player targetPlayer) throws NotValidCardOnBattleException;
 	
+	public void throwThisCard(Player activePlayer) {
+		activePlayer.removeFromHand(this);
+	}
+	
 	public void playThisCard(Player activePlayer, Player targetedPlayer) {
 		activePlayer.removeFromHand(this);
 	}

@@ -13,4 +13,11 @@ public class Stop extends Card {
 		return p;
 	}
 
+	@Override
+	public void playThisCard(Player activePlayer, Player targetedPlayer) {
+		// TODO Auto-generated method stub
+		super.playThisCard(activePlayer, targetedPlayer);
+		targetedPlayer.addToBattle(this);
+	}
+
 }
