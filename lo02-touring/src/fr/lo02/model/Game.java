@@ -15,7 +15,11 @@ public class Game {
 	}
 	
 	public Match startMatch() {
-		Match match = new Match(this.nbComputerPlayer, this.nbHumanPlayer, this.namePlayer);
+		Match match = Match.getInstance();
+		Match.getInstance().setNamePlayer(namePlayer);
+		Match.getInstance().setNbComputerPlayer(nbComputerPlayer);
+		Match.getInstance().setNbHumanPlayer(nbHumanPlayer);
+		Match.getInstance().initMatch();
 		return match;
 	}
 		

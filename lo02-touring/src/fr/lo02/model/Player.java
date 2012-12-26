@@ -1,5 +1,6 @@
 package fr.lo02.model;
 
+import java.util.Iterator;
 import java.util.Stack;
 
 import fr.lo02.model.card.Card;
@@ -15,9 +16,8 @@ public class Player {
 	protected Hand hand = new Hand(); // Main du joueur
 	private DistancePile distancePile = new DistancePile(); // Pile des cartes
 															// distance
-	// private CardList discardPile = new CardList(); // Pile des cartes
-	// distance
 	private CardList battlePile = new CardList(); // Pile des cartes distance
+	private CardList speedPile = new CardList(); // Pile des cartes limite de vitesse
 	protected Card selectedCard;
 
 	public Player(String name, int color) {
@@ -35,25 +35,17 @@ public class Player {
 		this.hand.add(c);
 		return c;
 	}
-
+	
 	public void addToDistance(Card aCard) {
 		this.distancePile.toStack(aCard);
 	}
-
-	/*
-	 * public void addToDiscard(Card aCard) { this.discardPile.stack.add(aCard);
-	 * }
-	 */
+	
+	public void addToSpeed(Card aCard) {
+		this.speedPile.toStack(aCard);
+	}
 
 	public void addToBattle(Card aCard) {
 		this.battlePile.toStack(aCard);
-	}
-
-	public Card getLastCardFromBattle() {
-		Card c = null;
-		if (!battlePile.isEmpty())
-			c = battlePile.lastElement();
-		return c;
 	}
 
 	public void removeFromHand(Card aCard) {
@@ -103,6 +95,10 @@ public class Player {
 	 * --------------- GETTERS AND SETTERS -----------------------
 	 */
 	
+	public void deleteLastCardFromBattle() {
+		this.battlePile.stack.remove(this.battleSize()-1);
+	}
+	
 	public Card setSelectedCard(int cardIndex) {
 		this.selectedCard = this.hand.get(cardIndex);
 		;
@@ -111,6 +107,20 @@ public class Player {
 
 	public Card getSelectedCard() {
 		return selectedCard;
+	}
+	
+	public Card getLastCardFromBattle() {
+		Card c = null;
+		if (!battlePile.isEmpty())
+			c = battlePile.lastElement();
+		return c;
+	}
+	
+	public Card getLastCardFromSpeed() {
+		Card c = null;
+		if (!speedPile.isEmpty())
+			c = speedPile.lastElement();
+		return c;
 	}
 
 	public String getName() {

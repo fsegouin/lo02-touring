@@ -7,7 +7,6 @@ import fr.lo02.model.Game;
 import fr.lo02.model.Match;
 import fr.lo02.model.Player;
 import fr.lo02.model.exception.SelectedCardNotDefinedException;
-import fr.lo02.model.exception.UnknownPlayerNameException;
 
 public class Controller {
 
@@ -101,7 +100,7 @@ public class Controller {
 		System.out.println("Entrez un nombre de joueur ordinateur :");
 		game.setNbComputerPlayer(sc.nextInt());
 
-		// On vide la ligne avant d'en lire d'autres car on a utilisé
+		// On vide la ligne avant d'en lire d'autres car on a utilise
 		// sc.nextInt() avant
 		sc.nextLine();
 

@@ -18,7 +18,7 @@ public class SpeedLimit extends Card {
 	public void playThisCard(Player activePlayer, Player targetedPlayer) {
 		// TODO Auto-generated method stub
 		super.playThisCard(activePlayer, targetedPlayer);
-		targetedPlayer.addToBattle(this);
+		targetedPlayer.addToSpeed(this);
 	}
 
 }

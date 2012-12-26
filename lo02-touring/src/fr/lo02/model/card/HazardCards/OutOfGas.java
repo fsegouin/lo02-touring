@@ -6,7 +6,18 @@ import fr.lo02.model.card.Card;
 public class OutOfGas extends Card {
 
 	public Player checkValidMove(Player activePlayer, Player targetPlayer) {
-		return null;
+		Player p = null;
+		 if (!(targetPlayer.getLastCardFromBattle() instanceof OutOfGas)) {
+			 p = targetPlayer;
+		 }
+		return p;
+	}
+
+	@Override
+	public void playThisCard(Player activePlayer, Player targetedPlayer) {
+		// TODO Auto-generated method stub
+		super.playThisCard(activePlayer, targetedPlayer);
+		targetedPlayer.addToBattle(this);
 	}
 
 }

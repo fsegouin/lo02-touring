@@ -3,22 +3,24 @@ package fr.lo02.model;
 import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.Iterator;
-import java.util.Scanner;
 import fr.lo02.model.card.Card;
 import fr.lo02.model.card.Distance;
 import fr.lo02.model.card.HazardCards.*;
 import fr.lo02.model.card.remedyCards.*;
-import fr.lo02.model.card.SafetyCards.*;
 import fr.lo02.model.exception.NotValidCardOnBattleException;
 import fr.lo02.model.exception.SelectedCardNotDefinedException;
-import fr.lo02.model.stack.Hand;
 
 public class Match {
+	
+	private static volatile Match instance = null;
 
 	private CardList gameStack = new CardList();
 	private CardList discardStack = new CardList();
 	private int activePlayer = 0;
 	private ArrayList<Player> listPlayer = new ArrayList<Player>();
+	private String[] namePlayer;
+	private int nbHumanPlayer;
+	private int nbComputerPlayer;
 
 	/**
 	 * Le constructeur de match Initialise les joueurs, les stacks de jeu
@@ -27,11 +29,27 @@ public class Match {
 	 * @param nbHumanPlayer
 	 * @param namePlayer
 	 */
-	public Match(int nbComputerPlayer, int nbHumanPlayer, String[] namePlayer) {
+	
+	private Match() {
+		super();
+	}
+	
+	public void initMatch() {
 		this.playerInit(nbComputerPlayer, nbHumanPlayer, namePlayer);
 		this.gameStackInit();
 		this.playerHandInit();
 	}
+
+	public final static Match getInstance() {
+        if (Match.instance == null) {
+           synchronized(Match.class) {
+             if (Match.instance == null) {
+               Match.instance = new Match();
+             }
+           }
+        }
+        return Match.instance;
+    }
 
 	/**
 	 * Retourne une liste des joueurs qui peuvent etre cibles
@@ -63,18 +81,6 @@ public class Match {
 			throw new SelectedCardNotDefinedException("Vous n'avez pas selectionne de carte a jouer.");
 		return lp;
 	}
-
-	/**
-	 * Retourne un joueur d'apres son numero dans la liste
-	 * 
-	 * @param i
-	 *            Numero du joueur recherche
-	 * @return Renvoie le joueur correspondant
-	 */
-
-//	public Player getPlayer(int i) {
-//		return listPlayer.get(i);
-//	}
 	
 	public Player getPlayerByName(String playerName) {
 		Player returnedPlayer = null;
@@ -85,7 +91,7 @@ public class Match {
 		}
 		return returnedPlayer;
 	}
-
+	
 	public Player nextPlayer() {
 		activePlayer++;
 		if (activePlayer > listPlayer.size()) {
@@ -108,9 +114,12 @@ public class Match {
 			HumanPlayer humanplayer = new HumanPlayer(namePlayer[i], i);
 			this.listPlayer.add(humanplayer);
 		}
-		for (int i = nbHumanPlayer - 1; i < nbComputerPlayer; i++) {
-			ComputerPlayer computerplayer = new ComputerPlayer(namePlayer[i], i);
-			this.listPlayer.add(computerplayer);
+		
+		if(nbComputerPlayer > 0) {
+			for (int i = nbHumanPlayer - 1; i < nbComputerPlayer; i++) {
+				ComputerPlayer computerplayer = new ComputerPlayer(namePlayer[i], i);
+				this.listPlayer.add(computerplayer);
+			}
 		}
 	}
 
@@ -141,29 +150,43 @@ public class Match {
 			gameStack.toStack(aSpeedLimit);
 		}
 		
-		 /* 
-		 * for (int i = 0; i < 4; i++) { EndOfLimit anEndOfLimit = new
-		 * EndOfLimit(); gameStack.toStack(anEndOfLimit); }
-		 * 
-		 * for (int i = 0; i < 2; i++) { OutOfGas anOutOfGas = new OutOfGas();
-		 * gameStack.toStack(anOutOfGas); }
-		 * 
-		 * for (int i = 0; i < 2; i++) { FlatTire aFlatTire = new FlatTire();
-		 * gameStack.toStack(aFlatTire); }
-		 * 
-		 * for (int i = 0; i < 2; i++) { Accident anAccident = new Accident();
-		 * gameStack.toStack(anAccident); }
-		 * 
-		 * for (int i = 0; i < 4; i++) { Gasoline aGasoline = new Gasoline();
-		 * gameStack.toStack(aGasoline); }
-		 * 
-		 * for (int i = 0; i < 4; i++) { Repairs aRepairs = new Repairs();
-		 * gameStack.toStack(aRepairs); }
-		 * 
-		 * for (int i = 0; i < 4; i++) { SpareTire aSpareTire = new SpareTire();
-		 * gameStack.toStack(aSpareTire); }
-		 * 
-		 * // 4 bottes du jeu
+		 
+		for (int i = 0; i < 4; i++) {
+			EndOfLimit anEndOfLimit = new EndOfLimit();
+			gameStack.toStack(anEndOfLimit); 
+		}
+		  
+//		for (int i = 0; i < 2; i++) {
+//			OutOfGas anOutOfGas = new OutOfGas();
+//			gameStack.toStack(anOutOfGas); 
+//		}
+//		  
+//		for (int i = 0; i < 2; i++) {
+//			FlatTire aFlatTire = new FlatTire();
+//			gameStack.toStack(aFlatTire);
+//		}
+//		  
+//		for (int i = 0; i < 2; i++) {
+//			Accident anAccident = new Accident();
+//			gameStack.toStack(anAccident);
+//		}
+//		  
+//		for (int i = 0; i < 4; i++) {
+//			Gasoline aGasoline = new Gasoline();
+//			gameStack.toStack(aGasoline);
+//		}
+//		  
+//		for (int i = 0; i < 4; i++) {
+//			Repairs aRepairs = new Repairs();
+//			gameStack.toStack(aRepairs);
+//		}
+//		  
+//		for (int i = 0; i < 4; i++) {
+//			SpareTire aSpareTire = new SpareTire();
+//			gameStack.toStack(aSpareTire);
+//		}
+		  
+		 /* // 4 bottes du jeu
 		 * 
 		 * RightOfWay aRightOfWay = new RightOfWay();
 		 * gameStack.toStack(aRightOfWay);
@@ -177,34 +200,34 @@ public class Match {
 		 * PunctureProof aPunctureProof = new PunctureProof();
 		 * gameStack.toStack(aPunctureProof);
 		 */
+		
 		// Distance cards
-//		for (int i = 0; i < 6; i++) {
-//			Distance aDistance = new Distance(25);
-//			gameStack.toStack(aDistance);
-//		}
-//
-//		for (int i = 0; i < 6; i++) {
-//			Distance aDistance = new Distance(50);
-//			gameStack.toStack(aDistance);
-//		}
-//
-//		for (int i = 0; i < 6; i++) {
-//			Distance aDistance = new Distance(75);
-//			gameStack.toStack(aDistance);
-//		}
-//
+		for (int i = 0; i < 6; i++) {
+			Distance aDistance = new Distance(25);
+			gameStack.toStack(aDistance);
+		}
+
+		for (int i = 0; i < 6; i++) {
+			Distance aDistance = new Distance(50);
+			gameStack.toStack(aDistance);
+		}
+
+		for (int i = 0; i < 6; i++) {
+			Distance aDistance = new Distance(75);
+			gameStack.toStack(aDistance);
+		}
+
 		for (int i = 0; i < 9; i++) {
 			Distance aDistance = new Distance(100);
 			gameStack.toStack(aDistance);
 		}
-//
-//		for (int i = 0; i < 3; i++) {
-//			Distance aDistance = new Distance(200);
-//			gameStack.toStack(aDistance);
-//		}
+
+		for (int i = 0; i < 3; i++) {
+			Distance aDistance = new Distance(200);
+			gameStack.toStack(aDistance);
+		}
 
 		gameStack.shuffleCards(); // Shuffle the stack
-		//System.out.println("Nous avons " + gameStack.size() + " cartes dans la pioche principale.");
 	}
 
 	public CardList getGameStack() {
@@ -217,6 +240,30 @@ public class Match {
 	
 	public void addToDiscardStack(Card aCard) {
 		discardStack.stack.add(aCard);
+	}
+	
+	public String[] getNamePlayer() {
+		return namePlayer;
+	}
+
+	public void setNamePlayer(String[] namePlayer) {
+		this.namePlayer = namePlayer;
+	}
+
+	public int getNbHumanPlayer() {
+		return nbHumanPlayer;
+	}
+
+	public void setNbHumanPlayer(int nbHumanPlayer) {
+		this.nbHumanPlayer = nbHumanPlayer;
+	}
+
+	public int getNbComputerPlayer() {
+		return nbComputerPlayer;
+	}
+
+	public void setNbComputerPlayer(int nbComputerPlayer) {
+		this.nbComputerPlayer = nbComputerPlayer;
 	}
 
 }
