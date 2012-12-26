@@ -7,6 +7,7 @@ import fr.lo02.model.Game;
 import fr.lo02.model.Match;
 import fr.lo02.model.Player;
 import fr.lo02.model.exception.SelectedCardNotDefinedException;
+import fr.lo02.model.exception.UnknownPlayerNameException;
 
 public class Controller {
 
@@ -15,7 +16,10 @@ public class Controller {
 		int numPlayer = 0;
 		HashSet<Player> lp = null;
 		boolean askAgainNumCard = true;
+		boolean askAgainPlayerName = true;
 		Scanner scan = new Scanner(System.in);
+		Player selectedPlayer = null;
+		String playerName;
 		
 		System.out.println("-------------------------------------------------------");
 		System.out.println("Votre main actuelle est : " + activePlayer.showHand());
@@ -45,13 +49,14 @@ public class Controller {
 								i++;
 								System.out.println(i + " - " + player.getName());
 							}
-							System.out.println("Sur qui voulez-vous jouer cette carte ?");
-							try {
-								numPlayer = Integer.parseInt(scan.nextLine());
-							} catch (NumberFormatException e) {
-								continue;
+							while(askAgainPlayerName) {
+								System.out.println("Sur qui voulez-vous jouer cette carte ? (entrez le nom du joueur)");
+								playerName = scan.nextLine();
+								selectedPlayer = match.getPlayerByName(playerName);
+								if(selectedPlayer != null)
+									askAgainPlayerName = false;
 							}
-							activePlayer.getSelectedCard().playThisCard(activePlayer, match.getPlayer(numPlayer));
+							activePlayer.getSelectedCard().playThisCard(activePlayer, selectedPlayer);
 							askAgainNumPlayer = false;
 							askAgainNumCard = false;
 						}

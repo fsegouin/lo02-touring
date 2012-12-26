@@ -72,8 +72,18 @@ public class Match {
 	 * @return Renvoie le joueur correspondant
 	 */
 
-	public Player getPlayer(int i) {
-		return listPlayer.get(i);
+//	public Player getPlayer(int i) {
+//		return listPlayer.get(i);
+//	}
+	
+	public Player getPlayerByName(String playerName) {
+		Player returnedPlayer = null;
+		for (Iterator iterator = listPlayer.iterator(); iterator.hasNext();) {
+			Player aPlayer = (Player) iterator.next();
+			if(aPlayer.getName().contentEquals(playerName))
+				returnedPlayer = aPlayer;
+		}
+		return returnedPlayer;
 	}
 
 	public Player nextPlayer() {
@@ -168,30 +178,30 @@ public class Match {
 		 * gameStack.toStack(aPunctureProof);
 		 */
 		// Distance cards
-		for (int i = 0; i < 6; i++) {
-			Distance aDistance = new Distance(25);
-			gameStack.toStack(aDistance);
-		}
-
-		for (int i = 0; i < 6; i++) {
-			Distance aDistance = new Distance(50);
-			gameStack.toStack(aDistance);
-		}
-
-		for (int i = 0; i < 6; i++) {
-			Distance aDistance = new Distance(75);
-			gameStack.toStack(aDistance);
-		}
-
+//		for (int i = 0; i < 6; i++) {
+//			Distance aDistance = new Distance(25);
+//			gameStack.toStack(aDistance);
+//		}
+//
+//		for (int i = 0; i < 6; i++) {
+//			Distance aDistance = new Distance(50);
+//			gameStack.toStack(aDistance);
+//		}
+//
+//		for (int i = 0; i < 6; i++) {
+//			Distance aDistance = new Distance(75);
+//			gameStack.toStack(aDistance);
+//		}
+//
 		for (int i = 0; i < 9; i++) {
 			Distance aDistance = new Distance(100);
 			gameStack.toStack(aDistance);
 		}
-
-		for (int i = 0; i < 3; i++) {
-			Distance aDistance = new Distance(200);
-			gameStack.toStack(aDistance);
-		}
+//
+//		for (int i = 0; i < 3; i++) {
+//			Distance aDistance = new Distance(200);
+//			gameStack.toStack(aDistance);
+//		}
 
 		gameStack.shuffleCards(); // Shuffle the stack
 		//System.out.println("Nous avons " + gameStack.size() + " cartes dans la pioche principale.");
