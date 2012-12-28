@@ -14,7 +14,7 @@ public class Player {
 	private DistancePile distancePile = new DistancePile();// Pile distance
 	private CardList battlePile = new CardList(); // Pile des cartes battle
 	private CardList speedPile = new CardList(); // Pile des cartes limite devitesse
-	private CardList safetyCard = new CardList();
+	private CardList safetyArea = new CardList();
 	
 	private boolean drivingAce = false;
 	private boolean punctureProof = false;
@@ -52,6 +52,10 @@ public class Player {
 
 	public void addToBattle(Card aCard) {
 		this.battlePile.toStack(aCard);
+	}
+	
+	public void addToSafetyArea(Card aCard) {
+		this.safetyArea.toStack(aCard);
 	}
 
 	public void removeFromHand(Card aCard) {
@@ -157,11 +161,11 @@ public class Player {
 		drivingAce = _drivingAce;
 	}
 
-	public boolean isPuntureProof() {
+	public boolean isPunctureProof() {
 		return punctureProof;
 	}
 
-	public void setPuntureProof(boolean puntureProof) {
+	public void setPunctureProof(boolean puntureProof) {
 		punctureProof = puntureProof;
 	}
 

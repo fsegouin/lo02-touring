@@ -5,6 +5,7 @@ import fr.lo02.model.Player;
 import fr.lo02.model.card.Card;
 import fr.lo02.model.card.HazardCards.SpeedLimit;
 import fr.lo02.model.card.HazardCards.Stop;
+import fr.lo02.model.exception.NotValidCardOnBattleException;
 
 public class EndOfLimit extends Card {
 
@@ -12,10 +13,13 @@ public class EndOfLimit extends Card {
 		this.setRemedyCard(true);
 	}
 	
-	public Player checkValidMove(Player activePlayer, Player targetPlayer) {
+	public Player checkValidMove(Player activePlayer, Player targetPlayer) throws NotValidCardOnBattleException {
 		Player p = null;
 		 if (activePlayer.getLastCardFromSpeed() instanceof SpeedLimit) {
 			 p = activePlayer;
+		 }
+		 else {
+			 throw new NotValidCardOnBattleException("Vous n'est pas sous limitation de vitesse.");
 		 }
 		return p;
 	}

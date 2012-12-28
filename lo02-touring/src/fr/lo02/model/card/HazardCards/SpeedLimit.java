@@ -13,7 +13,7 @@ public class SpeedLimit extends Card {
 	public Player checkValidMove(Player activePlayer, Player targetPlayer) {
 		Player p = null;
 		// Si la pile speed est vide ( = null) ou si il y a un "EndOfLimit"
-		if (!(targetPlayer.getLastCardFromSpeed() instanceof SpeedLimit)) {
+		if (!(targetPlayer.isRightOfWay()) && !(targetPlayer.getLastCardFromSpeed() instanceof SpeedLimit)) {
 			p = targetPlayer;
 		}
 		return p;

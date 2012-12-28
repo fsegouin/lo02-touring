@@ -17,7 +17,7 @@ public class GoRoll extends Card {
 			 p = activePlayer;
 		 }
 		 else {
-			 throw new NotValidCardOnBattleException("Vous n'etes pas stoper par un feux !");
+			 throw new NotValidCardOnBattleException("Vous n'etes pas stoppe par un feu rouge.");
 		 }
 		return p;
 	}

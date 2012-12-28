@@ -6,6 +6,7 @@ import java.util.Iterator;
 import fr.lo02.model.card.Card;
 import fr.lo02.model.card.Distance;
 import fr.lo02.model.card.HazardCards.*;
+import fr.lo02.model.card.SafetyCards.*;
 import fr.lo02.model.card.remedyCards.*;
 import fr.lo02.model.exception.NotValidCardOnBattleException;
 import fr.lo02.model.exception.SelectedCardNotDefinedException;
@@ -169,66 +170,66 @@ public class Match {
 			gameStack.toStack(anEndOfLimit); 
 		}
 		  
-//		for (int i = 0; i < 2; i++) {
-//			OutOfGas anOutOfGas = new OutOfGas();
-//			gameStack.toStack(anOutOfGas); 
-//		}
-//		  
-//		for (int i = 0; i < 2; i++) {
-//			FlatTire aFlatTire = new FlatTire();
-//			gameStack.toStack(aFlatTire);
-//		}
-//		  
-//		for (int i = 0; i < 2; i++) {
-//			Accident anAccident = new Accident();
-//			gameStack.toStack(anAccident);
-//		}
-//		  
-//		for (int i = 0; i < 4; i++) {
-//			Gasoline aGasoline = new Gasoline();
-//			gameStack.toStack(aGasoline);
-//		}
-//		  
-//		for (int i = 0; i < 4; i++) {
-//			Repairs aRepairs = new Repairs();
-//			gameStack.toStack(aRepairs);
-//		}
-//		  
-//		for (int i = 0; i < 4; i++) {
-//			SpareTire aSpareTire = new SpareTire();
-//			gameStack.toStack(aSpareTire);
-//		}
+		for (int i = 0; i < 2; i++) {
+			OutOfGas anOutOfGas = new OutOfGas();
+			gameStack.toStack(anOutOfGas); 
+		}
 		  
-		 /* // 4 bottes du jeu
-		 * 
-		 * RightOfWay aRightOfWay = new RightOfWay();
-		 * gameStack.toStack(aRightOfWay);
-		 * 
-		 * DrivingAce aDrivingAce = new DrivingAce();
-		 * gameStack.toStack(aDrivingAce);
-		 * 
-		 * ExtraTank anExtraTank = new ExtraTank();
-		 * gameStack.toStack(anExtraTank);
-		 * 
-		 * PunctureProof aPunctureProof = new PunctureProof();
-		 * gameStack.toStack(aPunctureProof);
-		 */
+		for (int i = 0; i < 2; i++) {
+			FlatTire aFlatTire = new FlatTire();
+			gameStack.toStack(aFlatTire);
+		}
+		  
+		for (int i = 0; i < 2; i++) {
+			Accident anAccident = new Accident();
+			gameStack.toStack(anAccident);
+		}
+		  
+		for (int i = 0; i < 4; i++) {
+			Gasoline aGasoline = new Gasoline();
+			gameStack.toStack(aGasoline);
+		}
+		  
+		for (int i = 0; i < 4; i++) {
+			Repairs aRepairs = new Repairs();
+			gameStack.toStack(aRepairs);
+		}
+		  
+		for (int i = 0; i < 4; i++) {
+			SpareTire aSpareTire = new SpareTire();
+			gameStack.toStack(aSpareTire);
+		}
+		  
+		 // 4 bottes du jeu
+		  
+		  RightOfWay aRightOfWay = new RightOfWay();
+		  gameStack.toStack(aRightOfWay);
+		  
+		  DrivingAce aDrivingAce = new DrivingAce();
+		  gameStack.toStack(aDrivingAce);
+		  
+		  ExtraTank anExtraTank = new ExtraTank();
+		  gameStack.toStack(anExtraTank);
+		  
+		  PunctureProof aPunctureProof = new PunctureProof();
+		  gameStack.toStack(aPunctureProof);
+		 
 		
 		// Distance cards
-		for (int i = 0; i < 6; i++) {
-			Distance aDistance = new Distance(25);
-			gameStack.toStack(aDistance);
-		}
-
-		for (int i = 0; i < 6; i++) {
-			Distance aDistance = new Distance(50);
-			gameStack.toStack(aDistance);
-		}
-
-		for (int i = 0; i < 6; i++) {
-			Distance aDistance = new Distance(75);
-			gameStack.toStack(aDistance);
-		}
+//		for (int i = 0; i < 6; i++) {
+//			Distance aDistance = new Distance(25);
+//			gameStack.toStack(aDistance);
+//		}
+//
+//		for (int i = 0; i < 6; i++) {
+//			Distance aDistance = new Distance(50);
+//			gameStack.toStack(aDistance);
+//		}
+//
+//		for (int i = 0; i < 6; i++) {
+//			Distance aDistance = new Distance(75);
+//			gameStack.toStack(aDistance);
+//		}
 
 		for (int i = 0; i < 9; i++) {
 			Distance aDistance = new Distance(100);

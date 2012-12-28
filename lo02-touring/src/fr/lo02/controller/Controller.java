@@ -48,7 +48,7 @@ public class Controller {
 						}
 						// ACTION AVEC LA CARTE SELECTIONNE
 						while (askAgainPlayerName) {
-							System.out.println("Tapez: le nom du joueur a cibler, (a) pour changer de carte, (d) pour se defausser de cette carte )");
+							System.out.println("Tapez le nom du joueur a cibler, (a) pour changer de carte, (d) pour vous defausser de cette carte.");
 							String choice = scan.nextLine();
 							
 							// ---- Se defausser ----

@@ -1,5 +1,6 @@
 package fr.lo02.model.card.remedyCards;
 
+import fr.lo02.model.Match;
 import fr.lo02.model.Player;
 import fr.lo02.model.card.Card;
 import fr.lo02.model.card.HazardCards.Accident;
@@ -18,9 +19,19 @@ public class SpareTire extends Card {
 			 p = activePlayer;
 		 }
 		 else {
-			 throw new NotValidCardOnBattleException("Vous n'avais pas de roue crevé !");
+			 throw new NotValidCardOnBattleException("Vous n'avez pas de roue crevee.");
 		 }
 		return p;
+	}
+	
+	@Override
+	public void playThisCard(Player activePlayer, Player targetedPlayer) {
+		// TODO Auto-generated method stub
+		super.playThisCard(activePlayer, targetedPlayer);
+		for (int i = 0; i < 2; i++) {
+			Match.getInstance().addToDiscardStack(activePlayer.getLastCardFromBattle());
+			activePlayer.deleteLastCardFromBattle();
+		}
 	}
 
 }
