@@ -9,11 +9,14 @@ public class Stop extends Card {
 	public Stop() {
 		this.setHazardCard(true);
 	}
-	
+
 	public Player checkValidMove(Player activePlayer, Player targetPlayer) {
 		Player p = null;
-		if (targetPlayer.getLastCardFromBattle() instanceof GoRoll)
+		// Si il possede pas la botte "RightOfWay" et que la derniere carte est
+		// de type "RemedyCards"
+		if (!(targetPlayer.isRightOfWay()) && targetPlayer.getLastCardFromBattle().isRemedyCard()) {
 			p = targetPlayer;
+		}
 		return p;
 	}
 

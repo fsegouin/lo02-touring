@@ -4,16 +4,18 @@ import fr.lo02.model.Player;
 import fr.lo02.model.card.Card;
 
 public class FlatTire extends Card {
-	
+
 	public FlatTire() {
 		this.setHazardCard(true);
 	}
 
 	public Player checkValidMove(Player activePlayer, Player targetPlayer) {
 		Player p = null;
-		 if (!(targetPlayer.getLastCardFromBattle() instanceof FlatTire)) {
-			 p = targetPlayer;
-		 }
+		// Si il possede pas la botte "PunctureProof" et que la derniere carte est
+		// type "RemedyCards"
+		if (!(targetPlayer.isPuntureProof()) && targetPlayer.getLastCardFromBattle().isRemedyCard()) {
+			p = targetPlayer;
+		}
 		return p;
 	}
 

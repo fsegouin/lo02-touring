@@ -8,12 +8,14 @@ public class Accident extends Card {
 	public Accident() {
 		this.setHazardCard(true);
 	}
-	
+
 	public Player checkValidMove(Player activePlayer, Player targetPlayer) {
 		Player p = null;
-		 if (!(targetPlayer.getLastCardFromBattle() instanceof Accident)) {
-			 p = targetPlayer;
-		 }
+		// Si il possede pas la botte "Driving Ace" et que la derniere carte est
+		// type "RemedyCards"
+		if (!(targetPlayer.isDrivingAce()) && targetPlayer.getLastCardFromBattle().isRemedyCard()) {
+			p = targetPlayer;
+		}
 		return p;
 	}
 

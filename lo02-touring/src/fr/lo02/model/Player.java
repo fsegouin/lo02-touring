@@ -1,8 +1,5 @@
 package fr.lo02.model;
 
-import java.util.Iterator;
-import java.util.Stack;
-
 import fr.lo02.model.card.Card;
 import fr.lo02.model.stack.DistancePile;
 import fr.lo02.model.stack.Hand;
@@ -14,20 +11,29 @@ public class Player {
 	private String name;
 	private int color;
 	protected Hand hand = new Hand(); // Main du joueur
-	private DistancePile distancePile = new DistancePile(); // Pile des cartes
-															// distance
-	private CardList battlePile = new CardList(); // Pile des cartes distance
-	private CardList speedPile = new CardList(); // Pile des cartes limite de vitesse
+	private DistancePile distancePile = new DistancePile();// Pile distance
+	private CardList battlePile = new CardList(); // Pile des cartes battle
+	private CardList speedPile = new CardList(); // Pile des cartes limite devitesse
+	private CardList safetyCard = new CardList();
+	
+	private boolean drivingAce = false;
+	private boolean punctureProof = false;
+	private boolean rightOfWay = false;
+	private boolean extraTank = false;
+
 	protected Card selectedCard;
 
-	public Player(String name, int color) {
+	public Player(String name, int color){ 
 		this.name = name;
 		this.color = color; // NOT USED FOR NOW
 	}
 
 	/**
-	 * Pioche une carte(la supprime) depuis le stack en parametre puis l'ajoute dans la main du joueur
-	 * @param source Pioche depuis ce stack
+	 * Pioche une carte(la supprime) depuis le stack en parametre puis l'ajoute
+	 * dans la main du joueur
+	 * 
+	 * @param source
+	 *            Pioche depuis ce stack
 	 * @return La carte qui a été pioché
 	 */
 	public Card pickCard(CardList source) {
@@ -35,11 +41,11 @@ public class Player {
 		this.hand.add(c);
 		return c;
 	}
-	
+
 	public void addToDistance(Card aCard) {
 		this.distancePile.toStack(aCard);
 	}
-	
+
 	public void addToSpeed(Card aCard) {
 		this.speedPile.toStack(aCard);
 	}
@@ -62,23 +68,23 @@ public class Player {
 		else
 			return true;
 	}
-	
+
 	/*
 	 * --------------- SIZE -----------------------
 	 */
-	
+
 	public int handSize() {
 		return hand.size();
 	}
-	
+
 	public int battleSize() {
 		return battlePile.size();
 	}
-	
+
 	/*
 	 * --------------- TO STRING -----------------------
 	 */
-	
+
 	public String showHand() {
 		return hand.toString();
 	}
@@ -90,15 +96,31 @@ public class Player {
 	public String showBattle() {
 		return battlePile.toString();
 	}
-	
+
 	/*
 	 * --------------- GETTERS AND SETTERS -----------------------
 	 */
-	
+
 	public void deleteLastCardFromBattle() {
-		this.battlePile.stack.remove(this.battleSize()-1);
+		this.battlePile.stack.remove(this.battleSize() - 1);
 	}
 	
+	public Card getLastCardFromBattle() {
+		Card c = null;
+		if (!battlePile.isEmpty())
+			c = battlePile.lastElement();
+		return c;
+	}
+
+	public Card getLastCardFromSpeed() {
+		Card c = null;
+		if (!speedPile.isEmpty())
+			c = speedPile.lastElement();
+		return c;
+	}
+	
+	
+	//---selected card---
 	public Card setSelectedCard(int cardIndex) {
 		this.selectedCard = this.hand.get(cardIndex);
 		;
@@ -108,21 +130,9 @@ public class Player {
 	public Card getSelectedCard() {
 		return selectedCard;
 	}
-	
-	public Card getLastCardFromBattle() {
-		Card c = null;
-		if (!battlePile.isEmpty())
-			c = battlePile.lastElement();
-		return c;
-	}
-	
-	public Card getLastCardFromSpeed() {
-		Card c = null;
-		if (!speedPile.isEmpty())
-			c = speedPile.lastElement();
-		return c;
-	}
 
+
+	//---  ---
 	public String getName() {
 		return name;
 	}
@@ -137,5 +147,37 @@ public class Player {
 
 	public int getTotalMilage() {
 		return distancePile.getTotalMilage();
+	}
+	
+	public boolean isDrivingAce() {
+		return drivingAce;
+	}
+
+	public void setDrivingAce(boolean _drivingAce) {
+		drivingAce = _drivingAce;
+	}
+
+	public boolean isPuntureProof() {
+		return punctureProof;
+	}
+
+	public void setPuntureProof(boolean puntureProof) {
+		punctureProof = puntureProof;
+	}
+
+	public boolean isRightOfWay() {
+		return rightOfWay;
+	}
+
+	public void setRightOfWay(boolean _rightOfWay) {
+		rightOfWay = _rightOfWay;
+	}
+
+	public boolean isExtraTank() {
+		return extraTank;
+	}
+
+	public void setExtraTank(boolean _extraTank) {
+		extraTank = _extraTank;
 	}
 }

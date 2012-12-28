@@ -5,15 +5,17 @@ import fr.lo02.model.card.Card;
 
 public class OutOfGas extends Card {
 
-	public OutOfGas(){
+	public OutOfGas() {
 		this.setHazardCard(true);
 	}
-	
+
 	public Player checkValidMove(Player activePlayer, Player targetPlayer) {
 		Player p = null;
-		 if (!(targetPlayer.getLastCardFromBattle() instanceof OutOfGas)) {
-			 p = targetPlayer;
-		 }
+		// Si il possede pas la botte "ExtraTank" et que la derniere carte est
+		// de type "RemedyCards"
+		if (!(targetPlayer.isExtraTank()) && targetPlayer.getLastCardFromBattle().isRemedyCard()) {
+			p = targetPlayer;
+		}
 		return p;
 	}
 

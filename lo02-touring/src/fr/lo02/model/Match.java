@@ -82,9 +82,15 @@ public class Match {
 		return lp;
 	}
 	
-	public Player getPlayerByName(String playerName) {
+	/**
+	 * Retourne le player ou va etre jouer la carte
+	 * @param playerName Nom du player cible
+	 * @param lp Liste des player ciblable
+	 * @return Le player cible
+	 */
+	public Player getPlayerByName(String playerName, HashSet<Player> lp) {
 		Player returnedPlayer = null;
-		for (Iterator iterator = listPlayer.iterator(); iterator.hasNext();) {
+		for (Iterator<Player> iterator = lp.iterator(); iterator.hasNext();) {
 			Player aPlayer = (Player) iterator.next();
 			if(aPlayer.getName().contentEquals(playerName))
 				returnedPlayer = aPlayer;
