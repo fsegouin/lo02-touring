@@ -26,7 +26,7 @@ public class Player {
 	}
 
 	/**
-	 * Pioche une carte depuis le stack en parametre puis l'ajoute dans la main du joueur
+	 * Pioche une carte(la supprime) depuis le stack en parametre puis l'ajoute dans la main du joueur
 	 * @param source Pioche depuis ce stack
 	 * @return La carte qui a été pioché
 	 */

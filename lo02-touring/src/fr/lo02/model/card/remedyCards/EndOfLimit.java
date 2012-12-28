@@ -8,6 +8,10 @@ import fr.lo02.model.card.HazardCards.Stop;
 
 public class EndOfLimit extends Card {
 
+	public EndOfLimit(){
+		this.setRemedyCard(true);
+	}
+	
 	public Player checkValidMove(Player activePlayer, Player targetPlayer) {
 		Player p = null;
 		 if (activePlayer.getLastCardFromSpeed() instanceof SpeedLimit) {

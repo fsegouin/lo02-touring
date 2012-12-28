@@ -6,6 +6,10 @@ import fr.lo02.model.card.HazardCards.Stop;
 
 public class GoRoll extends Card {
 	
+	public GoRoll(){
+		this.setRemedyCard(true);
+	}
+	
 	public Player checkValidMove(Player activePlayer, Player targetPlayer) {
 		 Player p = null;
 		 if (activePlayer.getLastCardFromBattle() instanceof Stop || activePlayer.getLastCardFromBattle() == null) {

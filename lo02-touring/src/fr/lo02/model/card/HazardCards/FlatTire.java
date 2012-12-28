@@ -4,6 +4,10 @@ import fr.lo02.model.Player;
 import fr.lo02.model.card.Card;
 
 public class FlatTire extends Card {
+	
+	public FlatTire() {
+		this.setHazardCard(true);
+	}
 
 	public Player checkValidMove(Player activePlayer, Player targetPlayer) {
 		Player p = null;

@@ -6,6 +6,10 @@ import fr.lo02.model.card.remedyCards.GoRoll;
 
 public class SpeedLimit extends Card {
 
+	public SpeedLimit(){
+		this.setHazardCard(true);
+	}
+	
 	public Player checkValidMove(Player activePlayer, Player targetPlayer) {
 		Player p = null;
 		 if (!(targetPlayer.getLastCardFromBattle() instanceof Stop)) {

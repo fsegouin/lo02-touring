@@ -5,6 +5,10 @@ import fr.lo02.model.card.Card;
 
 public class OutOfGas extends Card {
 
+	public OutOfGas(){
+		this.setHazardCard(true);
+	}
+	
 	public Player checkValidMove(Player activePlayer, Player targetPlayer) {
 		Player p = null;
 		 if (!(targetPlayer.getLastCardFromBattle() instanceof OutOfGas)) {

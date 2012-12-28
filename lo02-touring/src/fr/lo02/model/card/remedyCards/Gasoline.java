@@ -7,6 +7,10 @@ import fr.lo02.model.card.HazardCards.SpeedLimit;
 
 public class Gasoline extends Card {
 
+	public Gasoline(){
+		this.setRemedyCard(true);
+	}
+	
 	public Player checkValidMove(Player activePlayer, Player targetPlayer) {
 		Player p = null;
 		 if (activePlayer.getLastCardFromBattle() instanceof OutOfGas) {
