@@ -1,10 +1,41 @@
 package fr.lo02.model;
 
-public class ComputerPlayer extends Player{
+import fr.lo02.model.strategy.Strategy;
 
-	public ComputerPlayer(String name, int color) {
+public class ComputerPlayer extends Player{
+	
+	private Strategy strategy;
+
+	/**
+     * Constructeur par default recevant un objet "Strategie" en paramètre
+     * @param Strategy
+     */
+	public ComputerPlayer(String name, int color,Strategy _strategy) {
 		super(name, color);
-		// TODO Auto-generated constructor stub
+		this.strategy = _strategy;
 	}
 
+	/**
+	 * Renvoi la strategy d'un ordinateur
+	 * @param strategy
+	 */
+	public Strategy getStrategy() {
+		return strategy;
+	}
+
+	/**
+	 * Permet de changer la strategy d'un ordinateur
+	 * @param strategy
+	 */
+	public void setStrategy(Strategy strategy) {
+		this.strategy = strategy;
+	}
+
+	
+	/**
+     * L'odinateur joue via la strategy
+     */
+    public void play() {
+        strategy.strategyPlay();
+    }
 }

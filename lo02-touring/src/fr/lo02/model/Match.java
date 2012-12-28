@@ -9,6 +9,10 @@ import fr.lo02.model.card.HazardCards.*;
 import fr.lo02.model.card.remedyCards.*;
 import fr.lo02.model.exception.NotValidCardOnBattleException;
 import fr.lo02.model.exception.SelectedCardNotDefinedException;
+import fr.lo02.model.strategy.AttackPriority;
+import fr.lo02.model.strategy.DefensePriority;
+import fr.lo02.model.strategy.SpeedPriority;
+import fr.lo02.model.strategy.Strategy;
 
 public class Match {
 	
@@ -122,8 +126,11 @@ public class Match {
 		}
 		
 		if(nbComputerPlayer > 0) {
+			Strategy attackPriority = new AttackPriority();
+			Strategy defensePriority = new DefensePriority();
+			Strategy speedPriority = new SpeedPriority();
 			for (int i = nbHumanPlayer - 1; i < nbComputerPlayer; i++) {
-				ComputerPlayer computerplayer = new ComputerPlayer(namePlayer[i], i);
+				ComputerPlayer computerplayer = new ComputerPlayer(namePlayer[i], i, attackPriority);
 				this.listPlayer.add(computerplayer);
 			}
 		}
