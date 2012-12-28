@@ -14,15 +14,14 @@ public class Stop extends Card {
 		Player p = null;
 		// Si il possede pas la botte "RightOfWay" et que la derniere carte est
 		// de type "RemedyCards"
-		if (!(targetPlayer.isRightOfWay()) && targetPlayer.getLastCardFromBattle().isRemedyCard()) {
+		if (!(targetPlayer.isRightOfWay()) && activePlayer.getLastCardFromBattle() instanceof GoRoll) {
 			p = targetPlayer;
 		}
 		return p;
 	}
 
-	@Override
+	
 	public void playThisCard(Player activePlayer, Player targetedPlayer) {
-		// TODO Auto-generated method stub
 		super.playThisCard(activePlayer, targetedPlayer);
 		targetedPlayer.addToBattle(this);
 	}

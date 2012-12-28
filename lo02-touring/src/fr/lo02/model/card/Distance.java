@@ -35,7 +35,7 @@ public class Distance extends Card {
 		else if (activePlayer.getLastCardFromBattle() instanceof Stop)
 			throw new NotValidCardOnBattleException("Vous avez un Feu Rouge, veuillez poser un Feu Vert pour continuer.");
 		// Si c'est une "remedyCards" (feux vert compris dedans)
-		else if (activePlayer.getLastCardFromBattle().isRemedyCard()) {
+		else if (activePlayer.getLastCardFromBattle() instanceof GoRoll) {
 			p = activePlayer;
 		}
 		// Si il y a une "SpeedLimit" et que la carte est une distance 50
