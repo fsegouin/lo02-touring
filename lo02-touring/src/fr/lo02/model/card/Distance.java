@@ -39,7 +39,7 @@ public class Distance extends Card {
 			p = activePlayer;
 		}
 		// Si il y a une "SpeedLimit" et que la carte est une distance 50
-		else if (activePlayer.getLastCardFromBattle() instanceof SpeedLimit) {
+		else if (activePlayer.getLastCardFromSpeed() instanceof SpeedLimit) {
 			if (this.getMilage() <= 50)
 				p = activePlayer;
 			else
