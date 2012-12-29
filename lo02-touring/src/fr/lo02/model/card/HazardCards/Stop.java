@@ -21,9 +21,10 @@ public class Stop extends Card {
 	}
 
 	
-	public void playThisCard(Player activePlayer, Player targetedPlayer) {
+	public Player playThisCard(Player activePlayer, Player targetedPlayer) {
 		super.playThisCard(activePlayer, targetedPlayer);
 		targetedPlayer.addToBattle(this);
+		return null;
 	}
 
 }

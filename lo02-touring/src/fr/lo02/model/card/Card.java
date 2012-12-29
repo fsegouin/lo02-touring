@@ -19,8 +19,9 @@ public abstract class Card {
 		activePlayer.removeFromHand(this);
 	}
 	
-	public void playThisCard(Player activePlayer, Player targetedPlayer) {
+	public Player playThisCard(Player activePlayer, Player targetedPlayer) {
 		activePlayer.removeFromHand(this);
+		return null;
 	}
 
 	/*
