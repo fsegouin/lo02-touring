@@ -9,7 +9,7 @@ import fr.lo02.model.Player;
 import fr.lo02.model.exception.SelectedCardNotDefinedException;
 
 public class Controller {
-
+	
 	public static boolean activePlayerPlay(Player activePlayer, Match match) {
 		int cardIndex = 0;
 		HashSet<Player> lp = null;
@@ -71,14 +71,17 @@ public class Controller {
 							// ---- Jouer la carte selectionne ----
 							else if (match.getPlayerByName(choice, lp) != null) {
 								selectedPlayer = match.getPlayerByName(choice, lp);
-								activePlayer.getSelectedCard().playThisCard(activePlayer, selectedPlayer);
+								Player aPlayer = activePlayer.getSelectedCard().playThisCard(activePlayer, selectedPlayer);
+								if(aPlayer != null) // Si un joueur est renvoye par playThisCard, c'est qu'il a fait un coup fourre (automatique) et doit jouer le prochain tour
+									match.setNextPlayer(aPlayer);
+									//System.out.println("C'est " + aPlayer.getName() + " qui doit jouer ici."); // ICI ON DOIT DIRE AU JEU DE PASSER DIRECTEMENT AU JOUEUR QUI A EFFECTUE LE COUP FOURRE
 								System.out.println("3");
 								askAgainPlayerName = false;
 								askAgainNumCard = false;
 							}
 							// ---- Saisie invalide ----
 							else {
-								System.out.println("Saisi non valide");
+								System.out.println("Saisie non valide.");
 								askAgainPlayerName = true;
 							}
 						}
@@ -136,7 +139,7 @@ public class Controller {
 		}
 
 		// On demarre le jeu, on passe la main a Match
-		System.out.println(" ----- La partie commence -----");
+		System.out.println("----- La partie commence -----");
 		Match match = game.startMatch();
 
 		do {

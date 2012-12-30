@@ -10,11 +10,12 @@ public class DrivingAce extends Card {
 	}
 
 	@Override
-	public void playThisCard(Player activePlayer, Player targetedPlayer) {
+	public Player playThisCard(Player activePlayer, Player targetedPlayer) {
 		// TODO Auto-generated method stub
 		super.playThisCard(activePlayer, targetedPlayer);
 		activePlayer.addToSafetyArea(this);
 		targetedPlayer.setDrivingAce(true);
+		return null;
 	}
 
 }

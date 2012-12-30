@@ -41,6 +41,16 @@ public class Player {
 		this.hand.add(c);
 		return c;
 	}
+	
+	public void coupFourre() {
+		System.out.println("--- ! COUP FOURRE ! ---");
+		
+		Match.getInstance().addToDiscardStack(this.getLastCardFromBattle());
+		this.deleteLastCardFromBattle();
+		
+		// Etape 3 : Le joueur avance de 300km //
+		this.addMilage(300);
+	}
 
 	public void addToDistance(Card aCard) {
 		this.distancePile.toStack(aCard);

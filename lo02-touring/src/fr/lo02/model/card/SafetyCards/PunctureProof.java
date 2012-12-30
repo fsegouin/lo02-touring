@@ -10,11 +10,12 @@ public class PunctureProof extends Card {
 	}
 
 	@Override
-	public void playThisCard(Player activePlayer, Player targetedPlayer) {
+	public Player playThisCard(Player activePlayer, Player targetedPlayer) {
 		// TODO Auto-generated method stub
 		super.playThisCard(activePlayer, targetedPlayer);
 		activePlayer.addToSafetyArea(this);
 		targetedPlayer.setPunctureProof(true);
+		return null;
 	}
 
 }

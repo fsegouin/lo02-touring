@@ -25,13 +25,14 @@ public class EndOfLimit extends Card {
 	}
 
 	@Override
-	public void playThisCard(Player activePlayer, Player targetedPlayer) {
+	public Player playThisCard(Player activePlayer, Player targetedPlayer) {
 		// TODO Auto-generated method stub
 		super.playThisCard(activePlayer, targetedPlayer);
 		for (int i = 0; i < 2; i++) {
 			Match.getInstance().addToDiscardStack(activePlayer.getLastCardFromBattle());
 			activePlayer.deleteLastCardFromBattle();
 		}
+		return null;
 	}
 
 }

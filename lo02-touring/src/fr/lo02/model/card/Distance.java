@@ -34,16 +34,16 @@ public class Distance extends Card {
 		// Si c'est une carte Stop
 		else if (activePlayer.getLastCardFromBattle() instanceof Stop)
 			throw new NotValidCardOnBattleException("Vous avez un Feu Rouge, veuillez poser un Feu Vert pour continuer.");
-		// Si c'est une "remedyCards" (feux vert compris dedans)
-		else if (activePlayer.getLastCardFromBattle() instanceof GoRoll) {
-			p = activePlayer;
-		}
 		// Si il y a une "SpeedLimit" et que la carte est une distance 50
 		else if (activePlayer.getLastCardFromSpeed() instanceof SpeedLimit) {
 			if (this.getMilage() <= 50)
 				p = activePlayer;
 			else
 				throw new NotValidCardOnBattleException("Vous ne pouvez pas poser plus de 50 kilometres (speedLimit).");
+		}
+		// Si c'est une "remedyCards" (feux vert compris dedans)
+		else if (activePlayer.getLastCardFromBattle() instanceof GoRoll) {
+			p = activePlayer;
 		}
 		// Sinon la voiture doit etre repare
 		else {
@@ -58,12 +58,13 @@ public class Distance extends Card {
 
 	// DANS CETTE METHODE TU DOIS APPELLER LA METHODE AU DESSUS POUR CHECK SI
 	// C'EST JOUABLE ET DONC NE PAS FAIRE LE TEST DANS CELLE CI
-	public void playThisCard(Player activePlayer, Player targetedPlayer) {
+	public Player playThisCard(Player activePlayer, Player targetedPlayer) {
 		if (activePlayer.getLastCardFromBattle() instanceof GoRoll) {
 			super.playThisCard(activePlayer, targetedPlayer);
 			activePlayer.addToDistance(this);
 			activePlayer.addMilage(this.milage);
 		}
+		return null;
 	}
 
 }

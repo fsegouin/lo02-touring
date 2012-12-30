@@ -14,17 +14,18 @@ public class FlatTire extends Card {
 		Player p = null;
 		// Si il possede pas la botte "PunctureProof" et que la derniere carte est
 		// type "RemedyCards"
-		if (!(targetPlayer.isPunctureProof()) && activePlayer.getLastCardFromBattle() instanceof GoRoll) {
+		if (!(targetPlayer.isPunctureProof()) && targetPlayer.getLastCardFromBattle() instanceof GoRoll) {
 			p = targetPlayer;
 		}
 		return p;
 	}
 
 	@Override
-	public void playThisCard(Player activePlayer, Player targetedPlayer) {
+	public Player playThisCard(Player activePlayer, Player targetedPlayer) {
 		// TODO Auto-generated method stub
 		super.playThisCard(activePlayer, targetedPlayer);
 		targetedPlayer.addToBattle(this);
+		return null;
 	}
 
 }
