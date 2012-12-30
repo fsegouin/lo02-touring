@@ -45,12 +45,8 @@ public class Player {
 	public void coupFourre() {
 		System.out.println("--- ! COUP FOURRE ! ---");
 		
-		// Etape 1 : On defausse l'attaque //
 		Match.getInstance().addToDiscardStack(this.getLastCardFromBattle());
 		this.deleteLastCardFromBattle();
-		
-		// Etape 2 : Le joueur pioche une nouvelle carte dans la pioche ou la defausse (pas encore OP) //
-		this.pickCard(Match.getInstance().getGameStack()); // Pioche uniquement dans la pioche
 		
 		// Etape 3 : Le joueur avance de 300km //
 		this.addMilage(300);

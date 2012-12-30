@@ -103,6 +103,16 @@ public class Match {
 		return returnedPlayer;
 	}
 	
+	public void setNextPlayer(Player nextPlayer) {
+		int i = 0;
+		for (Iterator iterator = listPlayer.iterator(); iterator.hasNext();) {
+			Player aPlayer = (Player) iterator.next();
+			if(aPlayer.getName().equals(nextPlayer.getName()))
+				activePlayer = i-1;
+			i++;
+		}
+	}
+	
 	public Player nextPlayer() {
 		activePlayer++;
 		if (activePlayer > listPlayer.size()) {
