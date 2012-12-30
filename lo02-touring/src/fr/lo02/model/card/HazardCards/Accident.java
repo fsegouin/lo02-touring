@@ -1,5 +1,7 @@
 package fr.lo02.model.card.HazardCards;
 
+import java.util.Iterator;
+
 import fr.lo02.model.Player;
 import fr.lo02.model.card.Card;
 import fr.lo02.model.card.SafetyCards.DrivingAce;
@@ -25,15 +27,15 @@ public class Accident extends Card {
 	@Override
 	public Player playThisCard(Player activePlayer, Player targetedPlayer) {
 		// TODO Auto-generated method stub
-		DrivingAce aDrivingAce = new DrivingAce();
+		Player returnedPlayer = null;
 		super.playThisCard(activePlayer, targetedPlayer);
-		targetedPlayer.addToBattle(this);
-		if(targetedPlayer.getHand().contains(aDrivingAce)) { // NOK
-			targetedPlayer.coupFourre();
-			return targetedPlayer;
+		targetedPlayer.addToBattle(this);	
+		for (Iterator<Card> iterator = targetedPlayer.getHand().iterator(); iterator.hasNext();) {
+			if(iterator.next() instanceof DrivingAce) { // ENCORE UN BUG, A VERIFIER POURQUOI
+				targetedPlayer.coupFourre();
+				returnedPlayer = targetedPlayer;
+			}
 		}
-		else
-			return null;
+		return returnedPlayer;
 	}
-
 }

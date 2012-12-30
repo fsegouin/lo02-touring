@@ -73,7 +73,7 @@ public class Controller {
 								selectedPlayer = match.getPlayerByName(choice, lp);
 								Player aPlayer = activePlayer.getSelectedCard().playThisCard(activePlayer, selectedPlayer);
 								if(aPlayer != null) // Si un joueur est renvoye par playThisCard, c'est qu'il a fait un coup fourre et doit jouer le prochain tour
-									// ICI ON DOIT DIRE AU JEU DE PASSER DIRECTEMENT AU JOUEUR QUI A EFFECTUE LE COUP FOURRE
+									System.out.println("Kikoo"); // ICI ON DOIT DIRE AU JEU DE PASSER DIRECTEMENT AU JOUEUR QUI A EFFECTUE LE COUP FOURRE
 								System.out.println("3");
 								askAgainPlayerName = false;
 								askAgainNumCard = false;
