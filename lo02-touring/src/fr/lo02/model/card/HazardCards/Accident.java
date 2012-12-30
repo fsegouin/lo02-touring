@@ -15,7 +15,7 @@ public class Accident extends Card {
 		Player p = null;
 		// Si il possede pas la botte "Driving Ace" et que la derniere carte est
 		// type "RemedyCards"
-		if (!(targetPlayer.isDrivingAce()) && activePlayer.getLastCardFromBattle() instanceof GoRoll) {
+		if (!(targetPlayer.isDrivingAce()) && targetPlayer.getLastCardFromBattle() instanceof GoRoll) {
 //		if (activePlayer.getLastCardFromBattle() instanceof GoRoll) {
 			p = targetPlayer;
 		}

@@ -14,7 +14,7 @@ public class OutOfGas extends Card {
 		Player p = null;
 		// Si il possede pas la botte "ExtraTank" et que la derniere carte est
 		// de type "RemedyCards"
-		if (!(targetPlayer.isExtraTank()) && activePlayer.getLastCardFromBattle() instanceof GoRoll) {
+		if (!(targetPlayer.isExtraTank()) && targetPlayer.getLastCardFromBattle() instanceof GoRoll) {
 			p = targetPlayer;
 		}
 		return p;
