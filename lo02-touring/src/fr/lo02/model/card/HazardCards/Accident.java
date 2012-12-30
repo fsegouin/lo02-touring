@@ -31,6 +31,7 @@ public class Accident extends Card {
 		Player returnedPlayer = null;
 		super.playThisCard(activePlayer, targetedPlayer);
 		targetedPlayer.addToBattle(this);	
+		// recherche si le targetPlayer peut faire un coup fourre
 		for (Iterator iterator = targetedPlayer.getHand().iterator(); iterator.hasNext();) {
 			if(iterator.next() instanceof DrivingAce) { // ENCORE UN BUG, A VERIFIER POURQUOI
 				targetedPlayer.coupFourre();
@@ -38,6 +39,7 @@ public class Accident extends Card {
 			}
 		}
 		if(returnedPlayer != null)
+			//pioche la carte qui remplace le coup fourre
 			targetedPlayer.pickCard(Match.getInstance().getGameStack());
 		return returnedPlayer;
 	}
