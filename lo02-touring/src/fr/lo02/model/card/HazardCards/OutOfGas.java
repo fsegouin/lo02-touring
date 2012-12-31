@@ -21,7 +21,7 @@ public class OutOfGas extends Card {
 	}
 
 	@Override
-	public Player playThisCard(Player activePlayer, Player targetedPlayer) {
+	public Card playThisCard(Player activePlayer, Player targetedPlayer) {
 		super.playThisCard(activePlayer, targetedPlayer);
 		targetedPlayer.addToBattle(this);
 		return null;

@@ -6,6 +6,7 @@ import java.util.Scanner;
 import fr.lo02.model.Game;
 import fr.lo02.model.Match;
 import fr.lo02.model.Player;
+import fr.lo02.model.card.Card;
 import fr.lo02.model.exception.SelectedCardNotDefinedException;
 
 public class Controller {
@@ -46,6 +47,7 @@ public class Controller {
 							i++;
 							System.out.println(i + " - " + player.getName());
 						}
+						askAgainPlayerName = true;
 						// ACTION AVEC LA CARTE SELECTIONNE
 						while (askAgainPlayerName) {
 							System.out.println("Tapez le nom du joueur a cibler, (a) pour changer de carte, (d) pour vous defausser de cette carte.");
@@ -59,23 +61,23 @@ public class Controller {
 								activePlayer.getSelectedCard().throwThisCard(activePlayer);
 								askAgainPlayerName = false;
 								askAgainNumCard = false;
-								System.out.println("1");
 							}
 							// ---- Selectionner une autre carte ----
 							else if (choice.equals("a")) {
 								askAgainPlayerName = false;
 								askAgainNumCard = true;
-								System.out.println("2");
 
 							}
 							// ---- Jouer la carte selectionne ----
 							else if (match.getPlayerByName(choice, lp) != null) {
 								selectedPlayer = match.getPlayerByName(choice, lp);
-								Player aPlayer = activePlayer.getSelectedCard().playThisCard(activePlayer, selectedPlayer);
-								if(aPlayer != null) // Si un joueur est renvoye par playThisCard, c'est qu'il a fait un coup fourre (automatique) et doit jouer le prochain tour
-									match.setNextPlayer(aPlayer);
-									//System.out.println("C'est " + aPlayer.getName() + " qui doit jouer ici."); // ICI ON DOIT DIRE AU JEU DE PASSER DIRECTEMENT AU JOUEUR QUI A EFFECTUE LE COUP FOURRE
-								System.out.println("3");
+								Card cSafetyCard = activePlayer.getSelectedCard().playThisCard(activePlayer, selectedPlayer);
+								// Si un joueur est renvoye par playThisCard, c'est qu'il a fait un coup fourre (automatique) et doit jouer le prochain tour
+								if(cSafetyCard != null) {
+									targetPlayerCoupFourre(match, selectedPlayer);
+									selectedPlayer.coupFourre(cSafetyCard);
+								}
+								//System.out.println("C'est " + aPlayer.getName() + " qui doit jouer ici."); // ICI ON DOIT DIRE AU JEU DE PASSER DIRECTEMENT AU JOUEUR QUI A EFFECTUE LE COUP FOURRE
 								askAgainPlayerName = false;
 								askAgainNumCard = false;
 							}
@@ -116,6 +118,23 @@ public class Controller {
 			return true;
 	}
 
+	/**
+	 * Permet de lancer un coup fourre
+	 * @param match
+	 * @param selectedPlayer
+	 */
+	public static void targetPlayerCoupFourre(Match match, Player selectedPlayer) {
+		Scanner scan = new Scanner(System.in);
+		System.out.println(selectedPlayer.getName() +" voulez vous jouer votre coup fourre ?");
+		String choice = scan.nextLine();
+		//scan.close();
+		if (choice.equals("oui")) {
+			System.out.println("Le joueur " + selectedPlayer.getName() +" fait un coup fourre");
+		match.setNextPlayer(selectedPlayer);
+		}
+		
+	}
+	
 	public static void main(String[] args) {
 
 		Game game = new Game();

@@ -58,7 +58,7 @@ public class Distance extends Card {
 
 	// DANS CETTE METHODE TU DOIS APPELLER LA METHODE AU DESSUS POUR CHECK SI
 	// C'EST JOUABLE ET DONC NE PAS FAIRE LE TEST DANS CELLE CI
-	public Player playThisCard(Player activePlayer, Player targetedPlayer) {
+	public Card playThisCard(Player activePlayer, Player targetedPlayer) {
 		if (activePlayer.getLastCardFromBattle() instanceof GoRoll) {
 			super.playThisCard(activePlayer, targetedPlayer);
 			activePlayer.addToDistance(this);

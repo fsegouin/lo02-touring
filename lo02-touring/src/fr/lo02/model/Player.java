@@ -42,13 +42,23 @@ public class Player {
 		return c;
 	}
 	
-	public void coupFourre() {
+	/**
+	 * Le joueur realise un coup fourre
+	 * @param cSafetyCard La carte qui permet le coup fourre(en main)
+	 */
+	public void coupFourre(Card cSafetyCard) {
 		System.out.println("--- ! COUP FOURRE ! ---");
+		Match match = Match.getInstance();
 		
-		Match.getInstance().addToDiscardStack(this.getLastCardFromBattle());
+		//Etape 1 : Il joue sa SafetyCard sur lui meme
+		cSafetyCard.playThisCard(this, null);
+		
+		//Etape 2: Supprime la HazardCard
+		match.addToDiscardStack(this.getLastCardFromBattle());
 		this.deleteLastCardFromBattle();
-		
-		// Etape 3 : Le joueur avance de 300km //
+
+		// Etape 3 : Le joueur avance de 300km et pioche//
+		this.pickCard(match.getGameStack());
 		this.addMilage(300);
 	}
 

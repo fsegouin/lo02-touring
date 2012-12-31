@@ -69,9 +69,10 @@ public class Match {
 
 			for (Iterator<Player> iterator = listPlayer.iterator(); iterator.hasNext();) {
 				Player testTargetPlayer = (Player) iterator.next();
-				// Test de la carte selectionne par le joueur actif est jouable
-				// sur la liste de tout les joueurs
+				// Test si la carte selectionne par le joueur actif est jouable
+				// sur la liste des joueurs
 				try {
+					if (!activePlayer.equals(testTargetPlayer)) // empeche que l'active player soit un targetplayer pendant le parcours de listPlayer
 					p = activePlayer.getSelectedCard().checkValidMove(activePlayer, testTargetPlayer);
 				} catch (NotValidCardOnBattleException e) {
 					System.out.println(e.getMessage());
@@ -104,21 +105,16 @@ public class Match {
 	}
 	
 	public void setNextPlayer(Player nextPlayer) {
-		int i = 0;
-		for (Iterator iterator = listPlayer.iterator(); iterator.hasNext();) {
-			Player aPlayer = (Player) iterator.next();
-			if(aPlayer.getName().equals(nextPlayer.getName()))
-				activePlayer = i-1;
-			i++;
-		}
+		activePlayer = listPlayer.indexOf(nextPlayer);
 	}
 	
 	public Player nextPlayer() {
-		activePlayer++;
-		if (activePlayer > listPlayer.size()) {
-			activePlayer = 1;
+		// Ex: pr 4 joueurs - listPlayer.size = 4 mais activePlayer = 3 (0,1,2,3)
+		if (activePlayer > listPlayer.size()-1) {
+			activePlayer = 0;
 		}
-		Player nextPlayer = listPlayer.get(activePlayer - 1);
+		Player nextPlayer = listPlayer.get(activePlayer);
+		activePlayer++;
 		return nextPlayer;
 	}
 

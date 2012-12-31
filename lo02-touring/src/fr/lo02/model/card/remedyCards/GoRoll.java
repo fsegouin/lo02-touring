@@ -23,7 +23,7 @@ public class GoRoll extends Card {
 	}
 
 	@Override
-	public Player playThisCard(Player activePlayer, Player targetedPlayer) {
+	public Card playThisCard(Player activePlayer, Player targetedPlayer) {
 		// TODO Auto-generated method stub
 		super.playThisCard(activePlayer, targetedPlayer);
 		activePlayer.addToBattle(this);

@@ -24,7 +24,7 @@ public class Gasoline extends Card {
 	}
 
 	@Override
-	public Player playThisCard(Player activePlayer, Player targetedPlayer) {
+	public Card playThisCard(Player activePlayer, Player targetedPlayer) {
 		// TODO Auto-generated method stub
 		super.playThisCard(activePlayer, targetedPlayer);
 		for (int i = 0; i < 2; i++) {

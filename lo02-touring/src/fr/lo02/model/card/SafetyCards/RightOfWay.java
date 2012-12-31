@@ -10,11 +10,11 @@ public class RightOfWay extends Card {
 	}
 
 	@Override
-	public Player playThisCard(Player activePlayer, Player targetedPlayer) {
+	public Card playThisCard(Player activePlayer, Player targetedPlayer) {
 		// TODO Auto-generated method stub
 		super.playThisCard(activePlayer, targetedPlayer);
 		activePlayer.addToSafetyArea(this);
-		targetedPlayer.setRightOfWay(true);
+		activePlayer.setRightOfWay(true);
 		return null;
 	}
 

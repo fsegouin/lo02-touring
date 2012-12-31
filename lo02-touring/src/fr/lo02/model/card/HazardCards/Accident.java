@@ -25,22 +25,19 @@ public class Accident extends Card {
 		return p;
 	}
 
-	@Override
-	public Player playThisCard(Player activePlayer, Player targetedPlayer) {
-		// TODO Auto-generated method stub
-		Player returnedPlayer = null;
+	
+	public Card playThisCard(Player activePlayer, Player targetedPlayer) {
+		Card cSafetyCard = null;
 		super.playThisCard(activePlayer, targetedPlayer);
 		targetedPlayer.addToBattle(this);	
-		// recherche si le targetPlayer peut faire un coup fourre
+		
+		// Recherche si le targetPlayer peut faire un coup fourre
 		for (Iterator iterator = targetedPlayer.getHand().iterator(); iterator.hasNext();) {
-			if(iterator.next() instanceof DrivingAce) { // ENCORE UN BUG, A VERIFIER POURQUOI
-				targetedPlayer.coupFourre();
-				returnedPlayer = targetedPlayer;
+			Card c = (Card) iterator.next();
+			if(c instanceof DrivingAce) { // ENCORE UN BUG, A VERIFIER POURQUOI
+				cSafetyCard = c;
 			}
 		}
-		if(returnedPlayer != null)
-			//pioche la carte qui remplace le coup fourre
-			targetedPlayer.pickCard(Match.getInstance().getGameStack());
-		return returnedPlayer;
+		return cSafetyCard;
 	}
 }
