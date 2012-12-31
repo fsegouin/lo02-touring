@@ -21,7 +21,7 @@ public class Player {
 	private boolean rightOfWay = false;
 	private boolean extraTank = false;
 
-	protected Card selectedCard;
+	private Card selectedCard;
 
 	public Player(String name, int color){ 
 		this.name = name;
@@ -32,8 +32,7 @@ public class Player {
 	 * Pioche une carte(la supprime) depuis le stack en parametre puis l'ajoute
 	 * dans la main du joueur
 	 * 
-	 * @param source
-	 *            Pioche depuis ce stack
+	 * @param source Pioche depuis ce stack
 	 * @return La carte qui a été pioché
 	 */
 	public Card pickCard(CardList source) {
@@ -88,9 +87,9 @@ public class Player {
 
 	public boolean kmCheck() {
 		if (distancePile.getTotalMilage() >= WINNER_DISTANCE)
-			return false;
-		else
 			return true;
+		else
+			return false;
 	}
 
 	/*
@@ -147,7 +146,11 @@ public class Player {
 	//---selected card---
 	public Card setSelectedCard(int cardIndex) {
 		this.selectedCard = this.hand.get(cardIndex);
-		;
+		return selectedCard;
+	}
+	
+	public Card setSelectedCard(Card c) {
+		this.selectedCard = c;
 		return selectedCard;
 	}
 

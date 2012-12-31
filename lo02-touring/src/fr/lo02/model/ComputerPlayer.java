@@ -34,8 +34,9 @@ public class ComputerPlayer extends Player{
 	
 	/**
      * L'odinateur joue via la strategy
+	 * @param match 
      */
-    public void play() {
-        strategy.strategyPlay();
+    public void play(Match match) {
+        strategy.strategyPlay(match, this);
     }
 }

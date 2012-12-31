@@ -3,7 +3,10 @@ package fr.lo02.controller;
 import java.util.HashSet;
 import java.util.Iterator;
 import java.util.Scanner;
+
+import fr.lo02.model.ComputerPlayer;
 import fr.lo02.model.Game;
+import fr.lo02.model.HumanPlayer;
 import fr.lo02.model.Match;
 import fr.lo02.model.Player;
 import fr.lo02.model.card.Card;
@@ -11,14 +14,15 @@ import fr.lo02.model.exception.SelectedCardNotDefinedException;
 
 public class Controller {
 	
-	public static boolean activePlayerPlay(Player activePlayer, Match match) {
+	public static void activePlayerPlay(Player activePlayer, Match match) {
 		int cardIndex = 0;
 		HashSet<Player> lp = null;
 		boolean askAgainNumCard = true;
 		boolean askAgainPlayerName = true;
 		Scanner scan = new Scanner(System.in);
 		Player selectedPlayer = null;
-
+		
+		System.out.println("\n" + activePlayer.getName() + " c'est a vous");
 		System.out.println("-------------------------------------------------------");
 		System.out.println("Votre main actuelle est : " + activePlayer.showHand());
 		System.out.println("Vous piochez : " + activePlayer.pickCard(match.getGameStack()));
@@ -72,12 +76,12 @@ public class Controller {
 							else if (match.getPlayerByName(choice, lp) != null) {
 								selectedPlayer = match.getPlayerByName(choice, lp);
 								Card cSafetyCard = activePlayer.getSelectedCard().playThisCard(activePlayer, selectedPlayer);
-								// Si un joueur est renvoye par playThisCard, c'est qu'il a fait un coup fourre (automatique) et doit jouer le prochain tour
+								// Si une carte est renvoye par playThisCard, c'est que le joueur peut jouer un coup fourre
+								//---- Demande de coup fourre ----
 								if(cSafetyCard != null) {
 									targetPlayerCoupFourre(match, selectedPlayer);
 									selectedPlayer.coupFourre(cSafetyCard);
 								}
-								//System.out.println("C'est " + aPlayer.getName() + " qui doit jouer ici."); // ICI ON DOIT DIRE AU JEU DE PASSER DIRECTEMENT AU JOUEUR QUI A EFFECTUE LE COUP FOURRE
 								askAgainPlayerName = false;
 								askAgainNumCard = false;
 							}
@@ -111,11 +115,6 @@ public class Controller {
 			}
 		}
 		System.out.println("Le joueur " + activePlayer.getName() + " a un total de " + activePlayer.getTotalMilage() + " km.");
-
-		if (activePlayer.getTotalMilage() >= 1000)
-			return false;
-		else
-			return true;
 	}
 
 	/**
@@ -163,8 +162,13 @@ public class Controller {
 
 		do {
 			activePlayer = match.nextPlayer();
-			System.out.println("\n" + activePlayer.getName() + " c'est a vous");
-		} while (activePlayerPlay(activePlayer, match));
+			if (activePlayer instanceof HumanPlayer) {
+				activePlayerPlay(activePlayer, match);
+			} 
+			else if (activePlayer instanceof ComputerPlayer){
+				((ComputerPlayer) activePlayer).play(match);
+			}
+		} while (match.testEndOfGame());
 
 	}
 

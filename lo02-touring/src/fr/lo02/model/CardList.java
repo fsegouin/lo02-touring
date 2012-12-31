@@ -55,6 +55,13 @@ public class CardList { // On peut eventuellement extends depuis Stack
 		return stack.lastElement();
 	}
 	
+	/**
+	 * Ajoute une carte a la CardList
+	 * @param c carte a ajouter
+	 */
+	public void addCard(Card c){
+		this.stack.add(c);
+	}
 	
 	public Card pickAtIndex(int index) {
 		return stack.get(index);

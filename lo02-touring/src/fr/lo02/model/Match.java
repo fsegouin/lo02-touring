@@ -119,6 +119,18 @@ public class Match {
 	}
 
 	/**
+	 * Test le joueur actif a atteint 1000km ou si la pioche est vide
+	 * @return true pour fin de la partie et false si il faut continuer
+	 */
+	public boolean testEndOfGame(){
+		if(listPlayer.get(activePlayer).kmCheck() || gameStack.isEmpty())
+			return true;
+		else
+			return false;
+	}
+	
+	
+	/**
 	 * Create the list of player(human and computer)
 	 * 
 	 * @param nbComputerPlayer
