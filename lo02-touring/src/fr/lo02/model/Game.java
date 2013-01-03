@@ -31,7 +31,6 @@ public class Game {
 		return nbComputerPlayer+nbHumanPlayer;
 	}
 
-
 	public int getNbHumanPlayer() {
 		return nbHumanPlayer;
 	}
@@ -52,6 +51,10 @@ public class Game {
 		return namePlayer;
 	}
 
+	public void setNamePlayerTab(String[] _namePlayer){
+		this.namePlayer = _namePlayer;
+	}
+	
 	/*
 	 * Set the namePlayer of a specific player
 	 */
