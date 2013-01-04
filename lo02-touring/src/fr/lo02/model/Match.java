@@ -3,6 +3,8 @@ package fr.lo02.model;
 import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.Iterator;
+import java.util.Observable;
+
 import fr.lo02.model.card.Card;
 import fr.lo02.model.card.Distance;
 import fr.lo02.model.card.HazardCards.*;
@@ -15,13 +17,14 @@ import fr.lo02.model.strategy.DefensePriority;
 import fr.lo02.model.strategy.SpeedPriority;
 import fr.lo02.model.strategy.Strategy;
 
-public class Match {
+public class Match extends Observable {
 	
 	private static volatile Match instance = null;
 
 	private CardList gameStack = new CardList();
 	private CardList discardStack = new CardList();
-	private int activePlayer = 0;
+	private int numActivePlayer = 0;
+	private Player activePlayer = null;
 	private ArrayList<Player> listPlayer = new ArrayList<Player>();
 	private String[] namePlayer;
 	private int nbHumanPlayer;
@@ -45,6 +48,19 @@ public class Match {
 		this.playerHandInit();
 	}
 
+	
+	public void startMatch() {
+	do {
+		activePlayer = nextPlayer();
+		if (activePlayer instanceof HumanPlayer) {
+			
+		} 
+		else if (activePlayer instanceof ComputerPlayer){
+			((ComputerPlayer) activePlayer).play(this);
+		}
+	} while (testEndOfGame());
+	}
+	
 	public final static Match getInstance() {
         if (Match.instance == null) {
            synchronized(Match.class) {
@@ -105,16 +121,16 @@ public class Match {
 	}
 	
 	public void setNextPlayer(Player nextPlayer) {
-		activePlayer = listPlayer.indexOf(nextPlayer);
+		numActivePlayer = listPlayer.indexOf(nextPlayer);
 	}
 	
 	public Player nextPlayer() {
 		// Ex: pr 4 joueurs - listPlayer.size = 4 mais activePlayer = 3 (0,1,2,3)
-		if (activePlayer > listPlayer.size()-1) {
-			activePlayer = 0;
+		if (numActivePlayer > listPlayer.size()-1) {
+			numActivePlayer = 0;
 		}
-		Player nextPlayer = listPlayer.get(activePlayer);
-		activePlayer++;
+		Player nextPlayer = listPlayer.get(numActivePlayer);
+		numActivePlayer++;
 		return nextPlayer;
 	}
 
@@ -123,7 +139,7 @@ public class Match {
 	 * @return true pour fin de la partie et false si il faut continuer
 	 */
 	public boolean testEndOfGame(){
-		if(listPlayer.get(activePlayer).kmCheck() || gameStack.isEmpty())
+		if(listPlayer.get(numActivePlayer).kmCheck() || gameStack.isEmpty())
 			return true;
 		else
 			return false;
