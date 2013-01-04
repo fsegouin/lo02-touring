@@ -139,10 +139,12 @@ public class Match extends Observable {
 	 * @return true pour fin de la partie et false si il faut continuer
 	 */
 	public boolean testEndOfGame(){
-		if(listPlayer.get(numActivePlayer).kmCheck() || gameStack.isEmpty())
+		if(listPlayer.get(numActivePlayer-1).kmCheck() || gameStack.isEmpty())
 			return false;
-		else
+		else {
+			System.out.println("Un joueur a depasse les 1000 Bornes ou la pioche est vide !");
 			return true;
+		}
 	}
 	
 	
@@ -218,20 +220,20 @@ public class Match extends Observable {
 			gameStack.toStack(anAccident);
 		}
 		  
-//		for (int i = 0; i < 4; i++) {
-//			Gasoline aGasoline = new Gasoline();
-//			gameStack.toStack(aGasoline);
-//		}
+		for (int i = 0; i < 4; i++) {
+			Gasoline aGasoline = new Gasoline();
+			gameStack.toStack(aGasoline);
+		}
 		  
-//		for (int i = 0; i < 4; i++) {
-//			Repairs aRepairs = new Repairs();
-//			gameStack.toStack(aRepairs);
-//		}
-//		  
-//		for (int i = 0; i < 4; i++) {
-//			SpareTire aSpareTire = new SpareTire();
-//			gameStack.toStack(aSpareTire);
-//		}
+		for (int i = 0; i < 4; i++) {
+			Repairs aRepairs = new Repairs();
+			gameStack.toStack(aRepairs);
+		}
+		  
+		for (int i = 0; i < 4; i++) {
+			SpareTire aSpareTire = new SpareTire();
+			gameStack.toStack(aSpareTire);
+		}
 		  
 		 // 4 bottes du jeu
 		  
@@ -249,30 +251,30 @@ public class Match extends Observable {
 		 
 		
 		// Distance cards
-//		for (int i = 0; i < 6; i++) {
-//			Distance aDistance = new Distance(25);
-//			gameStack.toStack(aDistance);
-//		}
-//
-//		for (int i = 0; i < 6; i++) {
-//			Distance aDistance = new Distance(50);
-//			gameStack.toStack(aDistance);
-//		}
-//
-//		for (int i = 0; i < 6; i++) {
-//			Distance aDistance = new Distance(75);
-//			gameStack.toStack(aDistance);
-//		}
+		for (int i = 0; i < 6; i++) {
+			Distance aDistance = new Distance(25);
+			gameStack.toStack(aDistance);
+		}
+
+		for (int i = 0; i < 6; i++) {
+			Distance aDistance = new Distance(50);
+			gameStack.toStack(aDistance);
+		}
+
+		for (int i = 0; i < 6; i++) {
+			Distance aDistance = new Distance(75);
+			gameStack.toStack(aDistance);
+		}
 
 		for (int i = 0; i < 9; i++) {
 			Distance aDistance = new Distance(100);
 			gameStack.toStack(aDistance);
 		}
 
-//		for (int i = 0; i < 3; i++) {
-//			Distance aDistance = new Distance(200);
-//			gameStack.toStack(aDistance);
-//		}
+		for (int i = 0; i < 3; i++) {
+			Distance aDistance = new Distance(200);
+			gameStack.toStack(aDistance);
+		}
 
 		gameStack.shuffleCards(); // Shuffle the stack
 	}
