@@ -19,7 +19,6 @@ public class Accident extends Card {
 		// Si il possede pas la botte "Driving Ace" et que la derniere carte est
 		// type "RemedyCards"
 		if (!(targetPlayer.isDrivingAce()) && targetPlayer.getLastCardFromBattle() instanceof GoRoll) {
-//		if (activePlayer.getLastCardFromBattle() instanceof GoRoll) {
 			p = targetPlayer;
 		}
 		return p;
@@ -34,7 +33,7 @@ public class Accident extends Card {
 		// Recherche si le targetPlayer peut faire un coup fourre
 		for (Iterator iterator = targetedPlayer.getHand().iterator(); iterator.hasNext();) {
 			Card c = (Card) iterator.next();
-			if(c instanceof DrivingAce) { // ENCORE UN BUG, A VERIFIER POURQUOI
+			if(c instanceof DrivingAce) {
 				cSafetyCard = c;
 			}
 		}

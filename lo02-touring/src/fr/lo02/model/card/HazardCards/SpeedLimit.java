@@ -1,8 +1,10 @@
 package fr.lo02.model.card.HazardCards;
 
+import java.util.Iterator;
+
 import fr.lo02.model.Player;
 import fr.lo02.model.card.Card;
-import fr.lo02.model.card.remedyCards.GoRoll;
+import fr.lo02.model.card.SafetyCards.RightOfWay;
 
 public class SpeedLimit extends Card {
 
@@ -21,9 +23,18 @@ public class SpeedLimit extends Card {
 
 	
 	public Card playThisCard(Player activePlayer, Player targetedPlayer) {
+		Card cSafetyCard = null;
 		super.playThisCard(activePlayer, targetedPlayer);
-		targetedPlayer.addToSpeed(this);
-		return null;
+		targetedPlayer.addToBattle(this);	
+		
+		// Recherche si le targetPlayer peut faire un coup fourre
+		for (Iterator iterator = targetedPlayer.getHand().iterator(); iterator.hasNext();) {
+			Card c = (Card) iterator.next();
+			if(c instanceof RightOfWay) {
+				cSafetyCard = c;
+			}
+		}
+		return cSafetyCard;
 	}
 
 }

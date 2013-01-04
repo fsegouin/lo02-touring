@@ -140,9 +140,9 @@ public class Match extends Observable {
 	 */
 	public boolean testEndOfGame(){
 		if(listPlayer.get(numActivePlayer).kmCheck() || gameStack.isEmpty())
-			return true;
-		else
 			return false;
+		else
+			return true;
 	}
 	
 	
@@ -189,33 +189,31 @@ public class Match extends Observable {
 		}
 		for (int i = 0; i < 5; i++) { // 2 roll cards
 			GoRoll aGoRoll = new GoRoll();
-			aGoRoll.setRemedyCard(true); // Permet de definir un feu vert comme une carte de type remedyCard
 			gameStack.toStack(aGoRoll);
 		}
 
-//		for (int i = 0; i < 2; i++) {
-//			SpeedLimit aSpeedLimit = new SpeedLimit();
-//			gameStack.toStack(aSpeedLimit);
-//		}
+		for (int i = 0; i < 2; i++) {
+			SpeedLimit aSpeedLimit = new SpeedLimit();
+			gameStack.toStack(aSpeedLimit);
+		}
 		
 		 
-//		for (int i = 0; i < 4; i++) {
-//			EndOfLimit anEndOfLimit = new EndOfLimit();
-//			gameStack.toStack(anEndOfLimit); 
-//		}
-//		  
-//		for (int i = 0; i < 2; i++) {
-//			OutOfGas anOutOfGas = new OutOfGas();
-//			gameStack.toStack(anOutOfGas); 
-//		}
-//		  
-//		for (int i = 0; i < 2; i++) {
-//			FlatTire aFlatTire = new FlatTire();
-//			gameStack.toStack(aFlatTire);
-//		}
+		for (int i = 0; i < 4; i++) {
+			EndOfLimit anEndOfLimit = new EndOfLimit();
+			gameStack.toStack(anEndOfLimit); 
+		}
 		  
-		// for (int i = 0; i < 2; i++) {
-		for (int i = 0; i < 5; i++) { // DEBUG
+		for (int i = 0; i < 2; i++) {
+			OutOfGas anOutOfGas = new OutOfGas();
+			gameStack.toStack(anOutOfGas); 
+		}
+		  
+		for (int i = 0; i < 2; i++) {
+			FlatTire aFlatTire = new FlatTire();
+			gameStack.toStack(aFlatTire);
+		}
+		  
+		for (int i = 0; i < 2; i++) {
 			Accident anAccident = new Accident();
 			gameStack.toStack(anAccident);
 		}
@@ -237,17 +235,17 @@ public class Match extends Observable {
 		  
 		 // 4 bottes du jeu
 		  
-//		  RightOfWay aRightOfWay = new RightOfWay();
-//		  gameStack.toStack(aRightOfWay);
+		  RightOfWay aRightOfWay = new RightOfWay();
+		  gameStack.toStack(aRightOfWay);
 		  
 		  DrivingAce aDrivingAce = new DrivingAce();
 		  gameStack.toStack(aDrivingAce);
 		  
-//		  ExtraTank anExtraTank = new ExtraTank();
-//		  gameStack.toStack(anExtraTank);
-//		  
-//		  PunctureProof aPunctureProof = new PunctureProof();
-//		  gameStack.toStack(aPunctureProof);
+		  ExtraTank anExtraTank = new ExtraTank();
+		  gameStack.toStack(anExtraTank);
+		  
+		  PunctureProof aPunctureProof = new PunctureProof();
+		  gameStack.toStack(aPunctureProof);
 		 
 		
 		// Distance cards

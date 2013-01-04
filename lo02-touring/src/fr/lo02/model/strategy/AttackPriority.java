@@ -14,17 +14,18 @@ public class AttackPriority implements Strategy {
 	CardList possibleCard = new CardList();
 
 	public void strategyPlay(Match match, ComputerPlayer computerPlayer) {
-		
-		//Carte attaque presente dans sa main
+
+		// Verification si une carte attaque est presente dans la main
 		for (Iterator iterator = computerPlayer.getHand().iterator(); iterator.hasNext();) {
 			Card c = (Card) iterator.next();
 			if (c.isRemedyCard())
 				possibleCard.addCard(c);
 		}
 		possibleCard.shuffleCards();
-		
-		boolean play = false;
-		while(play){
+
+		boolean play = true;
+
+		while (play) {
 			computerPlayer.setSelectedCard(possibleCard.topPick());
 			try {
 				match.checkCardPlayable(computerPlayer);
@@ -33,7 +34,6 @@ public class AttackPriority implements Strategy {
 				e.printStackTrace();
 			}
 		}
-		
-		
+
 	}
 }
