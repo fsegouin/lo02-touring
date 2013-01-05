@@ -10,6 +10,7 @@ import fr.lo02.model.card.remedyCards.GoRoll;
 public class FlatTire extends Card {
 
 	public FlatTire() {
+		this.setFileName("Creve.jpg");
 		this.setHazardCard(true);
 	}
 

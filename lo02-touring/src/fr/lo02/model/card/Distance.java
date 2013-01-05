@@ -12,6 +12,25 @@ public class Distance extends Card {
 
 	public Distance(int milage) {
 		super();
+		switch (milage) {
+		case 25:
+			this.setFileName("Speed25.jpg");
+			break;
+		case 50:
+			this.setFileName("Speed50.jpg");
+			break;
+		case 75:
+			this.setFileName("Speed75.jpg");
+			break;
+		case 100:
+			this.setFileName("Speed100.jpg");
+			break;
+		case 200:
+			this.setFileName("Speed200.jpg");
+			break;
+		default:
+			this.setFileName("Null.jpg");
+		}
 		this.milage = milage;
 	}
 

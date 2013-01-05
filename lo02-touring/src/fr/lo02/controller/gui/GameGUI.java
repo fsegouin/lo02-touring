@@ -6,7 +6,6 @@ import java.awt.EventQueue;
 import java.awt.FlowLayout;
 import java.awt.GridLayout;
 import java.awt.Insets;
-
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
@@ -18,10 +17,16 @@ import javax.swing.JMenu;
 import javax.swing.JTextField;
 import javax.swing.JMenuBar;
 import javax.swing.JMenuItem;
+import fr.lo02.model.Game;
+import fr.lo02.model.Match;
+import fr.lo02.model.stack.Hand;
+
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 public class GameGUI extends JFrame {
+	
+	Game game;
 	
 	// --------- INTERFACE DE GAME ---------	
 	
@@ -48,8 +53,9 @@ public class GameGUI extends JFrame {
 	/**
 	 * Create the frame.
 	 */
-	public GameGUI() {
-
+	public GameGUI(Game _game) {
+		
+		this.game = _game;
 		jtPlayer.setPreferredSize(new Dimension(150, 30));
 		jtComputer.setPreferredSize(new Dimension(150, 30));
 
@@ -135,7 +141,6 @@ public class GameGUI extends JFrame {
 				if (nbPlayer + nbComputer <= 8) {
 					jpPlayerName.removeAll();
 					for (int i = 0; i < nbPlayer; i++) {
-						System.out.println("TEST");
 						jlPlayerName = new JLabel("Joueur humain " + i + " : ");
 						jpPlayerName.add(jlPlayerName);
 						jtPlayerName[i] = new JTextField();
@@ -156,15 +161,24 @@ public class GameGUI extends JFrame {
 		jbvalidate.addActionListener(_actionlistener);
 	}
 
-	public void startMatch() {
+	public MatchGUI startMatch(Match _match) {
 		contentPane.removeAll();
-		matchGUI = new MatchGUI(getNbPlayer(), getNbComputer());
+		matchGUI = new MatchGUI(getNbPlayer(), getNbComputer(), _match);
 		this.setContentPane(matchGUI);
 		pack();
-	}
+		return matchGUI;
+		}
 
 	
 	//=================== GETTER ADN SETTER ==================
+	
+	public JPanel getHandGUI() {
+		return matchGUI.getJpHand();
+	}
+	
+	public JLayeredPane getMatchGUI(){
+		return matchGUI;
+	}
 	
 	public int getNbPlayer() {
 		return Integer.parseInt(jtPlayer.getText());
@@ -175,8 +189,8 @@ public class GameGUI extends JFrame {
 	}
 
 	public String[] getPlayerName() {
-		String[] tabPlayerName = new String[8];
-		for (int i = 0; i < getNbPlayer()-1; i++) {
+		String[] tabPlayerName = new String[7];
+		for (int i = 0; i < getNbPlayer(); i++) {
 			tabPlayerName[i] = jtPlayerName[i].getText();
 		}
 		return tabPlayerName;

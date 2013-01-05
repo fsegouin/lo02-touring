@@ -10,6 +10,7 @@ import fr.lo02.model.card.remedyCards.GoRoll;
 public class OutOfGas extends Card {
 
 	public OutOfGas() {
+		this.setFileName("Panne_Essence.jpg");
 		this.setHazardCard(true);
 	}
 

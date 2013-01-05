@@ -8,10 +8,13 @@ public abstract class Card {
 	private boolean remedyCard = false;
 	private boolean hazardCard = false;
 	private boolean SafetyCard = false;
+	private String fileName = "Null.jpg";
 
 	public String toString() {
 		return this.getClass().getSimpleName();
 	}
+
+
 
 	public abstract Player checkValidMove(Player activePlayer, Player targetPlayer) throws NotValidCardOnBattleException;
 	
@@ -27,6 +30,15 @@ public abstract class Card {
 	/*
 	 * --------------- GETTERS AND SETTERS -----------------------
 	 */
+	
+	public String getFileName() {
+		return fileName;
+	}
+
+	public void setFileName(String fileName) {
+		this.fileName = fileName;
+	}
+	
 	
 	public boolean isRemedyCard() {
 		return remedyCard;

@@ -10,6 +10,7 @@ import fr.lo02.model.exception.NotValidCardOnBattleException;
 public class SpareTire extends Card {
 
 	public SpareTire(){
+		this.setFileName("Secours.jpg");
 		this.setRemedyCard(true);
 	}
 	

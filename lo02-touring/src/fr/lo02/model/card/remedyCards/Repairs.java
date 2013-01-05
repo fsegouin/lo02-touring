@@ -10,6 +10,7 @@ import fr.lo02.model.exception.NotValidCardOnBattleException;
 public class Repairs extends Card {
 
 	public Repairs(){
+		this.setFileName("Reparation.jpg");
 		this.setRemedyCard(true);
 	}
 	

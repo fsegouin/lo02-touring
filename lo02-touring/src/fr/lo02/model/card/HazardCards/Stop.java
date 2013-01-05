@@ -10,6 +10,7 @@ import fr.lo02.model.card.remedyCards.GoRoll;
 public class Stop extends Card {
 
 	public Stop() {
+		this.setFileName("Stop.jpg");
 		this.setHazardCard(true);
 	}
 

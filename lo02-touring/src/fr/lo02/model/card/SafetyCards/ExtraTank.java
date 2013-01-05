@@ -5,6 +5,10 @@ import fr.lo02.model.card.Card;
 
 public class ExtraTank extends Card {
 
+	public ExtraTank() {
+		this.setFileName("Citerne.jpg");
+	}
+	
 	public Player checkValidMove(Player activePlayer, Player targetPlayer) {
 		return activePlayer; // La bote peut etre jouee tout le temps, et uniquement sur soi meme
 	}

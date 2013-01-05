@@ -10,6 +10,7 @@ import fr.lo02.model.exception.NotValidCardOnBattleException;
 public class EndOfLimit extends Card {
 
 	public EndOfLimit(){
+		this.setFileName("Fin_limite.jpg");
 		this.setRemedyCard(true);
 	}
 	

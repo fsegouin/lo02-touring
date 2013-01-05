@@ -3,6 +3,7 @@ package fr.lo02.model;
 import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.Iterator;
+import java.util.LinkedList;
 import java.util.Observable;
 
 import fr.lo02.model.card.Card;
@@ -24,8 +25,8 @@ public class Match extends Observable {
 	private CardList gameStack = new CardList();
 	private CardList discardStack = new CardList();
 	private int numActivePlayer = 0;
-	private Player activePlayer = null;
-	private ArrayList<Player> listPlayer = new ArrayList<Player>();
+	public Player activePlayer = null;
+	private LinkedList<Player> listPlayer = new LinkedList<Player>();
 	private String[] namePlayer;
 	private int nbHumanPlayer;
 	private int nbComputerPlayer;
@@ -52,8 +53,11 @@ public class Match extends Observable {
 	public void startMatch() {
 	do {
 		activePlayer = nextPlayer();
+		System.out.println("NB OBSERVER" + this.countObservers());
+		setChanged();
+		notifyObservers();
 		if (activePlayer instanceof HumanPlayer) {
-			
+			activePlayer.setActive(true);
 		} 
 		else if (activePlayer instanceof ComputerPlayer){
 			((ComputerPlayer) activePlayer).play(this);
@@ -131,6 +135,7 @@ public class Match extends Observable {
 		}
 		Player nextPlayer = listPlayer.get(numActivePlayer);
 		numActivePlayer++;
+
 		return nextPlayer;
 	}
 
@@ -314,5 +319,13 @@ public class Match extends Observable {
 	public void setNbComputerPlayer(int nbComputerPlayer) {
 		this.nbComputerPlayer = nbComputerPlayer;
 	}
+	
+	public int getIndexOfActivePlayer () {
+		return listPlayer.indexOf(activePlayer);
+	}
 
+	public LinkedList<Player> getListPlayer() {
+		return listPlayer;
+	}
+	
 }

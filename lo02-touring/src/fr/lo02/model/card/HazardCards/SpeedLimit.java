@@ -10,6 +10,7 @@ import fr.lo02.model.card.remedyCards.GoRoll;
 public class SpeedLimit extends Card {
 
 	public SpeedLimit() {
+		this.setFileName("Limite_50.jpg");
 		this.setHazardCard(true);
 	}
 

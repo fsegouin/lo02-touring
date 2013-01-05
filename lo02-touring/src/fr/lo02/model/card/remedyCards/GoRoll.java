@@ -8,6 +8,7 @@ import fr.lo02.model.exception.NotValidCardOnBattleException;
 public class GoRoll extends Card {
 	
 	public GoRoll(){
+		this.setFileName("Roulez.jpg");
 		this.setRemedyCard(true);
 	}
 	

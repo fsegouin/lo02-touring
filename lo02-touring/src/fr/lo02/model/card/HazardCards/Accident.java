@@ -11,6 +11,7 @@ import fr.lo02.model.card.remedyCards.GoRoll;
 public class Accident extends Card {
 
 	public Accident() {
+		this.setFileName("Accident.jpg");
 		this.setHazardCard(true);
 	}
 

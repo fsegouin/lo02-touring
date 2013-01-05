@@ -9,6 +9,7 @@ import fr.lo02.model.exception.NotValidCardOnBattleException;
 public class Gasoline extends Card {
 
 	public Gasoline(){
+		this.setFileName("Essence.jpg");
 		this.setRemedyCard(true);
 	}
 	

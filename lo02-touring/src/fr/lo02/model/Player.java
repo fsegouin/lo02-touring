@@ -1,10 +1,12 @@
 package fr.lo02.model;
 
+import java.util.Observable;
+
 import fr.lo02.model.card.Card;
 import fr.lo02.model.stack.DistancePile;
 import fr.lo02.model.stack.Hand;
 
-public class Player {
+public class Player extends Observable {
 
 	private final int WINNER_DISTANCE = 1000;
 
@@ -20,6 +22,7 @@ public class Player {
 	private boolean punctureProof = false;
 	private boolean rightOfWay = false;
 	private boolean extraTank = false;
+	private boolean active = false;
 
 	private Card selectedCard;
 
@@ -206,5 +209,16 @@ public class Player {
 
 	public void setExtraTank(boolean _extraTank) {
 		extraTank = _extraTank;
+	}
+	
+	public boolean isActive() {
+		return active;
+	}
+
+	public void setActive(boolean active) {
+		setChanged();
+		notifyObservers(1);
+		this.active = active;
+
 	}
 }
