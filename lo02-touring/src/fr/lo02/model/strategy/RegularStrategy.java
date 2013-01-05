@@ -22,6 +22,12 @@ import fr.lo02.model.exception.SelectedCardNotDefinedException;
 
 public class RegularStrategy {
 	
+	/**
+	 * Methode qui permet d'obtenir un joueur a viser aleatoirement parmis les joueurs compatibles
+	 * @param match
+	 * @param computerPlayer
+	 * @return Renvoie le joueur vise
+	 */
 	public Player getATargetPlayer(Match match, ComputerPlayer computerPlayer) {
 		// TODO Auto-generated method stub
 		HashSet<Player> lp = null;
@@ -45,6 +51,12 @@ public class RegularStrategy {
 		return targetedPlayer;
 	}
 
+	/**
+	 * Methode qui permet de jouer les cartes de priorite inferieures
+	 * @param match
+	 * @param computerPlayer
+	 * @param played
+	 */
 	public void playRegular(Match match, ComputerPlayer computerPlayer, boolean played) {
 		
 		// DEBUG //
@@ -73,6 +85,12 @@ public class RegularStrategy {
 		}
 	}
 	
+	/**
+	 * Methode qui permet de jouer une carte de type Distance dans la main de l'IA
+	 * @param computerPlayer
+	 * @param aCard
+	 * @return Renvoie un boolean pour indiquer si la carte a pu etre jouee
+	 */
 	public boolean playCard(ComputerPlayer computerPlayer, Distance aCard) {
 		// TODO Auto-generated method stub
 		boolean played = false;
@@ -92,6 +110,12 @@ public class RegularStrategy {
 		return played;
 	}
 	
+	/**
+	 * Methode qui permet de jouer une carte de type GoRoll dans la main de l'IA
+	 * @param computerPlayer
+	 * @param aCard
+	 * @return Renvoie un boolean pour indiquer si la carte a pu etre jouee
+	 */
 	public boolean playCard(ComputerPlayer computerPlayer, GoRoll aCard) {
 		// TODO Auto-generated method stub
 		boolean played = false;
@@ -111,6 +135,12 @@ public class RegularStrategy {
 		return played;
 	}
 	
+	/**
+	 * Methode qui permet de jouer une carte de type EndOfLimit dans la main de l'IA
+	 * @param computerPlayer
+	 * @param aCard
+	 * @return Renvoie un boolean pour indiquer si la carte a pu etre jouee
+	 */
 	public boolean playCard(ComputerPlayer computerPlayer, EndOfLimit aCard) {
 		// TODO Auto-generated method stub
 		boolean played = false;
@@ -130,6 +160,12 @@ public class RegularStrategy {
 		return played;
 	}
 	
+	/**
+	 * Methode qui permet de jouer une carte de type Gasoline dans la main de l'IA
+	 * @param computerPlayer
+	 * @param aCard
+	 * @return Renvoie un boolean pour indiquer si la carte a pu etre jouee
+	 */
 	public boolean playCard(ComputerPlayer computerPlayer, Gasoline aCard) {
 		// TODO Auto-generated method stub
 		boolean played = false;
@@ -149,6 +185,12 @@ public class RegularStrategy {
 		return played;
 	}
 	
+	/**
+	 * Methode qui permet de jouer une carte de type Repairs dans la main de l'IA
+	 * @param computerPlayer
+	 * @param aCard
+	 * @return Renvoie un boolean pour indiquer si la carte a pu etre jouee
+	 */
 	public boolean playCard(ComputerPlayer computerPlayer, Repairs aCard) {
 		// TODO Auto-generated method stub
 		boolean played = false;
@@ -168,6 +210,12 @@ public class RegularStrategy {
 		return played;
 	}
 	
+	/**
+	 * Methode qui permet de jouer une carte de type SpareTire dans la main de l'IA
+	 * @param computerPlayer
+	 * @param aCard
+	 * @return Renvoie un boolean pour indiquer si la carte a pu etre jouee
+	 */
 	public boolean playCard(ComputerPlayer computerPlayer, SpareTire aCard) {
 		// TODO Auto-generated method stub
 		boolean played = false;
