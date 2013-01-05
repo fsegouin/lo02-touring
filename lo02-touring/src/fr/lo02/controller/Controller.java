@@ -24,9 +24,12 @@ public class Controller {
 		
 		System.out.println("\n" + activePlayer.getName() + " c'est a vous");
 		System.out.println("-------------------------------------------------------");
+		if(activePlayer.getLastCardFromBattle() != null)
+			System.out.println("Votre etat est : " + activePlayer.getLastCardFromBattle().toString());
 		System.out.println("Votre main actuelle est : " + activePlayer.showHand());
 		System.out.println("Vous piochez : " + activePlayer.pickCard(match.getGameStack()));
-		System.out.println("Votre nouvelle main est : " + activePlayer.showHand());
+		System.out.println("Votre nouvelle main est" +
+				" : " + activePlayer.showHand());
 		System.out.println("-------------------------------------------------------");
 
 		// SELECTIONNE LA CARTE A JOUER
@@ -60,7 +63,7 @@ public class Controller {
 							// ---- Se defausser ----
 							if (choice.equals("d")) {
 								activePlayer.setSelectedCard(cardIndex);
-								System.out.println("Vous vous defausser de : " + activePlayer.getSelectedCard().toString());
+								System.out.println("Vous vous defaussez de : " + activePlayer.getSelectedCard().toString());
 								match.addToDiscardStack(activePlayer.getSelectedCard());
 								activePlayer.getSelectedCard().throwThisCard(activePlayer);
 								askAgainPlayerName = false;
@@ -70,7 +73,6 @@ public class Controller {
 							else if (choice.equals("a")) {
 								askAgainPlayerName = false;
 								askAgainNumCard = true;
-
 							}
 							// ---- Jouer la carte selectionne ----
 							else if (match.getPlayerByName(choice, lp) != null) {
@@ -167,9 +169,10 @@ public class Controller {
 			} 
 			else if (activePlayer instanceof ComputerPlayer){
 				((ComputerPlayer) activePlayer).play(match);
+				System.out.println("Kilometres du " + activePlayer.getName() + " : " + activePlayer.getTotalMilage());
 			}
-		} while (match.testEndOfGame());
-
+		} while (!(match.testEndOfGame()));
+		System.out.println("--- Fin du jeu, merci d'avoir joue ! ---");
 	}
 
 }

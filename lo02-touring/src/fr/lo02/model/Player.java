@@ -33,7 +33,7 @@ public class Player {
 	 * dans la main du joueur
 	 * 
 	 * @param source Pioche depuis ce stack
-	 * @return La carte qui a été pioché
+	 * @return La carte qui a ete pioche
 	 */
 	public Card pickCard(CardList source) {
 		Card c = source.topPick();
@@ -43,7 +43,7 @@ public class Player {
 	
 	/**
 	 * Le joueur realise un coup fourre
-	 * @param cSafetyCard La carte qui permet le coup fourre(en main)
+	 * @param cSafetyCard La carte qui permet le coup fourre (en main)
 	 */
 	public void coupFourre(Card cSafetyCard) {
 		System.out.println("--- ! COUP FOURRE ! ---");

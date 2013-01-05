@@ -5,6 +5,7 @@ import java.util.Iterator;
 import fr.lo02.model.Player;
 import fr.lo02.model.card.Card;
 import fr.lo02.model.card.SafetyCards.RightOfWay;
+import fr.lo02.model.card.remedyCards.GoRoll;
 
 public class SpeedLimit extends Card {
 
@@ -15,7 +16,7 @@ public class SpeedLimit extends Card {
 	public Player checkValidMove(Player activePlayer, Player targetPlayer) {
 		Player p = null;
 		// Si la pile speed est vide ( = null) ou si il y a un "EndOfLimit"
-		if (!(targetPlayer.isRightOfWay()) && !(targetPlayer.getLastCardFromSpeed() instanceof SpeedLimit)) {
+		if (!(targetPlayer.isRightOfWay()) && targetPlayer.getLastCardFromBattle() instanceof GoRoll) {
 			p = targetPlayer;
 		}
 		return p;

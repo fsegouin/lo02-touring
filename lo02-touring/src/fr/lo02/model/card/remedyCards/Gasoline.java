@@ -27,6 +27,7 @@ public class Gasoline extends Card {
 	public Card playThisCard(Player activePlayer, Player targetedPlayer) {
 		// TODO Auto-generated method stub
 		super.playThisCard(activePlayer, targetedPlayer);
+		targetedPlayer.addToBattle(this);
 		for (int i = 0; i < 2; i++) {
 			Match.getInstance().addToDiscardStack(activePlayer.getLastCardFromBattle());
 			activePlayer.deleteLastCardFromBattle();

@@ -2,7 +2,7 @@ package fr.lo02.model;
 
 import fr.lo02.model.strategy.Strategy;
 
-public class ComputerPlayer extends Player{
+public class ComputerPlayer extends Player {
 	
 	private Strategy strategy;
 

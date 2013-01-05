@@ -139,12 +139,12 @@ public class Match extends Observable {
 	 * @return true pour fin de la partie et false si il faut continuer
 	 */
 	public boolean testEndOfGame(){
-		if(listPlayer.get(numActivePlayer-1).kmCheck() || gameStack.isEmpty())
-			return false;
-		else {
+		if(listPlayer.get(numActivePlayer-1).kmCheck() || gameStack.isEmpty()) {
 			System.out.println("Un joueur a depasse les 1000 Bornes ou la pioche est vide !");
 			return true;
 		}
+		else
+			return false;
 	}
 	
 	
@@ -161,14 +161,14 @@ public class Match extends Observable {
 			HumanPlayer humanplayer = new HumanPlayer(namePlayer[i], i);
 			this.listPlayer.add(humanplayer);
 		}
-		
+
 		if(nbComputerPlayer > 0) {
 			Strategy attackPriority = new AttackPriority();
 			Strategy defensePriority = new DefensePriority();
 			Strategy speedPriority = new SpeedPriority();
-			for (int i = nbHumanPlayer - 1; i < nbComputerPlayer; i++) {
-				ComputerPlayer computerplayer = new ComputerPlayer(namePlayer[i], i, attackPriority);
-				this.listPlayer.add(computerplayer);
+			for (int i = 0; i < nbComputerPlayer; i++) {
+				ComputerPlayer computerPlayer = new ComputerPlayer("Computer" + i, 0, attackPriority);
+				this.listPlayer.add(computerPlayer);
 			}
 		}
 	}
