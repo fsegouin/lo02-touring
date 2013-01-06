@@ -32,7 +32,7 @@ public class ControllerGameGUI {
 			game.setNamePlayerTab(gameGUI.getPlayerName());
 			match = game.startMatch();
 			matchGUI = gameGUI.startMatch(match);
-			match.startMatch();
+			match.next();
 			ControllerMatchGUI controllerMatchGUI = new ControllerMatchGUI(match, matchGUI);
 		}
 		

@@ -3,6 +3,7 @@ package fr.lo02.controller.gui;
 import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.FlowLayout;
+import java.awt.event.ActionListener;
 import java.util.Iterator;
 import java.util.LinkedList;
 import java.util.Observable;
@@ -20,7 +21,6 @@ public class HandGUI extends JPanel implements Observer{
 
 	Player player;
 	Hand hand;
-	
 	JButton[] card = new JButton[5];
 	JPanel jpHand_left, jpHand_right;
 	JButton limitspeed, battlePlayer;
@@ -42,13 +42,13 @@ public class HandGUI extends JPanel implements Observer{
 	    this.setSize(1024, 279);
 	    //this.setBackground(Color.BLACK);
 	    
-	    for (int i = 0; i < card.length-1; i++) {
+	    for (int i = 0; i < card.length; i++) {
 			card[i] = new JButton(new ImageIcon("images/cartes/Null.jpg"));
+			card[i].setOpaque(false);
+			card[i].setContentAreaFilled(false);
+			card[i].setBorderPainted(false);
 		    jpHand_left.add(card[i]);
 		}
-	    card[4] = new JButton(new ImageIcon("images/cartes/Null.jpg"));
-	    jpHand_left.add(card[4]);
-	    card[4].setVisible(false);
 	    //jpHand_left.setBackground(Color.blue);
 	    
 	    
@@ -73,13 +73,54 @@ public class HandGUI extends JPanel implements Observer{
 		if ((Integer)arg == 1) {
 			for (Iterator iterator = hand.iterator(); iterator.hasNext();) {
 				Card c = (Card) iterator.next();
-				System.out.println(c.getFileName());
 				card[i].setIcon(new ImageIcon("images/cartes/" + c.getFileName()));
+				card[i].setEnabled(true);
 				i++;
 			}
+			if (player.getLastCardFromBattle() == null) {
+				battlePlayer.setIcon(new ImageIcon("images/cartes/Vide.jpg"));
+				battlePlayer.setEnabled(false);
+			}
+			else {
+				battlePlayer.setIcon(new ImageIcon("images/cartes/"+player.getLastCardFromBattle().getFileName()));
+				battlePlayer.setEnabled(false);
+			}
+
 			this.revalidate();
 		}
 	}
+	
+
+	// Ajoute un listener sur "Validate"
+	public void addCardListener(ActionListener _CardActionListener) {
+			for (int i = 0; i < card.length; i++) {
+				card[i].addActionListener(_CardActionListener);
+			}
+	}
+	
+	// Ajoute un listener sur "Validate"
+	public void addBattleListener(ActionListener _BattleActionListener) {
+				battlePlayer.addActionListener(_BattleActionListener);
+	}
+	
+	public JButton getLimitspeed() {
+		return limitspeed;
+	}
 
 
+	public JButton getBattlePlayer() {
+		return battlePlayer;
+	}
+
+
+	//------------ GETTER AND SETTER --------------
+	public JButton[] getCard() {
+		return card;
+	}
+	
+	public void setBattlePlayerPLayable() {
+		battlePlayer.setEnabled(true);
+	}
+	
+	
 }

@@ -1,6 +1,5 @@
 package fr.lo02.model;
 
-import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.Iterator;
 import java.util.LinkedList;
@@ -30,6 +29,8 @@ public class Match extends Observable {
 	private String[] namePlayer;
 	private int nbHumanPlayer;
 	private int nbComputerPlayer;
+	//Joueur cibable = lp
+	HashSet<Player> lp = new HashSet<Player>();
 
 	/**
 	 * Le constructeur de match Initialise les joueurs, les stacks de jeu
@@ -50,19 +51,19 @@ public class Match extends Observable {
 	}
 
 	
-	public void startMatch() {
-	do {
+	public void next() {
+		int i=0;
 		activePlayer = nextPlayer();
-		System.out.println("NB OBSERVER" + this.countObservers());
 		setChanged();
-		notifyObservers();
+		System.out.println("PRINT !"+i++);
+		notifyObservers(1);
 		if (activePlayer instanceof HumanPlayer) {
+			activePlayer.pickCard(this.getGameStack());
 			activePlayer.setActive(true);
 		} 
 		else if (activePlayer instanceof ComputerPlayer){
 			((ComputerPlayer) activePlayer).play(this);
 		}
-	} while (testEndOfGame());
 	}
 	
 	public final static Match getInstance() {
@@ -83,7 +84,6 @@ public class Match extends Observable {
 	 * @return Playerlist where player are playable by this card
 	 */
 	public HashSet<Player> checkCardPlayable(Player activePlayer) throws SelectedCardNotDefinedException {
-		HashSet<Player> lp = new HashSet<Player>();
 		Player p = null;
 		if (activePlayer.getSelectedCard() != null) {
 
@@ -103,8 +103,12 @@ public class Match extends Observable {
 					p = null;
 				}
 			}
+
 		} else
 			throw new SelectedCardNotDefinedException("Vous n'avez pas selectionne de carte a jouer.");
+		
+		setChanged();
+		notifyObservers(2);
 		return lp;
 	}
 	
@@ -326,6 +330,18 @@ public class Match extends Observable {
 
 	public LinkedList<Player> getListPlayer() {
 		return listPlayer;
+	}
+	
+	public Player getActivePlayer() {
+		return activePlayer;
+	}
+
+	public HashSet<Player> getLp() {
+		return lp;
+	}
+
+	public int getNbPlayer() {
+		return getNbComputerPlayer()+getNbHumanPlayer();
 	}
 	
 }

@@ -1,5 +1,6 @@
 package fr.lo02.model.card;
 
+import fr.lo02.model.Match;
 import fr.lo02.model.Player;
 import fr.lo02.model.exception.NotValidCardOnBattleException;
 
@@ -9,7 +10,8 @@ public abstract class Card {
 	private boolean hazardCard = false;
 	private boolean SafetyCard = false;
 	private String fileName = "Null.jpg";
-
+	private Match match;
+	
 	public String toString() {
 		return this.getClass().getSimpleName();
 	}
@@ -20,9 +22,11 @@ public abstract class Card {
 	
 	public void throwThisCard(Player activePlayer) {
 		activePlayer.removeFromHand(this);
+		match.getInstance().next();
 	}
 	
 	public Card playThisCard(Player activePlayer, Player targetedPlayer) {
+		match.getInstance().next();
 		activePlayer.removeFromHand(this);
 		return null;
 	}

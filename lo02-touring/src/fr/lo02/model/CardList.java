@@ -76,6 +76,12 @@ public class CardList { // On peut eventuellement extends depuis Stack
 		return "CardList [stack=" + stack + "]";
 	}
 
+	public Card getLastElement() {
+		Card c = null;
+		if (!stack.isEmpty())
+			c=stack.lastElement();
+		return c;
+	}
 
 
 }
