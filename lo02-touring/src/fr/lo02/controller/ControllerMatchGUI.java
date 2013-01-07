@@ -165,7 +165,6 @@ public class ControllerMatchGUI {
 	class DeselectCardAction implements MouseListener {
 
 		public void mouseClicked(MouseEvent e) {
-
 		}
 
 		public void mouseEntered(MouseEvent e) {
