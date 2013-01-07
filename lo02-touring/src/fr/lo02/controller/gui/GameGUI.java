@@ -1,6 +1,7 @@
 package fr.lo02.controller.gui;
 
 import java.awt.Color;
+import java.awt.Component;
 import java.awt.Dimension;
 import java.awt.EventQueue;
 import java.awt.FlowLayout;
@@ -75,11 +76,16 @@ public class GameGUI extends JFrame {
 			public void actionPerformed(ActionEvent e) {
 				JFrame aboutFrame = new JFrame();
 				aboutFrame.setLayout(new FlowLayout());
-				ImageIcon imageIcon = new ImageIcon("twitter.png");
-				JLabel aboutLabel = new JLabel("Coucou", imageIcon, JLabel.CENTER);
+				JLabel aboutLabel = new JLabel("1000Bornes", new ImageIcon("images/logo/1000bornes.175x175.jpg"), JLabel.CENTER);
+				aboutLabel.setVerticalTextPosition(JLabel.BOTTOM);
+				aboutLabel.setHorizontalTextPosition(JLabel.CENTER);
+				JLabel aboutThirdLabel = new JLabel("Kevin Maciolek & Florent Segouin");
+				JLabel aboutFourthLabel = new JLabel("Janvier 2013");
 				aboutFrame.add(aboutLabel);
+				aboutFrame.add(aboutThirdLabel);
+				aboutFrame.add(aboutFourthLabel);
 				aboutFrame.pack();
-				aboutFrame.setBounds(0, 0, 200, 200);
+				aboutFrame.setBounds(0, 0, 250, 300);
 				aboutFrame.setLocationRelativeTo(null);
 				aboutFrame.setVisible(true);
 			}
