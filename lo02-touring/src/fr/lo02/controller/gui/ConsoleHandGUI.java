@@ -12,9 +12,9 @@ import fr.lo02.model.Player;
 import fr.lo02.model.card.Card;
 import fr.lo02.model.exception.SelectedCardNotDefinedException;
 
-public class ConsoleGUI implements Observer {
+public class ConsoleHandGUI implements Observer {
 
-	public ConsoleGUI() {
+	public ConsoleHandGUI() {
 		// TODO Auto-generated constructor stub
 	}
 	
@@ -58,6 +58,7 @@ public class ConsoleGUI implements Observer {
 					// SI DES JOUEUR PEUVENT ETRE CIBLE PAR LA CARTE SELECTIONNE
 					if (lp.size() != 0) {
 						System.out.println("Vous pouvez jouer sur :");
+						System.out.println("JOUEUR ACTIF : " +match.getActivePlayer().getName());
 						int i = 0;
 						//deroule les joueurs ciblable
 						for (Iterator<Player> iterator = lp.iterator(); iterator.hasNext();) {
@@ -86,8 +87,8 @@ public class ConsoleGUI implements Observer {
 								askAgainNumCard = true;
 							}
 							// ---- Jouer la carte selectionne ----
-							else if (match.getPlayerByName(choice, lp) != null) {
-								selectedPlayer = match.getPlayerByName(choice, lp);
+							else if (match.getPlayerByName(choice) != null) {
+								selectedPlayer = match.getPlayerByName(choice);
 								Card cSafetyCard = activePlayer.getSelectedCard().playThisCard(activePlayer, selectedPlayer);
 								// Si une carte est renvoye par playThisCard, c'est que le joueur peut jouer un coup fourre
 								//---- Demande de coup fourre ----

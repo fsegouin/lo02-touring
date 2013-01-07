@@ -79,9 +79,10 @@ public class Distance extends Card {
 	// C'EST JOUABLE ET DONC NE PAS FAIRE LE TEST DANS CELLE CI
 	public Card playThisCard(Player activePlayer, Player targetedPlayer) {
 		if (activePlayer.getLastCardFromBattle() instanceof GoRoll) {
-			super.playThisCard(activePlayer, targetedPlayer);
 			activePlayer.addToDistance(this);
 			activePlayer.addMilage(this.milage);
+			System.out.println("KILOMETRE" + activePlayer.getTotalMilage());
+			super.playThisCard(activePlayer, targetedPlayer);
 		}
 		return null;
 	}

@@ -11,6 +11,7 @@ import java.util.Observer;
 
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
+import javax.swing.JLabel;
 import javax.swing.JPanel;
 
 import fr.lo02.model.Player;
@@ -21,8 +22,9 @@ public class HandGUI extends JPanel implements Observer{
 
 	Player player;
 	Hand hand;
+	JLabel namePlayer;
 	JButton[] card = new JButton[5];
-	JPanel jpHand_left, jpHand_right;
+	JPanel jpHand_left, jpHand_right,jpHand_rightTop,jpHand_right_Bot;
 	JButton limitspeed, battlePlayer;
 
 	public HandGUI(LinkedList<Player> linkedListPlayer) {
@@ -36,7 +38,11 @@ public class HandGUI extends JPanel implements Observer{
 	    jpHand_left.setLayout(new FlowLayout());
 	    
 	    jpHand_right = new JPanel();
-	    jpHand_right.setLayout(new FlowLayout());
+	    jpHand_right.setLayout(new BorderLayout());  
+		jpHand_rightTop = new JPanel();
+		jpHand_rightTop.setLayout(new FlowLayout());	
+		jpHand_right_Bot = new JPanel();
+		jpHand_right_Bot.setLayout(new FlowLayout());
 		
 	    this.setLayout(new BorderLayout());
 	    this.setSize(1024, 279);
@@ -48,17 +54,17 @@ public class HandGUI extends JPanel implements Observer{
 			card[i].setContentAreaFilled(false);
 			card[i].setBorderPainted(false);
 		    jpHand_left.add(card[i]);
-		}
-	    //jpHand_left.setBackground(Color.blue);
+		}	    
 	    
-	    
+	    namePlayer = new JLabel();
 	    battlePlayer = new JButton(new ImageIcon("images/cartes/Vide.jpg"));
-	    jpHand_right.add(battlePlayer);
+	    jpHand_rightTop.add(battlePlayer);
 	    battlePlayer.setEnabled(false);
 	    limitspeed = new JButton(new ImageIcon("images/cartes/Vide.jpg"));
-	    jpHand_right.add(limitspeed);
+	    jpHand_rightTop.add(limitspeed);
 	    limitspeed.setEnabled(false);
-	    jpHand_right.setBackground(Color.BLUE);
+	    
+	    jpHand_right.add(jpHand_rightTop, BorderLayout.NORTH);
 	    
 	    this.add(jpHand_left, BorderLayout.WEST);
 	    this.add(jpHand_right, BorderLayout.EAST);
@@ -69,7 +75,6 @@ public class HandGUI extends JPanel implements Observer{
 		player = (Player) o;
 		hand = player.getHand();
 		int i = 0;
-		
 		if ((Integer)arg == 1) {
 			for (Iterator iterator = hand.iterator(); iterator.hasNext();) {
 				Card c = (Card) iterator.next();

@@ -74,7 +74,7 @@ public class MatchGUI extends JLayeredPane implements Observer {
 	    this.add(jpMilieu, new Integer(2));
 	    this.add(jpHand, new Integer(3));
 		
-	    for (int i = 0; i <nbPlayer+nbComputer-1; i++) {
+	    for (int i = 0; i <nbPlayer+nbComputer; i++) {
 	    	jpPlayer = new JPanel();
 	    	jpPlayer.setBackground(Color.ORANGE);
 	    	jpPlayer.setLayout(new BoxLayout(jpPlayer, BoxLayout.Y_AXIS));
@@ -98,10 +98,17 @@ public class MatchGUI extends JLayeredPane implements Observer {
 	    	listJpPlayer.add(jpPlayer);
 		}
 	    
-	    pioche = new JButton(new ImageIcon("images/cartes/Vide.jpg"));
-	    jpMilieu.add(pioche, BorderLayout.CENTER);
-	    defausse = new JButton(new ImageIcon("images/cartes/Null.jpg"));
+	    defausse = new JButton(new ImageIcon("images/cartes/Vide.jpg"));
+	    defausse.setOpaque(false);
+	    defausse.setContentAreaFilled(false);
+	    defausse.setBorderPainted(false);
 	    jpMilieu.add(defausse, BorderLayout.CENTER);
+	    pioche = new JButton(new ImageIcon("images/cartes/Null.jpg"));
+		pioche.setOpaque(false);
+		pioche.setContentAreaFilled(false);
+		pioche.setBorderPainted(false);
+	    jpMilieu.add(pioche, BorderLayout.CENTER);
+
 	    
 	}
 
@@ -110,21 +117,16 @@ public class MatchGUI extends JLayeredPane implements Observer {
 		int countNbPlayer = 0;
 		int indexActiveplayer = match.getIndexOfActivePlayer();
 
-		// ---------- MAJ ADVERSAIRE -----------
-		if ((Integer) arg == 1) {	
+		// ---------- MAJ BARRE DU HAUT ADVERSAIRE -----------
+		if ((Integer) arg == 1) {
 			listPlayer = match.getListPlayer();
-			ListIterator<Player> lt = listPlayer.listIterator(indexActiveplayer+1);
 			Iterator iterator = listJpPlayer.iterator();
-			System.out.println("JOUEUR ACTIF "+match.activePlayer.getName());
-			while (countNbPlayer != listPlayer.size() - 1) {
-				// recupere le premier player(et son index) aprés
-				// activePlayer(1er tour de boucle)
-				Player player = (Player) lt.next();
-				System.out.println("JOUEUR BOUCLE"+player.getName());
-				// recupere le premier panel des adversaires
-				JPanel jpPlayer = (JPanel) iterator.next();
+			for (Iterator lp = listPlayer.iterator(); lp.hasNext();) {
+				Player player = (Player) lp.next();
+				JPanel jp = (JPanel) iterator.next();
 
-				Component[] c = jpPlayer.getComponents();
+				// ------- MAJ D'UN PANEL ------
+				Component[] c = jp.getComponents();
 				for (int i = 0; i < c.length; i++) {
 					// Mise a jour non du joueur
 					JLabel jl0 = (JLabel) c[0];
@@ -138,44 +140,39 @@ public class MatchGUI extends JLayeredPane implements Observer {
 						JButton jb2 = (JButton) c[2];
 						jb2.setIcon(new ImageIcon("images/thumbnails/Vide.jpg"));
 						jb2.setEnabled(false);
-					}
-					else {
+					} else {
 						JButton jb2 = (JButton) c[2];
-						jb2.setIcon(new ImageIcon("images/thumbnails/"+player.getLastCardFromBattle().getFileName()));
+						jb2.setIcon(new ImageIcon("images/thumbnails/" + player.getLastCardFromBattle().getFileName()));
 						jb2.setEnabled(false);
 					}
 				}
 				countNbPlayer++;
-				if(!lt.hasNext()) {
-					lt = listPlayer.listIterator(0);
-				}
 			}
 			// ---------- MAJ DEFAUSSE -----------
 			defausse.setEnabled(false);
 			Card c = null;
 			ImageIcon img = null;
-			System.out.println("TEST");
 			c = match.getDiscardStack().getLastElement();
-			if(c != null) {
-				img = new ImageIcon("images/cartes/"+ c.getFileName());
-			}
-			else {
+			if (c != null) {
+				img = new ImageIcon("images/cartes/" + c.getFileName());
+			} else {
 				img = new ImageIcon("images/cartes/Vide.jpg");
 			}
 			defausse.setIcon(img);
-		}
-		else if ((Integer) arg == 2) {
+			
+			//----- ACTIVE LES JOUEURS CIBLABLE QUAND UNE CARTE EST SELECTIONNE ------
+		} else if ((Integer) arg == 2) {
 			lp = match.getLp();
-			//parcour des joueurs ciblable
+			// parcour des joueurs ciblable
 			for (Iterator iterator = lp.iterator(); iterator.hasNext();) {
 				Player player = (Player) iterator.next();
 				// --------- JOUER SUR ADVERSAIRE ----------
-				//parcour des panel representant les differents joueurs
+				// parcour des panel representant les differents joueurs
 				for (Iterator iterator2 = listJpPlayer.iterator(); iterator2.hasNext();) {
 					JPanel jp = (JPanel) iterator2.next();
-					Component[] c = jpPlayer.getComponents();
+					Component[] c = jp.getComponents();
 					JLabel jl0 = (JLabel) c[0];
-					if(jl0.getText() == player.getName()) {
+					if (jl0.getText() == player.getName()) {
 						JButton jb2 = (JButton) c[2];
 						jb2.setEnabled(true);
 					}
@@ -185,15 +182,13 @@ public class MatchGUI extends JLayeredPane implements Observer {
 					jpHand.setBattlePlayerPLayable();
 				}
 			}
-			
-			
-			
 		}
 	}
-	
+
 	public void addDiscardListener(ActionListener _DiscardActionListener) {
 		defausse.addActionListener(_DiscardActionListener);
 }
+	
 	
 	//----- GETTER AND SETTER ------
 	public HandGUI getJpHand() {
@@ -210,5 +205,9 @@ public class MatchGUI extends JLayeredPane implements Observer {
 		return defausse;
 	}
 
+	
+	public ArrayList<JPanel> getListJpPlayer() {
+		return listJpPlayer;
+	}
 
 }

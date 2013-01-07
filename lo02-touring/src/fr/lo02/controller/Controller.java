@@ -4,7 +4,8 @@ import java.util.HashSet;
 import java.util.Iterator;
 import java.util.Scanner;
 
-import fr.lo02.controller.gui.ConsoleGUI;
+import fr.lo02.controller.gui.ConsoleHandGUI;
+import fr.lo02.controller.gui.ConsoleMatchGUI;
 import fr.lo02.model.ComputerPlayer;
 import fr.lo02.model.Game;
 import fr.lo02.model.HumanPlayer;
@@ -17,7 +18,7 @@ public class Controller {
 	
 	Game game;
 	
-	public Controller(Game model, ConsoleGUI view) {
+	public Controller(Game model, ConsoleHandGUI view1, ConsoleMatchGUI view2) {
 
 		game = model;
 		Scanner sc = new Scanner(System.in);
@@ -42,7 +43,8 @@ public class Controller {
 		// On demarre le jeu, on passe la main a Match
 		System.out.println("----- La partie commence -----");
 		Match match = game.startMatch();
-		view.addHandObserver(match.getListPlayer());
+		view1.addHandObserver(match.getListPlayer());
+		view2.addMatchObserver(match);
 		match.next();
 
 //		do {

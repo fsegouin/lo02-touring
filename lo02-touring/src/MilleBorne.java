@@ -3,7 +3,8 @@ import java.util.Scanner;
 
 import fr.lo02.controller.Controller;
 import fr.lo02.controller.ControllerGameGUI;
-import fr.lo02.controller.gui.ConsoleGUI;
+import fr.lo02.controller.gui.ConsoleHandGUI;
+import fr.lo02.controller.gui.ConsoleMatchGUI;
 import fr.lo02.controller.gui.GameGUI;
 import fr.lo02.model.Game;
 
@@ -34,8 +35,9 @@ public class MilleBorne {
 		}
 		else if (choice.equals("1")) {
 			Game model = new Game();
-			ConsoleGUI view = new ConsoleGUI();
-			Controller controller = new Controller(model, view);
+			ConsoleHandGUI view1 = new ConsoleHandGUI();
+			ConsoleMatchGUI view2 = new ConsoleMatchGUI();
+			Controller controller = new Controller(model, view1, view2);
 		}
 	}
 }

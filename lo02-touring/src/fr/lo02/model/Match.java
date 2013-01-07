@@ -50,12 +50,15 @@ public class Match extends Observable {
 		this.playerHandInit();
 	}
 
+	public void changed() {
+		setChanged();
+		notifyObservers(1);
+	}
 	
 	public void next() {
 		int i=0;
 		activePlayer = nextPlayer();
-		setChanged();
-		notifyObservers(1);
+		changed();
 		if(!this.testEndOfGame()) {
 			if (activePlayer instanceof HumanPlayer) {
 				activePlayer.pickCard(this.getGameStack());
@@ -89,6 +92,7 @@ public class Match extends Observable {
 	 */
 	public HashSet<Player> checkCardPlayable(Player activePlayer) throws SelectedCardNotDefinedException {
 		Player p = null;
+		lp.clear();
 		if (activePlayer.getSelectedCard() != null) {
 
 			for (Iterator<Player> iterator = listPlayer.iterator(); iterator.hasNext();) {
@@ -99,8 +103,7 @@ public class Match extends Observable {
 					if (!activePlayer.equals(testTargetPlayer)) // empeche que l'active player soit un targetplayer pendant le parcours de listPlayer
 					p = activePlayer.getSelectedCard().checkValidMove(activePlayer, testTargetPlayer);
 				} catch (NotValidCardOnBattleException e) {
-					System.out.println(e.getMessage());
-					break;
+					//System.out.println(e.getMessage());
 				}
 				if (p != null) {
 					lp.add(p);
@@ -122,7 +125,7 @@ public class Match extends Observable {
 	 * @param lp Liste des player ciblable
 	 * @return Le player cible
 	 */
-	public Player getPlayerByName(String playerName, HashSet<Player> lp) {
+	public Player getPlayerByName(String playerName) {
 		Player returnedPlayer = null;
 		for (Iterator<Player> iterator = lp.iterator(); iterator.hasNext();) {
 			Player aPlayer = (Player) iterator.next();

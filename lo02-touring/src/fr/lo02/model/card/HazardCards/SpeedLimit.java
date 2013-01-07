@@ -26,9 +26,9 @@ public class SpeedLimit extends Card {
 	
 	public Card playThisCard(Player activePlayer, Player targetedPlayer) {
 		Card cSafetyCard = null;
-		super.playThisCard(activePlayer, targetedPlayer);
 		targetedPlayer.addToBattle(this);	
-		
+		super.playThisCard(activePlayer, targetedPlayer);
+
 		// Recherche si le targetPlayer peut faire un coup fourre
 		for (Iterator iterator = targetedPlayer.getHand().iterator(); iterator.hasNext();) {
 			Card c = (Card) iterator.next();

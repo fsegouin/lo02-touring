@@ -22,12 +22,14 @@ public abstract class Card {
 	
 	public void throwThisCard(Player activePlayer) {
 		activePlayer.removeFromHand(this);
-		match.getInstance().next();
+		Match.getInstance().next();
+		Match.getInstance().changed();
 	}
 	
 	public Card playThisCard(Player activePlayer, Player targetedPlayer) {
-		match.getInstance().next();
 		activePlayer.removeFromHand(this);
+		Match.getInstance().next();
+		Match.getInstance().changed();
 		return null;
 	}
 

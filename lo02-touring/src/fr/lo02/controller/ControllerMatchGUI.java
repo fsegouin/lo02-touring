@@ -1,16 +1,24 @@
 package fr.lo02.controller;
 
 import java.awt.Color;
+import java.awt.Component;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.ArrayList;
+import java.util.Iterator;
 
+import javax.swing.ImageIcon;
 import javax.swing.JButton;
+import javax.swing.JLabel;
+import javax.swing.JPanel;
 
 import fr.lo02.controller.ControllerGameGUI.StartGame;
 import fr.lo02.controller.gui.GameGUI;
 import fr.lo02.controller.gui.HandGUI;
 import fr.lo02.controller.gui.MatchGUI;
 import fr.lo02.model.Match;
+import fr.lo02.model.Player;
+import fr.lo02.model.card.Card;
 import fr.lo02.model.exception.SelectedCardNotDefinedException;
 
 public class ControllerMatchGUI {
@@ -21,7 +29,8 @@ public class ControllerMatchGUI {
 	JButton[] card = new JButton[4];
 	JButton defausse;
 	JButton battlePlayer;
-	
+    ArrayList<JPanel> listJpPlayer = new ArrayList<JPanel>();
+
 	public ControllerMatchGUI(Match _match, MatchGUI _matchGUI) {
 		this.match = _match;
 		this.matchGUI = _matchGUI;
@@ -29,13 +38,21 @@ public class ControllerMatchGUI {
 		this.card = handGUI.getCard();
 		this.defausse = matchGUI.getDefausse();
 		this.battlePlayer = handGUI.getBattlePlayer();
+		this.listJpPlayer = matchGUI.getListJpPlayer();
 		
 		this.matchGUI.addDiscardListener(new DiscardAction());
+		//Listener des cards
 		this.handGUI.addBattleListener(new BattleAction());
 		for (int i = 0; i < 5; i++) {
 			this.handGUI.addCardListener(new CardAction());
 		}
-
+		//listener des adverssaire
+		for (Iterator iterator2 = listJpPlayer.iterator(); iterator2.hasNext();) {
+			JPanel jp = (JPanel) iterator2.next();
+			Component[] c = jp.getComponents();
+			JButton jb2 = (JButton) c[2];
+			jb2.addActionListener(new BattlePlayerAction());
+		}
 	}
 	
 	class CardAction implements ActionListener {
@@ -117,6 +134,27 @@ public class ControllerMatchGUI {
 		public void actionPerformed(ActionEvent arg0) {
 			if(arg0.getSource() == battlePlayer)
 			match.getActivePlayer().getSelectedCard().playThisCard(match.getActivePlayer(), match.getActivePlayer());
+		}
+	}
+	
+	class BattlePlayerAction implements ActionListener {
+
+		public void actionPerformed(ActionEvent arg0) {
+			for (int i = 0; i < match.getNbPlayer(); i++) {
+				JPanel jp = listJpPlayer.get(i);
+				Component[] c = jp.getComponents();
+				if(arg0.getSource() == c[2]);{
+				JLabel jl = (JLabel) c[0];
+				Player selectedPlayer = match.getPlayerByName(jl.getText());
+				Card cSafetyCard = match.getActivePlayer().getSelectedCard().playThisCard(match.getActivePlayer(), selectedPlayer);
+				// Si une carte est renvoye par playThisCard, c'est que le joueur peut jouer un coup fourre
+				//---- Demande de coup fourre ----
+//				if(cSafetyCard != null) {
+//					targetPlayerCoupFourre(match, selectedPlayer);
+//					selectedPlayer.coupFourre(cSafetyCard);
+//				}
+				}
+			}
 		}
 	}
 }
