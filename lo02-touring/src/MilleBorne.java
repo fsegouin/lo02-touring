@@ -1,6 +1,9 @@
 import java.awt.EventQueue;
+import java.util.Scanner;
 
+import fr.lo02.controller.Controller;
 import fr.lo02.controller.ControllerGameGUI;
+import fr.lo02.controller.gui.ConsoleGUI;
 import fr.lo02.controller.gui.GameGUI;
 import fr.lo02.model.Game;
 
@@ -15,19 +18,24 @@ public class MilleBorne {
 	 * @param args
 	 */
 	public static void main(String[] args) {
-		
-		Game model = new Game();
-//		GameGUI view = null;
-//			EventQueue.invokeLater(new Runnable() {
-//				public void run() {
-//					try {
-						GameGUI view = new GameGUI(model);
-						view.setVisible(true);
-//					} catch (Exception e) {
-//						e.printStackTrace();
-//					}
-//				}
-//			});
+		Scanner scan = new Scanner(System.in);
+
+		System.out.println("Comment lancez le jeu ?");
+		System.out.println("1 - Console");
+		System.out.println("2 - Interface Graphique");
+
+		String choice = scan.nextLine();
+		// ---- Se defausser ----
+		if (choice.equals("2")) {
+			Game model = new Game();
+			GameGUI view = new GameGUI(model);
+			view.setVisible(true);
 			ControllerGameGUI controller = new ControllerGameGUI(model, view);
 		}
+		else if (choice.equals("1")) {
+			Game model = new Game();
+			ConsoleGUI view = new ConsoleGUI();
+			Controller controller = new Controller(model, view);
+		}
 	}
+}

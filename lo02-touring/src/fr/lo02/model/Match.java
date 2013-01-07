@@ -55,14 +55,18 @@ public class Match extends Observable {
 		int i=0;
 		activePlayer = nextPlayer();
 		setChanged();
-		System.out.println("PRINT !"+i++);
 		notifyObservers(1);
-		if (activePlayer instanceof HumanPlayer) {
-			activePlayer.pickCard(this.getGameStack());
-			activePlayer.setActive(true);
-		} 
-		else if (activePlayer instanceof ComputerPlayer){
-			((ComputerPlayer) activePlayer).play(this);
+		if(!this.testEndOfGame()) {
+			if (activePlayer instanceof HumanPlayer) {
+				activePlayer.pickCard(this.getGameStack());
+				activePlayer.setActive(true);
+			} 
+			else if (activePlayer instanceof ComputerPlayer){
+				((ComputerPlayer) activePlayer).play(this);
+			}
+		}
+		else {
+//			System.out.println("--- Fin du jeu, merci d'avoir joue ! ---");
 		}
 	}
 	

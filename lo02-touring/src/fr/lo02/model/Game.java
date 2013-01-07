@@ -20,6 +20,7 @@ public class Game {
 		Match.getInstance().setNbComputerPlayer(nbComputerPlayer);
 		Match.getInstance().setNbHumanPlayer(nbHumanPlayer);
 		Match.getInstance().initMatch();
+		Match.getInstance().next();
 		return match;
 	}
 		
