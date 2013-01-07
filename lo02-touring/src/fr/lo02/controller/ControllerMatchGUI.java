@@ -165,6 +165,16 @@ public class ControllerMatchGUI {
 	class DeselectCardAction implements MouseListener {
 
 		public void mouseClicked(MouseEvent e) {
+
+		}
+
+		public void mouseEntered(MouseEvent e) {
+		}
+
+		public void mouseExited(MouseEvent e) {
+		}
+
+		public void mousePressed(MouseEvent e) {
 			for (int i = 0; i < card.length; i++) {
 				card[i].setEnabled(true);
 			}
@@ -176,15 +186,6 @@ public class ControllerMatchGUI {
 			}
 			defausse.setEnabled(false);
 			battlePlayer.setEnabled(false);
-		}
-
-		public void mouseEntered(MouseEvent e) {
-		}
-
-		public void mouseExited(MouseEvent e) {
-		}
-
-		public void mousePressed(MouseEvent e) {
 		}
 
 		public void mouseReleased(MouseEvent e) {
