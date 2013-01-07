@@ -4,6 +4,8 @@ import java.awt.Color;
 import java.awt.Component;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.MouseEvent;
+import java.awt.event.MouseListener;
 import java.util.ArrayList;
 import java.util.Iterator;
 
@@ -40,6 +42,7 @@ public class ControllerMatchGUI {
 		this.battlePlayer = handGUI.getBattlePlayer();
 		this.listJpPlayer = matchGUI.getListJpPlayer();
 		
+		this.handGUI.addMouseListener(new DeselectCardAction());
 		this.matchGUI.addDiscardListener(new DiscardAction());
 		//Listener des cards
 		this.handGUI.addBattleListener(new BattleAction());
@@ -158,4 +161,34 @@ public class ControllerMatchGUI {
 			}
 		}
 	}
+	
+	class DeselectCardAction implements MouseListener {
+
+		public void mouseClicked(MouseEvent e) {
+			for (int i = 0; i < card.length; i++) {
+				card[i].setEnabled(true);
+			}
+			for (Iterator iterator = listJpPlayer.iterator(); iterator.hasNext();) {
+				JPanel jp = (JPanel) iterator.next();
+				Component[] c = jp.getComponents();
+				JButton jb = (JButton)c[2];
+					jb.setEnabled(false);
+			}
+			defausse.setEnabled(false);
+			battlePlayer.setEnabled(false);
+		}
+
+		public void mouseEntered(MouseEvent e) {
+		}
+
+		public void mouseExited(MouseEvent e) {
+		}
+
+		public void mousePressed(MouseEvent e) {
+		}
+
+		public void mouseReleased(MouseEvent e) {
+		}
+	}
+
 }

@@ -179,6 +179,8 @@ public class GameGUI extends JFrame {
 		});
 	}
 	
+
+	
 	// Ajoute un listener sur "Validate"
 	public void addValidateListener(ActionListener _actionlistener) {
 		jbvalidate.addActionListener(_actionlistener);

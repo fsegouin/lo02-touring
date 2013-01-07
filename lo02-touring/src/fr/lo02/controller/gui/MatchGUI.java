@@ -134,7 +134,7 @@ public class MatchGUI extends JLayeredPane implements Observer {
 
 					// Mise a jour des kilometres
 					JLabel jl1 = (JLabel) c[1];
-					jl1.setText(String.valueOf(player.getTotalMilage()));
+					jl1.setText(String.valueOf(player.getTotalMilage()+ " km"));
 
 					if (player.getLastCardFromBattle() == null) {
 						JButton jb2 = (JButton) c[2];
@@ -163,17 +163,17 @@ public class MatchGUI extends JLayeredPane implements Observer {
 			//----- ACTIVE LES JOUEURS CIBLABLE QUAND UNE CARTE EST SELECTIONNE ------
 		} else if ((Integer) arg == 2) {
 			lp = match.getLp();
-			for (Iterator iterator = lp.iterator(); iterator.hasNext();) {
-				Player p = (Player) iterator.next();
-				System.out.println("Nom du joueur :"+p.getName());
-			}
-			for (Iterator iterator = listJpPlayer.iterator(); iterator.hasNext();) {
-				JPanel jp = (JPanel) iterator.next();
-				Component[] c = jp.getComponents();
-				JLabel jl0 = (JLabel) c[0];
-				System.out.println("Contenu panel :"+jl0.getText());
-				System.out.println("-------------");
-			}
+//			for (Iterator iterator = lp.iterator(); iterator.hasNext();) {
+//				Player p = (Player) iterator.next();
+//				System.out.println("Nom du joueur :"+p.getName());
+//			}
+//			for (Iterator iterator = listJpPlayer.iterator(); iterator.hasNext();) {
+//				JPanel jp = (JPanel) iterator.next();
+//				Component[] c = jp.getComponents();
+//				JLabel jl0 = (JLabel) c[0];
+//				System.out.println("Contenu panel :"+jl0.getText());
+//				System.out.println("-------------");
+//			}
 			// parcour des joueurs ciblable
 			for (Iterator iterator = lp.iterator(); iterator.hasNext();) {
 				Player player = (Player) iterator.next();

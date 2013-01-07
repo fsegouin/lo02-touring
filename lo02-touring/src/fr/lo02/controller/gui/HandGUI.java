@@ -83,7 +83,7 @@ public class HandGUI extends JPanel implements Observer{
 		int i = 0;
 		if ((Integer)arg == 1) {
 			namePlayer.setText(player.getName());
-			kmPlayer.setText(player.getTotalMilage()+" km");
+			kmPlayer.setText(" - "+player.getTotalMilage()+" km");
 			for (Iterator iterator = hand.iterator(); iterator.hasNext();) {
 				Card c = (Card) iterator.next();
 				card[i].setIcon(new ImageIcon("images/cartes/" + c.getFileName()));
