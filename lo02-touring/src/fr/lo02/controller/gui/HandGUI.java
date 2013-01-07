@@ -3,6 +3,7 @@ package fr.lo02.controller.gui;
 import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.FlowLayout;
+import java.awt.Font;
 import java.awt.event.ActionListener;
 import java.util.Iterator;
 import java.util.LinkedList;
@@ -22,7 +23,7 @@ public class HandGUI extends JPanel implements Observer{
 
 	Player player;
 	Hand hand;
-	JLabel namePlayer;
+	JLabel namePlayer, kmPlayer;
 	JButton[] card = new JButton[5];
 	JPanel jpHand_left, jpHand_right,jpHand_rightTop,jpHand_right_Bot;
 	JButton limitspeed, battlePlayer;
@@ -56,7 +57,12 @@ public class HandGUI extends JPanel implements Observer{
 		    jpHand_left.add(card[i]);
 		}	    
 	    
+	    kmPlayer = new JLabel();
+	    kmPlayer.setFont(new Font("Serif", Font.PLAIN, 36));
 	    namePlayer = new JLabel();
+	    namePlayer.setFont(new Font("Serif", Font.PLAIN, 36));
+	    jpHand_right_Bot.add(namePlayer);
+	    jpHand_right_Bot.add(kmPlayer);
 	    battlePlayer = new JButton(new ImageIcon("images/cartes/Vide.jpg"));
 	    jpHand_rightTop.add(battlePlayer);
 	    battlePlayer.setEnabled(false);
@@ -65,7 +71,7 @@ public class HandGUI extends JPanel implements Observer{
 	    limitspeed.setEnabled(false);
 	    
 	    jpHand_right.add(jpHand_rightTop, BorderLayout.NORTH);
-	    
+	    jpHand_right.add(jpHand_right_Bot, BorderLayout.SOUTH);
 	    this.add(jpHand_left, BorderLayout.WEST);
 	    this.add(jpHand_right, BorderLayout.EAST);
 	}
@@ -76,6 +82,8 @@ public class HandGUI extends JPanel implements Observer{
 		hand = player.getHand();
 		int i = 0;
 		if ((Integer)arg == 1) {
+			namePlayer.setText(player.getName());
+			kmPlayer.setText(player.getTotalMilage()+" km");
 			for (Iterator iterator = hand.iterator(); iterator.hasNext();) {
 				Card c = (Card) iterator.next();
 				card[i].setIcon(new ImageIcon("images/cartes/" + c.getFileName()));
