@@ -21,7 +21,7 @@ public class MilleBorne {
 	public static void main(String[] args) {
 		Scanner scan = new Scanner(System.in);
 
-		System.out.println("Comment lancez le jeu ?");
+		System.out.println("Comment voulez-vous lancer le jeu ?");
 		System.out.println("1 - Console");
 		System.out.println("2 - Interface Graphique");
 
