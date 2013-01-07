@@ -2,6 +2,7 @@ package fr.lo02.controller.gui;
 
 import java.awt.Color;
 import java.awt.Component;
+import java.awt.Desktop;
 import java.awt.Dimension;
 import java.awt.EventQueue;
 import java.awt.FlowLayout;
@@ -24,6 +25,9 @@ import fr.lo02.model.stack.Hand;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.io.IOException;
+import java.net.URI;
+import java.net.URISyntaxException;
 
 public class GameGUI extends JFrame {
 	
@@ -113,6 +117,19 @@ public class GameGUI extends JFrame {
 		menuBar.add(helpMenu);
 
 		JMenuItem mntmRgles = new JMenuItem("R\u00E8gles");
+		mntmRgles.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				try {
+					Desktop.getDesktop().browse(new URI("http://www.jeuxdujardin.fr/files/regles/mb-express---rdj.pdf"));
+				} catch (IOException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				} catch (URISyntaxException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				}
+			}
+		});
 		helpMenu.add(mntmRgles);
 
 		setJMenuBar(menuBar);
