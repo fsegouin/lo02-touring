@@ -143,8 +143,9 @@ public class ControllerMatchGUI {
 			for (int i = 0; i < match.getNbPlayer(); i++) {
 				JPanel jp = listJpPlayer.get(i);
 				Component[] c = jp.getComponents();
-				if(arg0.getSource() == c[2]);{
+				if(arg0.getSource() == c[2]){
 				JLabel jl = (JLabel) c[0];
+				System.out.println(jl.getText());
 				Player selectedPlayer = match.getPlayerByName(jl.getText());
 				Card cSafetyCard = match.getActivePlayer().getSelectedCard().playThisCard(match.getActivePlayer(), selectedPlayer);
 				// Si une carte est renvoye par playThisCard, c'est que le joueur peut jouer un coup fourre
