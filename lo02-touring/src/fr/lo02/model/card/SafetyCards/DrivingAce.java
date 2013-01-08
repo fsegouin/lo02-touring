@@ -19,6 +19,7 @@ public class DrivingAce extends Card {
 		// TODO Auto-generated method stub
 		activePlayer.addToSafetyArea(this);
 		activePlayer.setDrivingAce(true);
+		activePlayer.addMilage(100);
 		super.playThisCard(activePlayer, targetedPlayer);
 		return null;
 	}

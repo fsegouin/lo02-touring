@@ -18,6 +18,7 @@ public class PunctureProof extends Card {
 	public Card playThisCard(Player activePlayer, Player targetedPlayer) {
 		activePlayer.addToSafetyArea(this);
 		activePlayer.setPunctureProof(true);
+		activePlayer.addMilage(100);
 		super.playThisCard(activePlayer, targetedPlayer);
 		return null;
 	}
