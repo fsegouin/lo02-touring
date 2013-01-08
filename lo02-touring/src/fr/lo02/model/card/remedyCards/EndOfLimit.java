@@ -31,8 +31,8 @@ public class EndOfLimit extends Card {
 		super.playThisCard(activePlayer, targetedPlayer);
 
 		for (int i = 0; i < 2; i++) {
-			Match.getInstance().addToDiscardStack(activePlayer.getLastCardFromBattle());
-			activePlayer.deleteLastCardFromBattle();
+			Match.getInstance().addToDiscardStack(activePlayer.getLastCardFromSpeed());
+			activePlayer.deleteLastCardFromSpeed();
 		}
 		return null;
 	}
