@@ -87,9 +87,15 @@ public class HandGUI extends JPanel implements Observer{
 	    jpHand_left.add(jpHand_left_Bot, BorderLayout.SOUTH);
 	    
 	    battlePlayer = new JButton(new ImageIcon("images/cartes/Vide.jpg"));
+	    battlePlayer.setOpaque(false);
+	    battlePlayer.setContentAreaFilled(false);
+	    battlePlayer.setBorderPainted(false);
 	    jpHand_rightTop.add(battlePlayer);
 	    battlePlayer.setEnabled(false);
 	    limitspeed = new JButton(new ImageIcon("images/cartes/Vide.jpg"));
+	    limitspeed.setOpaque(false);
+	    limitspeed.setContentAreaFilled(false);
+	    limitspeed.setBorderPainted(false);
 	    jpHand_rightTop.add(limitspeed);
 	    limitspeed.setEnabled(false);
 	    

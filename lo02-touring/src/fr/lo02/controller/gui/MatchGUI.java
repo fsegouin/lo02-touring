@@ -27,18 +27,22 @@ import fr.lo02.model.CardList;
 import fr.lo02.model.Match;
 import fr.lo02.model.Player;
 import fr.lo02.model.card.Card;
+import fr.lo02.model.card.HazardCards.SpeedLimit;
+import fr.lo02.model.card.remedyCards.EndOfLimit;
 
 public class MatchGUI extends JLayeredPane implements Observer {
 
 	// --------- INTERFACE DE JEU ---------
     JLayeredPane jlpContenair;
-    JPanel jpAdversaire,jpMilieu, jpPlayer;
+    JPanel jpAdversaire,jpMilieu, jpPlayer, jpIcone;
     ArrayList<JPanel> listJpPlayer = new ArrayList<JPanel>();
     HandGUI jpHand;
 	JLabel jlNamePlayer,jlMilles;
 	JButton battle;
 	HashSet<Player> lp = new HashSet<Player>();
 	JButton pioche,defausse;
+	JLabel limit50;
+	JLabel drivingAce,extraTank,punctureProof,rightOfWay;
 	
 	// ------------- UPDATE VIEW ---------------
 	private CardList gameStack = new CardList();
@@ -91,9 +95,30 @@ public class MatchGUI extends JLayeredPane implements Observer {
 	    	battle.setBorderPainted(false);
 	    	battle.setAlignmentX(Component.CENTER_ALIGNMENT);
 		    
+	    	jpIcone = new JPanel(new FlowLayout());
+	    	jpIcone.setBackground(Color.ORANGE);
+	    	jpIcone.setAlignmentX(Component.CENTER_ALIGNMENT);
+	    	drivingAce = new JLabel(new ImageIcon("images/thumbnails/drive.jpg"));
+	    	drivingAce.setVisible(false);
+	    	extraTank = new JLabel(new ImageIcon("images/thumbnails/tank.jpg"));
+	    	extraTank.setVisible(false);
+	    	punctureProof = new JLabel(new ImageIcon("images/thumbnails/proof.jpg"));
+	    	punctureProof.setVisible(false);
+	    	rightOfWay = new JLabel(new ImageIcon("images/thumbnails/way.jpg"));
+	    	rightOfWay.setVisible(false);
+	    	limit50 = new JLabel(new ImageIcon("images/thumbnails/limit50.jpg"));
+	    	limit50.setVisible(false);
+	    	
+	    	jpIcone.add(limit50);
+	    	jpIcone.add(drivingAce);
+	    	jpIcone.add(extraTank);
+	    	jpIcone.add(punctureProof);
+	    	jpIcone.add(rightOfWay);
+	    	
 		    jpPlayer.add(jlNamePlayer);
 		    jpPlayer.add(jlMilles);
 		    jpPlayer.add(battle);
+		    jpPlayer.add(jpIcone);
 	    	jpAdversaire.add(jpPlayer);
 	    	listJpPlayer.add(jpPlayer);
 		}
@@ -134,7 +159,7 @@ public class MatchGUI extends JLayeredPane implements Observer {
 
 					// Mise a jour des kilometres
 					JLabel jl1 = (JLabel) c[1];
-					jl1.setText(String.valueOf(player.getTotalMilage()+ " km"));
+					jl1.setText(String.valueOf(player.getTotalMilage() + " km"));
 
 					if (player.getLastCardFromBattle() == null) {
 						JButton jb2 = (JButton) c[2];
@@ -145,6 +170,26 @@ public class MatchGUI extends JLayeredPane implements Observer {
 						jb2.setIcon(new ImageIcon("images/thumbnails/" + player.getLastCardFromBattle().getFileName()));
 						jb2.setEnabled(false);
 					}
+					
+					//Mise a jour des icones
+					JPanel jp3 = (JPanel) c[3];
+					Component[] icone = jp3.getComponents();
+					JLabel[] ic = new JLabel[5];
+					for (int j = 0; j < ic.length; j++) {
+						ic[j] = (JLabel) icone[j];
+					}
+					if (player.getLastCardFromSpeed() instanceof SpeedLimit)
+						ic[0].setVisible(true);
+					else if (player.getLastCardFromSpeed() instanceof EndOfLimit)
+						ic[0].setVisible(false);
+					if (player.isDrivingAce())
+						ic[1].setVisible(true);
+					if (player.isExtraTank())
+						ic[2].setVisible(true);
+					if (player.isPunctureProof())
+						ic[3].setVisible(true);
+					if (player.isRightOfWay())
+						ic[4].setVisible(true);
 				}
 				countNbPlayer++;
 			}

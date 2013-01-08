@@ -27,7 +27,7 @@ public class EndOfLimit extends Card {
 
 	@Override
 	public Card playThisCard(Player activePlayer, Player targetedPlayer) {
-		targetedPlayer.addToBattle(this);
+		targetedPlayer.addToSpeed(this);
 		super.playThisCard(activePlayer, targetedPlayer);
 
 		for (int i = 0; i < 2; i++) {

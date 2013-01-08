@@ -15,10 +15,9 @@ public class ExtraTank extends Card {
 
 	@Override
 	public Card playThisCard(Player activePlayer, Player targetedPlayer) {
-		// TODO Auto-generated method stub
-		super.playThisCard(activePlayer, targetedPlayer);
 		activePlayer.addToSafetyArea(this);
 		activePlayer.setExtraTank(true);
+		super.playThisCard(activePlayer, targetedPlayer);
 		return null;
 	}
 }
