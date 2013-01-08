@@ -7,6 +7,7 @@ public class DrivingAce extends Card {
 	
 	public DrivingAce() {
 		this.setFileName("As_Volant.jpg");
+		this.setSafetyCard(true);
 	}
 
 	public Player checkValidMove(Player activePlayer, Player targetPlayer) {

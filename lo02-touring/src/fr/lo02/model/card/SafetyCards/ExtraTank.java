@@ -7,6 +7,7 @@ public class ExtraTank extends Card {
 
 	public ExtraTank() {
 		this.setFileName("Citerne.jpg");
+		this.setSafetyCard(true);
 	}
 	
 	public Player checkValidMove(Player activePlayer, Player targetPlayer) {

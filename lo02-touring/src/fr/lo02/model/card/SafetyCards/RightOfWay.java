@@ -7,6 +7,7 @@ public class RightOfWay extends Card {
 
 	public RightOfWay() {
 		this.setFileName("Prioritaire.jpg");
+		this.setSafetyCard(true);
 	}
 	
 	public Player checkValidMove(Player activePlayer, Player targetPlayer) {

@@ -7,6 +7,7 @@ public class PunctureProof extends Card {
 
 	public PunctureProof() {
 		this.setFileName("Increvable.jpg");
+		this.setSafetyCard(true);
 	}
 	
 	public Player checkValidMove(Player activePlayer, Player targetPlayer) {
