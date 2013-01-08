@@ -1,5 +1,6 @@
 package fr.lo02.controller.gui;
 
+import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Component;
 import java.awt.Desktop;
@@ -65,7 +66,7 @@ public class GameGUI extends JFrame {
 		jtComputer.setPreferredSize(new Dimension(150, 30));
 
 		setTitle("1000Bornes - LO02/UTT - FS & KM");
-		this.setSize(1024, 768);
+		this.setSize(1024, 600);
 		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		this.setLocationRelativeTo(null);
 		this.setResizable(false);
@@ -135,7 +136,7 @@ public class GameGUI extends JFrame {
 		setJMenuBar(menuBar);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
-		contentPane.setLayout(new GridLayout(0,1));
+//		contentPane.setLayout(new BorderLayout());
 		//contentPane.setLayout(null);
 		this.setContentPane(contentPane);
 
@@ -145,17 +146,25 @@ public class GameGUI extends JFrame {
 
 		jpComputer.add(jlComputer);
 		jpComputer.add(jtComputer);
+		JPanel jpadder = new JPanel();
+		jpadder.setBounds(0, 0, 150, 150);
+		
+		jpadder.add(jpPlayer);
+		jpadder.add(jpComputer);
 
 		jpPlayerName.setLayout(new GridLayout(0, 1));
+		jpPlayerName.setBounds(0, 0, 200, 200);
+		
 		jbvalidate = new JButton("Valider");
-
 		jpValidate.add(jbvalidate);
-
-		contentPane.add(jpPlayer);
-		contentPane.add(jpComputer);
-		contentPane.add(jpPlayerName);
+		jpValidate.setBounds(0, 0, 100, 100);
+		
+		contentPane.add(jpadder, new Integer(1));
+//		contentPane.add(jpPlayer, BorderLayout.NORTH);
+//		contentPane.add(jpComputer, BorderLayout.NORTH);
+		contentPane.add(jpPlayerName,new Integer(2));
 		jpPlayerName.setBackground(Color.ORANGE);
-		contentPane.add(jpValidate);
+		contentPane.add(jpValidate, new Integer(3));
 		
 		jtPlayer.addKeyListener(new java.awt.event.KeyAdapter() {
 			public void keyReleased(java.awt.event.KeyEvent e) {

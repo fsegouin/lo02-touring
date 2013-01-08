@@ -71,7 +71,7 @@ public class HandGUI extends JPanel implements Observer{
         scrollPane = new JScrollPane(textAreaInfo);
         scrollPane.setVerticalScrollBarPolicy(
                 JScrollPane.VERTICAL_SCROLLBAR_ALWAYS);
-        scrollPane.setPreferredSize(new Dimension(650, 80));
+        scrollPane.setPreferredSize(new Dimension(680, 75));
         jpHand_left_Bot.add(scrollPane);
         //Redirige les System.out.print vers le textArea
 	    this.redirectSystemStreams();        
