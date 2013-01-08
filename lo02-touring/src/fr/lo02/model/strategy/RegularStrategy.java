@@ -59,11 +59,24 @@ public class RegularStrategy {
 	 */
 	public void playRegular(Match match, ComputerPlayer computerPlayer, boolean played) {
 		
+		CardList possibleCard = new CardList();
+		
 		// DEBUG //
 		if(computerPlayer.getLastCardFromBattle() != null)
 			System.out.println("Status de l'IA : " + computerPlayer.getLastCardFromBattle().toString());
 		// DEBUG //
 		
+		if (!played) {
+			for (Iterator<Card> iterator = computerPlayer.getHand().iterator(); iterator.hasNext();) {
+				Card c = (Card) iterator.next();
+				if (c.isSafetyCard())
+					possibleCard.addCard(c);
+			}
+			if(!(possibleCard.isEmpty())) { // On verifie si l'IA peut jouer une carte attaque
+				possibleCard.shuffleCards();
+				computerPlayer.setSelectedCard(possibleCard.topPick());
+				computerPlayer.getSelectedCard().playThisCard(computerPlayer, computerPlayer);			}
+		}
 		if (computerPlayer.getLastCardFromBattle() instanceof GoRoll && !played) // L'IA tente de jouer une carte distance
 			played = playCard(computerPlayer, new Distance(0));
 		if (computerPlayer.getLastCardFromBattle() instanceof SpeedLimit && !played)
