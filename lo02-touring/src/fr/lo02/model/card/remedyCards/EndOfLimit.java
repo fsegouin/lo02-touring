@@ -32,7 +32,7 @@ public class EndOfLimit extends Card {
 
 		for (int i = 0; i < 2; i++) {
 			Match.getInstance().addToDiscardStack(activePlayer.getLastCardFromSpeed());
-//			activePlayer.deleteLastCardFromBattle();
+			activePlayer.deleteLastCardFromSpeed();
 		}
 		return null;
 	}

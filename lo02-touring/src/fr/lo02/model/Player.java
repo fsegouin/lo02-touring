@@ -131,6 +131,10 @@ public class Player extends Observable {
 		this.battlePile.stack.remove(this.battleSize() - 1);
 	}
 	
+	public void deleteLastCardFromSpeed() {
+		this.speedPile.stack.remove(this.battleSize() - 1);
+	}
+	
 	public Card getLastCardFromBattle() {
 		Card c = null;
 		if (!battlePile.isEmpty())
