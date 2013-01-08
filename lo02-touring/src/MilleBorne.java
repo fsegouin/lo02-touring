@@ -19,6 +19,7 @@ public class MilleBorne {
 	 * @param args
 	 */
 	public static void main(String[] args) {
+		/**
 		Scanner scan = new Scanner(System.in);
 
 		System.out.println("Comment voulez-vous lancer le jeu ?");
@@ -26,18 +27,21 @@ public class MilleBorne {
 		System.out.println("2 - Interface Graphique");
 
 		String choice = scan.nextLine();
+		*/
 		// ---- Se defausser ----
-		if (choice.equals("2")) {
+//		if (choice.equals("2")) {
 			Game model = new Game();
 			GameGUI view = new GameGUI(model);
 			view.setVisible(true);
 			ControllerGameGUI controller = new ControllerGameGUI(model, view);
-		}
+//		}
+		/**
 		else if (choice.equals("1")) {
 			Game model = new Game();
 			ConsoleHandGUI view1 = new ConsoleHandGUI();
 			ConsoleMatchGUI view2 = new ConsoleMatchGUI();
 			Controller controller = new Controller(model, view1, view2);
 		}
+		*/
 	}
 }

@@ -81,7 +81,7 @@ public class GameGUI extends JFrame {
 			public void actionPerformed(ActionEvent e) {
 				JFrame aboutFrame = new JFrame();
 				aboutFrame.setLayout(new FlowLayout());
-				JLabel aboutLabel = new JLabel("1000Bornes", new ImageIcon("images/logo/1000bornes.175x175.jpg"), JLabel.CENTER);
+				JLabel aboutLabel = new JLabel("1000Bornes", new ImageIcon(getClass().getClassLoader().getResource("images/logo/1000bornes.175x175.jpg")), JLabel.CENTER);
 				aboutLabel.setVerticalTextPosition(JLabel.BOTTOM);
 				aboutLabel.setHorizontalTextPosition(JLabel.CENTER);
 				JLabel aboutThirdLabel = new JLabel("Kevin Maciolek & Florent Segouin");

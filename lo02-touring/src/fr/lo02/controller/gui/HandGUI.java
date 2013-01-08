@@ -59,7 +59,7 @@ public class HandGUI extends JPanel implements Observer{
 	    this.setSize(1024, 279);
 	    
 	    for (int i = 0; i < card.length; i++) {
-			card[i] = new JButton(new ImageIcon("images/cartes/Null.jpg"));
+			card[i] = new JButton(new ImageIcon(getClass().getClassLoader().getResource("images/cartes/Null.jpg")));
 			card[i].setOpaque(false);
 			card[i].setContentAreaFilled(false);
 			card[i].setBorderPainted(false);
@@ -86,13 +86,13 @@ public class HandGUI extends JPanel implements Observer{
 	    jpHand_left.add(jpHand_leftTop, BorderLayout.NORTH);
 	    jpHand_left.add(jpHand_left_Bot, BorderLayout.SOUTH);
 	    
-	    battlePlayer = new JButton(new ImageIcon("images/cartes/Vide.jpg"));
+	    battlePlayer = new JButton(new ImageIcon(getClass().getClassLoader().getResource("images/cartes/Vide.jpg")));
 	    battlePlayer.setOpaque(false);
 	    battlePlayer.setContentAreaFilled(false);
 	    battlePlayer.setBorderPainted(false);
 	    jpHand_rightTop.add(battlePlayer);
 	    battlePlayer.setEnabled(false);
-	    limitspeed = new JButton(new ImageIcon("images/cartes/Vide.jpg"));
+	    limitspeed = new JButton(new ImageIcon(getClass().getClassLoader().getResource("images/cartes/Vide.jpg")));
 	    limitspeed.setOpaque(false);
 	    limitspeed.setContentAreaFilled(false);
 	    limitspeed.setBorderPainted(false);
@@ -116,16 +116,16 @@ public class HandGUI extends JPanel implements Observer{
 			kmPlayer.setText(" - "+player.getTotalMilage()+" km");
 			for (Iterator iterator = hand.iterator(); iterator.hasNext();) {
 				Card c = (Card) iterator.next();
-				card[i].setIcon(new ImageIcon("images/cartes/" + c.getFileName()));
+				card[i].setIcon(new ImageIcon(getClass().getClassLoader().getResource("images/cartes/" + c.getFileName())));
 				card[i].setEnabled(true);
 				i++;
 			}
 			if (player.getLastCardFromBattle() == null) {
-				battlePlayer.setIcon(new ImageIcon("images/cartes/Vide.jpg"));
+				battlePlayer.setIcon(new ImageIcon(getClass().getClassLoader().getResource("images/cartes/Vide.jpg")));
 				battlePlayer.setEnabled(false);
 			}
 			else {
-				battlePlayer.setIcon(new ImageIcon("images/cartes/"+player.getLastCardFromBattle().getFileName()));
+				battlePlayer.setIcon(new ImageIcon(getClass().getClassLoader().getResource("images/cartes/"+player.getLastCardFromBattle().getFileName())));
 				battlePlayer.setEnabled(false);
 			}
 

@@ -89,7 +89,7 @@ public class MatchGUI extends JLayeredPane implements Observer {
 	    	jlMilles = new JLabel("0 Kilometre");
 	    	jlMilles.setAlignmentX(Component.CENTER_ALIGNMENT);
 	    	
-	    	battle = new JButton(new ImageIcon("images/thumbnails/Vide.jpg"));
+	    	battle = new JButton(new ImageIcon(getClass().getClassLoader().getResource("images/thumbnails/Vide.jpg")));
 	    	battle.setOpaque(false);
 	    	battle.setContentAreaFilled(false);
 	    	battle.setBorderPainted(false);
@@ -98,15 +98,15 @@ public class MatchGUI extends JLayeredPane implements Observer {
 	    	jpIcone = new JPanel(new FlowLayout());
 	    	jpIcone.setBackground(Color.ORANGE);
 	    	jpIcone.setAlignmentX(Component.CENTER_ALIGNMENT);
-	    	drivingAce = new JLabel(new ImageIcon("images/thumbnails/drive.jpg"));
+	    	drivingAce = new JLabel(new ImageIcon(getClass().getClassLoader().getResource("images/thumbnails/drive.jpg")));
 	    	drivingAce.setVisible(false);
-	    	extraTank = new JLabel(new ImageIcon("images/thumbnails/tank.jpg"));
+	    	extraTank = new JLabel(new ImageIcon(getClass().getClassLoader().getResource("images/thumbnails/tank.jpg")));
 	    	extraTank.setVisible(false);
-	    	punctureProof = new JLabel(new ImageIcon("images/thumbnails/proof.jpg"));
+	    	punctureProof = new JLabel(new ImageIcon(getClass().getClassLoader().getResource("images/thumbnails/proof.jpg")));
 	    	punctureProof.setVisible(false);
-	    	rightOfWay = new JLabel(new ImageIcon("images/thumbnails/way.jpg"));
+	    	rightOfWay = new JLabel(new ImageIcon(getClass().getClassLoader().getResource("images/thumbnails/way.jpg")));
 	    	rightOfWay.setVisible(false);
-	    	limit50 = new JLabel(new ImageIcon("images/thumbnails/limit50.jpg"));
+	    	limit50 = new JLabel(new ImageIcon(getClass().getClassLoader().getResource("images/thumbnails/limit50.jpg")));
 	    	limit50.setVisible(false);
 	    	
 	    	jpIcone.add(limit50);
@@ -123,12 +123,12 @@ public class MatchGUI extends JLayeredPane implements Observer {
 	    	listJpPlayer.add(jpPlayer);
 		}
 	    
-	    defausse = new JButton(new ImageIcon("images/cartes/Vide.jpg"));
+	    defausse = new JButton(new ImageIcon(getClass().getClassLoader().getResource("images/cartes/Vide.jpg")));
 	    defausse.setOpaque(false);
 	    defausse.setContentAreaFilled(false);
 	    defausse.setBorderPainted(false);
 	    jpMilieu.add(defausse, BorderLayout.CENTER);
-	    pioche = new JButton(new ImageIcon("images/cartes/Null.jpg"));
+	    pioche = new JButton(new ImageIcon(getClass().getClassLoader().getResource("images/cartes/Null.jpg")));
 		pioche.setOpaque(false);
 		pioche.setContentAreaFilled(false);
 		pioche.setBorderPainted(false);
@@ -163,11 +163,11 @@ public class MatchGUI extends JLayeredPane implements Observer {
 
 					if (player.getLastCardFromBattle() == null) {
 						JButton jb2 = (JButton) c[2];
-						jb2.setIcon(new ImageIcon("images/thumbnails/Vide.jpg"));
+						jb2.setIcon(new ImageIcon(getClass().getClassLoader().getResource("images/thumbnails/Vide.jpg")));
 						jb2.setEnabled(false);
 					} else {
 						JButton jb2 = (JButton) c[2];
-						jb2.setIcon(new ImageIcon("images/thumbnails/" + player.getLastCardFromBattle().getFileName()));
+						jb2.setIcon(new ImageIcon(getClass().getClassLoader().getResource("images/thumbnails/" + player.getLastCardFromBattle().getFileName())));
 						jb2.setEnabled(false);
 					}
 					
@@ -199,9 +199,9 @@ public class MatchGUI extends JLayeredPane implements Observer {
 			ImageIcon img = null;
 			c = match.getDiscardStack().getLastElement();
 			if (c != null) {
-				img = new ImageIcon("images/cartes/" + c.getFileName());
+				img = new ImageIcon(getClass().getClassLoader().getResource("images/cartes/" + c.getFileName()));
 			} else {
-				img = new ImageIcon("images/cartes/Vide.jpg");
+				img = new ImageIcon(getClass().getClassLoader().getResource("images/cartes/Vide.jpg"));
 			}
 			defausse.setIcon(img);
 			
