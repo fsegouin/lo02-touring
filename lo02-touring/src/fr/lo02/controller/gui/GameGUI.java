@@ -186,11 +186,19 @@ public class GameGUI extends JFrame {
 	
 
 	
-	// Ajoute un listener sur "Validate"
+	/**
+	 * Ajoute un listener sur le Jbutton "Valider"
+	 * @param _actionlistener
+	 */
 	public void addValidateListener(ActionListener _actionlistener) {
 		jbvalidate.addActionListener(_actionlistener);
 	}
 
+	/**
+	 * Lance l'interface de jeu
+	 * @param _match Le match(modele) lancé
+	 * @return
+	 */
 	public MatchGUI startMatch(Match _match) {
 		contentPane.removeAll();
 		matchGUI = new MatchGUI(getNbPlayer(), getNbComputer(), _match);

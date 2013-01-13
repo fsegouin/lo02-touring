@@ -134,29 +134,34 @@ public class HandGUI extends JPanel implements Observer{
 	}
 	
 
-	// Ajoute un listener sur "Validate"
+	/**
+	 * Ajoute un listener sur chaque Jbutton qui represente des cards
+	 * @param _CardActionListener classe ou se situe le actionPerformed
+	 */
 	public void addCardListener(ActionListener _CardActionListener) {
 			for (int i = 0; i < card.length; i++) {
 				card[i].addActionListener(_CardActionListener);
 			}
 	}
 	
-	// Ajoute un listener sur "Validate"
+	/**
+	 *  Ajoute un listener sur le Jbutton qui represente la pile battle du joueur actif
+	 * @param _BattleActionListener 
+	 */
 	public void addBattleListener(ActionListener _BattleActionListener) {
 				battlePlayer.addActionListener(_BattleActionListener);
 	}
 	
+
+	//------------ GETTER AND SETTER --------------
 	public JButton getLimitspeed() {
 		return limitspeed;
 	}
-
 
 	public JButton getBattlePlayer() {
 		return battlePlayer;
 	}
 
-
-	//------------ GETTER AND SETTER --------------
 	public JButton[] getCard() {
 		return card;
 	}
@@ -165,7 +170,10 @@ public class HandGUI extends JPanel implements Observer{
 		battlePlayer.setEnabled(true);
 	}
 	
-	//
+	/**
+	 * Met a jour le textArea situe en bas de l'interface
+	 * @param text
+	 */
 	private void updateTextArea(final String text) {
 		SwingUtilities.invokeLater(new Runnable() {
 			public void run() {
@@ -174,6 +182,9 @@ public class HandGUI extends JPanel implements Observer{
 		});
 	}
 
+	/**
+	 * Redirige le flux de sortie vers le textArea de l'interface
+	 */
 	private void redirectSystemStreams() {
 		// Redirection des system.out.println vers le TextArea
 		OutputStream out = new OutputStream() {

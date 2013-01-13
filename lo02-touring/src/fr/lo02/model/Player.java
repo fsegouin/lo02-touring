@@ -372,13 +372,12 @@ public class Player extends Observable {
 	 * Interroger si le joueur est actif
 	 * @return Vrai si le joueur est actif, faux dans le cas contraire
 	 */
-	
 	public boolean isActive() {
 		return active;
 	}
 	
 	/**
-	 * Definir un joueur comme etant actif
+	 * Definir un joueur comme etant actif et notifie ses observers
 	 * @param active Vrai si actif, faux dans le cas contraire
 	 */
 
@@ -386,6 +385,5 @@ public class Player extends Observable {
 		setChanged();
 		notifyObservers(1);
 		this.active = active;
-
 	}
 }

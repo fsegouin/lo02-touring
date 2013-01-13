@@ -53,7 +53,12 @@ public class MatchGUI extends JLayeredPane implements Observer {
 	private Match match;
 	
 	
-	
+	/**
+	 * Consturcteur par defaut
+	 * @param nbPlayer Le nombre de joueur
+	 * @param nbComputer Le nombre d'ordinateur
+	 * @param _match Le match(modele) lancé
+	 */
 	public MatchGUI(int nbPlayer, int nbComputer, Match _match) {
 		this.match = _match;
 		this.match.addObserver(this);
@@ -137,12 +142,12 @@ public class MatchGUI extends JLayeredPane implements Observer {
 	    
 	}
 
-	
+
 	public void update(Observable o, Object arg) {
 		int countNbPlayer = 0;
 		int indexActiveplayer = match.getIndexOfActivePlayer();
 
-		// ---------- MAJ BARRE DU HAUT ADVERSAIRE -----------
+		// ---------- arg = 1 / MAJ BARRE DU HAUT ADVERSAIRE -----------
 		if ((Integer) arg == 1) {
 			listPlayer = match.getListPlayer();
 			Iterator iterator = listJpPlayer.iterator();
@@ -150,7 +155,7 @@ public class MatchGUI extends JLayeredPane implements Observer {
 				Player player = (Player) lp.next();
 				JPanel jp = (JPanel) iterator.next();
 
-				// ------- MAJ D'UN PANEL ------
+				// ------- MAJ D'UN PANEL ADVERSAIRE------
 				Component[] c = jp.getComponents();
 				for (int i = 0; i < c.length; i++) {
 					// Mise a jour non du joueur
@@ -171,7 +176,7 @@ public class MatchGUI extends JLayeredPane implements Observer {
 						jb2.setEnabled(false);
 					}
 					
-					//Mise a jour des icones
+					//Mise a jour des icones d'un ADVERSAIRE
 					JPanel jp3 = (JPanel) c[3];
 					Component[] icone = jp3.getComponents();
 					JLabel[] ic = new JLabel[5];
@@ -205,7 +210,7 @@ public class MatchGUI extends JLayeredPane implements Observer {
 			}
 			defausse.setIcon(img);
 			
-			//----- ACTIVE LES JOUEURS CIBLABLE QUAND UNE CARTE EST SELECTIONNE ------
+			//-----  arg = 2  /ACTIVE LES JOUEURS CIBLABLE QUAND UNE CARTE EST SELECTIONNE ------
 		} else if ((Integer) arg == 2) {
 			lp = match.getLp();
 			// parcour des joueurs ciblable

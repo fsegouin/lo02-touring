@@ -46,6 +46,9 @@ public class Match extends Observable {
 		this.playerHandInit();
 	}
 
+	/**
+	 * Informe les observers qu'il y a eu des changement dans le match
+	 */
 	public void changed() {
 		setChanged();
 		notifyObservers(1);

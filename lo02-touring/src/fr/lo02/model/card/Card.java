@@ -31,7 +31,7 @@ public abstract class Card {
 	
 	
 	/**
-	 * Jeter la carte selectionnee
+	 * Jeter la carte selectionnee et declenche le tour suivant
 	 * @param activePlayer Joueur actif
 	 */
 	public void throwThisCard(Player activePlayer) {
@@ -41,7 +41,7 @@ public abstract class Card {
 	}
 	
 	/**
-	 * Jouer la carte selectionnee
+	 * Jouer la carte selectionnee et declenche le tour suivant
 	 * @param activePlayer Joueur actif
 	 * @param targetedPlayer Joueur cible
 	 * @return Renvoie une carte dans le cas d'un coup fourre, null dans le cas contraire

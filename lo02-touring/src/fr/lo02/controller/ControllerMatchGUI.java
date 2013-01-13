@@ -33,6 +33,12 @@ public class ControllerMatchGUI {
 	JButton battlePlayer;
     ArrayList<JPanel> listJpPlayer = new ArrayList<JPanel>();
 
+    
+    /**
+     * Demarre le controlleur
+     * @param _match
+     * @param _matchGUI
+     */
 	public ControllerMatchGUI(Match _match, MatchGUI _matchGUI) {
 		this.match = _match;
 		this.matchGUI = _matchGUI;
@@ -42,14 +48,16 @@ public class ControllerMatchGUI {
 		this.battlePlayer = handGUI.getBattlePlayer();
 		this.listJpPlayer = matchGUI.getListJpPlayer();
 		
+		//Listener de la deselection de la carte
 		this.handGUI.addMouseListener(new DeselectCardAction());
+		//Listener de la pioche
 		this.matchGUI.addDiscardListener(new DiscardAction());
 		//Listener des cards
 		this.handGUI.addBattleListener(new BattleAction());
 		for (int i = 0; i < 5; i++) {
 			this.handGUI.addCardListener(new CardAction());
 		}
-		//listener des adverssaire
+		//Listener des adverssaire
 		for (Iterator iterator2 = listJpPlayer.iterator(); iterator2.hasNext();) {
 			JPanel jp = (JPanel) iterator2.next();
 			Component[] c = jp.getComponents();
@@ -58,6 +66,11 @@ public class ControllerMatchGUI {
 		}
 	}
 	
+	/**
+	 * Cette classe represente les actions effectuées lors d'un clic sur une card
+	 * @author Kevin
+	 *
+	 */
 	class CardAction implements ActionListener {
 
 		public void actionPerformed(ActionEvent arg0) {
@@ -111,6 +124,10 @@ public class ControllerMatchGUI {
 			
 		}
 		
+		/**
+		 * 
+		 * @param numCard
+		 */
 		public void selectCard(int numCard) {
 			match.activePlayer.setSelectedCard(match.activePlayer.getHand().get(numCard));
 			try {
@@ -124,6 +141,11 @@ public class ControllerMatchGUI {
 
 	}
 
+	/**
+	 * Cette classe represente les actions effectuées lors d'un clic sur la pioche
+	 * @author Kevin
+	 *
+	 */
 	class DiscardAction implements ActionListener {
 
 		public void actionPerformed(ActionEvent arg0) {
@@ -132,6 +154,11 @@ public class ControllerMatchGUI {
 		}
 	}
 	
+	/**
+	 * Cette classe represente les actions effectuées lors d'un clic sur la pile battle du joueur actif
+	 * @author Kevin
+	 *
+	 */
 	class BattleAction implements ActionListener {
 
 		public void actionPerformed(ActionEvent arg0) {
@@ -140,6 +167,11 @@ public class ControllerMatchGUI {
 		}
 	}
 	
+	/**
+	 * Cette classe represente les actions effectuées lors d'un clic sur la pile battle des adversaires
+	 * @author Kevin
+	 *
+	 */
 	class BattlePlayerAction implements ActionListener {
 
 		public void actionPerformed(ActionEvent arg0) {
@@ -157,6 +189,11 @@ public class ControllerMatchGUI {
 		}
 	}
 	
+	/**
+	 * Cette classe represente les actions effectuées lors d'un clic sur le panel joueur(deselectionne la card active)
+	 * @author Kevin
+	 *
+	 */
 	class DeselectCardAction implements MouseListener {
 
 		public void mouseClicked(MouseEvent e) {
