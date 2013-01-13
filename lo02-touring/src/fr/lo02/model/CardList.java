@@ -24,32 +24,32 @@ public class CardList { // On peut eventuellement extends depuis Stack
 	}
 	
 	/**
-	 * Removes the object at the top of this stack and returns that object as the value of this function.
-	 * @return The object at the top of this stack (the last item of the Vector object).
+	 * Supprime la carte situee en haut de la pile et la retourne
+	 * @return Retourne la carte en haut de la pile
 	 */
 	public Card topPick() {
 		return stack.pop();
 	}
 	
 	/**
-	 * Pushes a card onto the top of this stack. This has exactly the same effect as: addElement(item)
-	 * @param aCard the Card to be pushed onto this stack.
+	 * Ajoute une carte en haut de la pile
+	 * @param aCard Carte a ajouter
 	 */
 	public void toStack(Card aCard) {
 		stack.push(aCard);
 	}
 	
 	/**
-	 * Tests if this stack is empty.
-	 * @return true if and only if this stack contains no items; false otherwise.
+	 * Test si la pile est vide
+	 * @return Vrai si la pile est vide, faux dans le cas contraire
 	 */
 	public boolean isEmpty() {
 		return stack.isEmpty();
 	}
 	
 	/**
-	 * Returns the last card of the stack.
-	 * @return the last card of the stack, i.e., the card at index size() - 1.
+	 * Renvoie la derniere carte de la pile
+	 * @return Derniere carte de la pile, soit la carte situee a l'index size() - 1
 	 */
 	public Card lastElement() {
 		return stack.lastElement();
@@ -57,24 +57,43 @@ public class CardList { // On peut eventuellement extends depuis Stack
 	
 	/**
 	 * Ajoute une carte a la CardList
-	 * @param c carte a ajouter
+	 * @param c Carte a a jouter
 	 */
 	public void addCard(Card c){
 		this.stack.add(c);
 	}
 	
+	/**
+	 * Permet de piocher a un index precis
+	 * @param index Donne l'index ou piocher
+	 * @return Renvoie la carte situee a cet index
+	 */
+	
 	public Card pickAtIndex(int index) {
 		return stack.get(index);
 	}
+	
+	/**
+	 * Permet d'obtenir la taille de la pile de cartes
+	 * @return Retourne la taille de la pile
+	 */
 	
 	public int size() {
 		return stack.size();
 	}
 
+	/**
+	 * Permet de lister l'ensemble des cartes situee dans la pile
+	 */
 	@Override
 	public String toString() {
 		return "CardList [stack=" + stack + "]";
 	}
+	
+	/**
+	 * Obtenir le dernier element de la pile
+	 * @return Renvoie le dernier element de la pile de carte si elle n'est pas vide
+	 */
 
 	public Card getLastElement() {
 		Card c = null;

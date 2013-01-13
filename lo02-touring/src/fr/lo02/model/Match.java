@@ -31,18 +31,14 @@ public class Match extends Observable {
 	private int nbComputerPlayer;
 	//Joueur cibable = lp
 	HashSet<Player> lp = new HashSet<Player>();
-
-	/**
-	 * Le constructeur de match Initialise les joueurs, les stacks de jeu
-	 * 
-	 * @param nbComputerPlayer
-	 * @param nbHumanPlayer
-	 * @param namePlayer
-	 */
 	
 	private Match() {
 		super();
 	}
+	
+	/**
+	 * Initiliase le match
+	 */
 	
 	public void initMatch() {
 		this.playerInit(nbComputerPlayer, nbHumanPlayer, namePlayer);
@@ -55,8 +51,10 @@ public class Match extends Observable {
 		notifyObservers(1);
 	}
 	
+	/**
+	 * Effectue le tour du prochain joueur
+	 */
 	public void next() {
-		int i=0;
 		activePlayer = nextPlayer();
 		changed();
 		if(!this.testEndOfGame()) {
@@ -69,10 +67,13 @@ public class Match extends Observable {
 			}
 		}
 		else {
-//			System.out.println("--- Fin du jeu, merci d'avoir joue ! ---");
 		}
 	}
 	
+	/**
+	 * Singleton de Match
+	 * @return Renvoie l'instance de Match
+	 */
 	public final static Match getInstance() {
         if (Match.instance == null) {
            synchronized(Match.class) {
@@ -85,10 +86,9 @@ public class Match extends Observable {
     }
 
 	/**
-	 * Retourne une liste des joueurs qui peuvent etre cibles
-	 * 
-	 * @param activePlayer
-	 * @return Playerlist where player are playable by this card
+	 * Retourne une liste des joueurs qui peuvent etre ciblables
+	 * @param activePlayer Joueur actif (celui qui lance l'attaque)
+	 * @return lp Liste de joueurs ou les joueurs peuvent etre ciblables par cette attaque
 	 */
 	public HashSet<Player> checkCardPlayable(Player activePlayer) throws SelectedCardNotDefinedException {
 		Player p = null;
@@ -120,10 +120,10 @@ public class Match extends Observable {
 	}
 	
 	/**
-	 * Retourne le player ou va etre jouer la carte
-	 * @param playerName Nom du player cible
-	 * @param lp Liste des player ciblable
-	 * @return Le player cible
+	 * Retourne le player ou va etre joue la carte
+	 * @param playerName Nom du joueur cible
+	 * @param lp Liste des joueurs ciblable
+	 * @return Le joueur cible
 	 */
 	public Player getPlayerByName(String playerName) {
 		Player returnedPlayer = null;
@@ -135,10 +135,18 @@ public class Match extends Observable {
 		return returnedPlayer;
 	}
 	
+	/**
+	 * Definir le prochain joueur
+	 * @param nextPlayer Prochain joueur a jouer
+	 */
 	public void setNextPlayer(Player nextPlayer) {
 		numActivePlayer = listPlayer.indexOf(nextPlayer);
 	}
 	
+	/**
+	 * Obtenir le prochain joueur d'apres la liste des joueurs
+	 * @return Renvoie le prochain joueur
+	 */
 	public Player nextPlayer() {
 		// Ex: pr 4 joueurs - listPlayer.size = 4 mais activePlayer = 3 (0,1,2,3)
 		if (numActivePlayer > listPlayer.size()-1) {
@@ -151,8 +159,8 @@ public class Match extends Observable {
 	}
 
 	/**
-	 * Test le joueur actif a atteint 1000km ou si la pioche est vide
-	 * @return true pour fin de la partie et false si il faut continuer
+	 * Test si le joueur actif a atteint 1000km ou si la pioche est vide
+	 * @return Vrai pour la fin de la partie, faux dans le cas contraire
 	 */
 	public boolean testEndOfGame(){
 		if(listPlayer.get(numActivePlayer-1).kmCheck() || gameStack.isEmpty()) {
@@ -162,14 +170,12 @@ public class Match extends Observable {
 		else
 			return false;
 	}
-	
-	
+
 	/**
-	 * Create the list of player(human and computer)
-	 * 
-	 * @param nbComputerPlayer
-	 * @param nbHumanPlayer
-	 * @param namePlayer
+	 * Creer la liste des joueurs (humains et ordinateur)
+	 * @param nbComputerPlayer Nombre de joueurs ordinateur
+	 * @param nbHumanPlayer Nombre de joueurs humains
+	 * @param namePlayer Noms des joueurs
 	 */
 	public void playerInit(int nbComputerPlayer, int nbHumanPlayer, String[] namePlayer) {
 
@@ -180,8 +186,8 @@ public class Match extends Observable {
 
 		if(nbComputerPlayer > 0) {
 			Strategy attackPriority = new AttackPriority();
-			Strategy defensePriority = new DefensePriority();
-			Strategy speedPriority = new SpeedPriority();
+			Strategy defensePriority = new DefensePriority(); // Non utilise mais implemente
+			Strategy speedPriority = new SpeedPriority(); // Non utilise mais implemente
 			for (int i = 0; i < nbComputerPlayer; i++) {
 				ComputerPlayer computerPlayer = new ComputerPlayer("Computer" + i, 0, attackPriority);
 				this.listPlayer.add(computerPlayer);
@@ -192,6 +198,7 @@ public class Match extends Observable {
 	/**
 	 * Permet de distribuer une main a chaque joueur
 	 */
+	
 	public void playerHandInit() {
 		for (Player p : listPlayer) {
 			for (int i = 0; i < 4; i++) {
@@ -199,6 +206,10 @@ public class Match extends Observable {
 			}
 		}
 	}
+	
+	/**
+	 * Initilisation de la pile de jeu avec toutes les cartes d'apres les regles officielles du jeu
+	 */
 
 	public void gameStackInit() { // Initialise la pioche de jeu principale
 		for (int i = 0; i < 2; i++) { // 2 stop cards
@@ -294,58 +305,128 @@ public class Match extends Observable {
 
 		gameStack.shuffleCards(); // Shuffle the stack
 	}
+	
+	/**
+	 * Obtenir la pioche du jeu
+	 * @return Renvoie la pioche
+	 */
 
 	public CardList getGameStack() {
 		return gameStack;
 	}
+	
+	/**
+	 * Obtenir la defausse du jeu
+	 * @return Renvoie la defausse
+	 */
 
 	public CardList getDiscardStack() {
 		return discardStack;
 	}
 	
+	/**
+	 * Ajouter une carte a la defausse
+	 * @param aCard Carte a ajouter
+	 */
+	
 	public void addToDiscardStack(Card aCard) {
 		discardStack.stack.add(aCard);
 	}
 	
+	/**
+	 * Obtenir le nom des joueurs
+	 * @return Renvoie les noms
+	 */
+	
 	public String[] getNamePlayer() {
 		return namePlayer;
 	}
+	
+	/**
+	 * Definir le nom des joueurs
+	 * @param namePlayer Nom des joueurs
+	 */
 
 	public void setNamePlayer(String[] namePlayer) {
 		this.namePlayer = namePlayer;
 	}
+	
+	/**
+	 * Obtenir le nombre de joueurs humains
+	 * @return Renvoie le nombre de joueurs
+	 */
 
 	public int getNbHumanPlayer() {
 		return nbHumanPlayer;
 	}
+	
+	/**
+	 * Definir le nombre de joueurs humains
+	 * @param nbHumanPlayer Nombre de joueurs
+	 */
 
 	public void setNbHumanPlayer(int nbHumanPlayer) {
 		this.nbHumanPlayer = nbHumanPlayer;
 	}
+	
+	/**
+	 * Obtenir le nombre de joueurs ordinateur
+	 * @return Renvoie le nombre de joueurs
+	 */
 
 	public int getNbComputerPlayer() {
 		return nbComputerPlayer;
 	}
+	
+	/**
+	 * Definir le nombre de joueurs ordinateur
+	 * @param nbComputerPlayer Nombre de joueurs
+	 */
 
 	public void setNbComputerPlayer(int nbComputerPlayer) {
 		this.nbComputerPlayer = nbComputerPlayer;
 	}
 	
+	/**
+	 * Obtenir l'index des joueurs actifs
+	 * @return Renvoie l'index des joueurs actifs
+	 */
+	
 	public int getIndexOfActivePlayer () {
 		return listPlayer.indexOf(activePlayer);
 	}
+	
+	/**
+	 * Obtenir la liste des joueurs
+	 * @return Renvoie la liste des joueurs
+	 */
 
 	public LinkedList<Player> getListPlayer() {
 		return listPlayer;
 	}
 	
+	/**
+	 * Obtenir le joueur actif dans ce tour
+	 * @return Renvoie le joueur actif
+	 */
+	
 	public Player getActivePlayer() {
 		return activePlayer;
 	}
+	
+	/**
+	 * Obtenir la liste des joueurs ciblables
+	 * @return Renvoie la liste des joueurs
+	 */
 
 	public HashSet<Player> getLp() {
 		return lp;
 	}
+	
+	/**
+	 * Obtenir le nombre total de joueurs
+	 * @return Renvoie le nombre de joueurs
+	 */
 
 	public int getNbPlayer() {
 		return getNbComputerPlayer()+getNbHumanPlayer();

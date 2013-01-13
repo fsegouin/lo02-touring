@@ -1,18 +1,12 @@
 package fr.lo02.controller;
 
-import java.util.HashSet;
-import java.util.Iterator;
 import java.util.Scanner;
 
 import fr.lo02.controller.gui.ConsoleHandGUI;
 import fr.lo02.controller.gui.ConsoleMatchGUI;
-import fr.lo02.model.ComputerPlayer;
 import fr.lo02.model.Game;
-import fr.lo02.model.HumanPlayer;
 import fr.lo02.model.Match;
 import fr.lo02.model.Player;
-import fr.lo02.model.card.Card;
-import fr.lo02.model.exception.SelectedCardNotDefinedException;
 
 public class Controller {		
 	
@@ -29,9 +23,6 @@ public class Controller {
 
 		System.out.println("Entrez un nombre de joueur ordinateur :");
 		game.setNbComputerPlayer(sc.nextInt());
-
-		// On vide la ligne avant d'en lire d'autres car on a utilise
-		// sc.nextInt() avant
 		sc.nextLine();
 
 		// Add the name of each HumanPlayer
@@ -47,17 +38,6 @@ public class Controller {
 		view2.addMatchObserver(match);
 		match.next();
 
-//		do {
-//			activePlayer = match.nextPlayer();
-//			if (activePlayer instanceof HumanPlayer) {
-//				activePlayerPlay(activePlayer, match);
-//			} 
-//			else if (activePlayer instanceof ComputerPlayer){
-//				((ComputerPlayer) activePlayer).play(match);
-//				System.out.println("Kilometres du " + activePlayer.getName() + " : " + activePlayer.getTotalMilage());
-//			}
-//		} while (!(match.testEndOfGame()));
-//		System.out.println("--- Fin du jeu, merci d'avoir joue ! ---");
 	}
 
 }

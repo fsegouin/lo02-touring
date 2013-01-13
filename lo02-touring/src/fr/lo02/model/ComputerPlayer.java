@@ -7,7 +7,7 @@ public class ComputerPlayer extends Player {
 	private Strategy strategy;
 
 	/**
-     * Constructeur par default recevant un objet "Strategie" en paramètre
+     * Constructeur par default recevant un objet "Strategy" en paramètre
      * @param Strategy
      */
 	public ComputerPlayer(String name, int color,Strategy _strategy) {

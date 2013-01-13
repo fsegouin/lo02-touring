@@ -9,6 +9,11 @@ import fr.lo02.model.exception.NotValidCardOnBattleException;
 public class Distance extends Card {
 
 	int milage;
+	
+	/**
+	 * Constructeur de la carte Distance
+	 * @param milage Kilometrage de la carte
+	 */
 
 	public Distance(int milage) {
 		super();
@@ -33,16 +38,18 @@ public class Distance extends Card {
 		}
 		this.milage = milage;
 	}
+	
+	/**
+	 * Affiche la carte
+	 */
 
 	public String toString() {
 		return "Distance [milage=" + milage + "]";
 	}
-
+	
+	
 	/**
-	 * Les conditions sont: - La premiere carte de battle est une "RemedyCard" -
-	 * SpeedLimit a 50 -
-	 * 
-	 * @return Le joueur qui peut etre cible
+	 * Verification de la validite de l'action souhaitee
 	 */
 	public Player checkValidMove(Player activePlayer, Player targetPlayer) throws NotValidCardOnBattleException {
 		Player p = null;
@@ -70,13 +77,19 @@ public class Distance extends Card {
 		}
 		return p;
 	}
+	
+	/**
+	 * Obtenir le kilometrage de la carte
+	 * @return Renvoie le kilometrage
+	 */
 
 	public int getMilage() {
 		return milage;
 	}
 
-	// DANS CETTE METHODE TU DOIS APPELLER LA METHODE AU DESSUS POUR CHECK SI
-	// C'EST JOUABLE ET DONC NE PAS FAIRE LE TEST DANS CELLE CI
+	/**
+	 * Jouer la carte
+	 */
 	public Card playThisCard(Player activePlayer, Player targetedPlayer) {
 		if (activePlayer.getLastCardFromBattle() instanceof GoRoll) {
 			activePlayer.addToDistance(this);

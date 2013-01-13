@@ -57,7 +57,7 @@ public class GameGUI extends JFrame {
 	private MatchGUI matchGUI;
 
 	/**
-	 * Create the frame.
+	 * Creee la frame
 	 */
 	public GameGUI(Game _game) {
 		
