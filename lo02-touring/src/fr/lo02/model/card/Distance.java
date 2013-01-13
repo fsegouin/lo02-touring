@@ -87,9 +87,6 @@ public class Distance extends Card {
 		return milage;
 	}
 
-	/**
-	 * Jouer la carte
-	 */
 	public Card playThisCard(Player activePlayer, Player targetedPlayer) {
 		if (activePlayer.getLastCardFromBattle() instanceof GoRoll) {
 			activePlayer.addToDistance(this);

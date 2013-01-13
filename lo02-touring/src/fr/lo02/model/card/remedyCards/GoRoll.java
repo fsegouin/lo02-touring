@@ -23,7 +23,6 @@ public class GoRoll extends Card {
 		return p;
 	}
 
-	@Override
 	public Card playThisCard(Player activePlayer, Player targetedPlayer) {
 		activePlayer.addToBattle(this);
 		super.playThisCard(activePlayer, targetedPlayer);

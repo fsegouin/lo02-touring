@@ -12,7 +12,6 @@ public class ConsoleMatchGUI implements Observer{
 	public ConsoleMatchGUI() {
 	}
 
-	@Override
 	public void update(Observable o, Object arg) {
 		if ((Integer) arg == 1) {
 			System.out.println();

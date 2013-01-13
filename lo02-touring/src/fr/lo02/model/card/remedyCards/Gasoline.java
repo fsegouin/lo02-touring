@@ -24,7 +24,6 @@ public class Gasoline extends Card {
 		return p;
 	}
 
-	@Override
 	public Card playThisCard(Player activePlayer, Player targetedPlayer) {
 		targetedPlayer.addToBattle(this);
 		super.playThisCard(activePlayer, targetedPlayer);

@@ -1,0 +1,11 @@
+
+fr.lo02.controller
+fr.lo02.controller.gui
+fr.lo02.model
+fr.lo02.model.card
+fr.lo02.model.card.HazardCards
+fr.lo02.model.card.SafetyCards
+fr.lo02.model.card.remedyCards
+fr.lo02.model.exception
+fr.lo02.model.stack
+fr.lo02.model.strategy

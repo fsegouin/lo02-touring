@@ -23,7 +23,7 @@ import fr.lo02.model.exception.SelectedCardNotDefinedException;
 public class RegularStrategy {
 	
 	/**
-	 * Methode qui permet d'obtenir un joueur a viser aleatoirement parmis les joueurs compatibles
+	 * Obtenir un joueur a viser aleatoirement parmis les joueurs compatibles
 	 * @param match
 	 * @param computerPlayer
 	 * @return Renvoie le joueur vise
@@ -52,7 +52,7 @@ public class RegularStrategy {
 	}
 
 	/**
-	 * Methode qui permet de jouer les cartes de priorite inferieures
+	 * Jouer les cartes de priorite inferieures
 	 * @param match
 	 * @param computerPlayer
 	 * @param played
@@ -99,7 +99,7 @@ public class RegularStrategy {
 	}
 	
 	/**
-	 * Methode qui permet de jouer une carte de type Distance dans la main de l'IA
+	 * Jouer une carte de type Distance dans la main de l'IA
 	 * @param computerPlayer
 	 * @param aCard
 	 * @return Renvoie un boolean pour indiquer si la carte a pu etre jouee
@@ -124,7 +124,7 @@ public class RegularStrategy {
 	}
 	
 	/**
-	 * Methode qui permet de jouer une carte de type GoRoll dans la main de l'IA
+	 * Jouer une carte de type GoRoll dans la main de l'IA
 	 * @param computerPlayer
 	 * @param aCard
 	 * @return Renvoie un boolean pour indiquer si la carte a pu etre jouee
@@ -149,7 +149,7 @@ public class RegularStrategy {
 	}
 	
 	/**
-	 * Methode qui permet de jouer une carte de type EndOfLimit dans la main de l'IA
+	 * Jouer une carte de type EndOfLimit dans la main de l'IA
 	 * @param computerPlayer
 	 * @param aCard
 	 * @return Renvoie un boolean pour indiquer si la carte a pu etre jouee
@@ -174,7 +174,7 @@ public class RegularStrategy {
 	}
 	
 	/**
-	 * Methode qui permet de jouer une carte de type Gasoline dans la main de l'IA
+	 * Jouer une carte de type Gasoline dans la main de l'IA
 	 * @param computerPlayer
 	 * @param aCard
 	 * @return Renvoie un boolean pour indiquer si la carte a pu etre jouee
@@ -199,7 +199,7 @@ public class RegularStrategy {
 	}
 	
 	/**
-	 * Methode qui permet de jouer une carte de type Repairs dans la main de l'IA
+	 * Jouer une carte de type Repairs dans la main de l'IA
 	 * @param computerPlayer
 	 * @param aCard
 	 * @return Renvoie un boolean pour indiquer si la carte a pu etre jouee
@@ -224,7 +224,7 @@ public class RegularStrategy {
 	}
 	
 	/**
-	 * Methode qui permet de jouer une carte de type SpareTire dans la main de l'IA
+	 * Jouer une carte de type SpareTire dans la main de l'IA
 	 * @param computerPlayer
 	 * @param aCard
 	 * @return Renvoie un boolean pour indiquer si la carte a pu etre jouee

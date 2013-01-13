@@ -25,7 +25,6 @@ public class Repairs extends Card {
 		return p;
 	}
 	
-	@Override
 	public Card playThisCard(Player activePlayer, Player targetedPlayer) {
 		// TODO Auto-generated method stub
 		targetedPlayer.addToBattle(this);

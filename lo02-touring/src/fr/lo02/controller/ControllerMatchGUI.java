@@ -152,11 +152,6 @@ public class ControllerMatchGUI {
 				Player selectedPlayer = match.getPlayerByName(jl.getText());
 				Card cSafetyCard = match.getActivePlayer().getSelectedCard().playThisCard(match.getActivePlayer(), selectedPlayer);
 				// Si une carte est renvoye par playThisCard, c'est que le joueur peut jouer un coup fourre
-				//---- Demande de coup fourre ----
-//				if(cSafetyCard != null) {
-//					targetPlayerCoupFourre(match, selectedPlayer);
-//					selectedPlayer.coupFourre(cSafetyCard);
-//				}
 				}
 			}
 		}

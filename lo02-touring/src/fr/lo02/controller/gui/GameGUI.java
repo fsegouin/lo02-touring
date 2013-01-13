@@ -1,14 +1,10 @@
 package fr.lo02.controller.gui;
 
-import java.awt.BorderLayout;
 import java.awt.Color;
-import java.awt.Component;
 import java.awt.Desktop;
 import java.awt.Dimension;
-import java.awt.EventQueue;
 import java.awt.FlowLayout;
 import java.awt.GridLayout;
-import java.awt.Insets;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
@@ -22,7 +18,6 @@ import javax.swing.JMenuBar;
 import javax.swing.JMenuItem;
 import fr.lo02.model.Game;
 import fr.lo02.model.Match;
-import fr.lo02.model.stack.Hand;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -100,12 +95,13 @@ public class GameGUI extends JFrame {
 		// Quitte la frame principal quand on clique sur "Quitter"
 		JMenuItem mntmQuitter_1 = new JMenuItem("Quitter");
 		mntmQuitter_1.addActionListener(new ActionListener() {
-			@Override
+			
 			public void actionPerformed(ActionEvent arg0) {
 				// TODO Auto-generated method stub
 				System.exit(-1);
 			}
 		});
+		
 		mnbornes.add(mntmQuitter_1);
 
 		JMenu optionsMenu = new JMenu("Options");

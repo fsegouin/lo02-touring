@@ -16,7 +16,7 @@ public class AttackPriority extends RegularStrategy implements Strategy {
 	private CardList possibleCard = new CardList();
 	private Player targetedPlayer = null;
 	private boolean played = false;
-
+	
 	public void strategyPlay(Match match, ComputerPlayer computerPlayer) {
 
 		System.out.println("");

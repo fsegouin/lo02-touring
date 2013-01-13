@@ -11,6 +11,9 @@ public class CardList { // On peut eventuellement extends depuis Stack
 
 	protected Stack<Card> stack;
 	
+	/**
+	 * Constructeur de CardList
+	 */
 	public CardList() {
 		super();
 		this.stack = new Stack<Card>();
@@ -85,7 +88,7 @@ public class CardList { // On peut eventuellement extends depuis Stack
 	/**
 	 * Permet de lister l'ensemble des cartes situee dans la pile
 	 */
-	@Override
+	
 	public String toString() {
 		return "CardList [stack=" + stack + "]";
 	}

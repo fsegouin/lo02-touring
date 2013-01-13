@@ -24,7 +24,6 @@ public class OutOfGas extends Card {
 		return p;
 	}
 
-	@Override
 	public Card playThisCard(Player activePlayer, Player targetedPlayer) {
 		Card cSafetyCard = null;
 		targetedPlayer.addToBattle(this);	

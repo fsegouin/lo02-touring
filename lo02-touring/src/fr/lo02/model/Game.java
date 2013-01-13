@@ -1,5 +1,4 @@
 package fr.lo02.model;
-import java.util.Scanner;
 
 public class Game {
 	

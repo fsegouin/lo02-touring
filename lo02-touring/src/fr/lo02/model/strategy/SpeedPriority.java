@@ -27,7 +27,7 @@ public class SpeedPriority extends RegularStrategy implements Strategy{
 		playRegular(match, computerPlayer, played);
 
 	}
-	@Override
+	
 	public boolean playPriority(Match match, ComputerPlayer computerPlayer) {
 		// TODO Auto-generated method stub
 		boolean played = false;

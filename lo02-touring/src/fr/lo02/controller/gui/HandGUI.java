@@ -177,17 +177,14 @@ public class HandGUI extends JPanel implements Observer{
 	private void redirectSystemStreams() {
 		// Redirection des system.out.println vers le TextArea
 		OutputStream out = new OutputStream() {
-			@Override
 			public void write(int b) throws IOException {
 				updateTextArea(String.valueOf((char) b));
 			}
 
-			@Override
 			public void write(byte[] b, int off, int len) throws IOException {
 				updateTextArea(new String(b, off, len));
 			}
 
-			@Override
 			public void write(byte[] b) throws IOException {
 				write(b, 0, b.length);
 			}
